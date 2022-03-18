@@ -13,7 +13,7 @@ include 'connect.php';
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Proyek Manpro</title>
+      <title>Proyek Manpro 11</title>
       <?php include('assets/header.php'); ?>
       <link href="assets/css/admin_login.css" rel="stylesheet" />
    </head>
@@ -38,7 +38,7 @@ include 'connect.php';
         </nav>
         <!-- Masthead-->
         <header class="masthead">
-            <div class="container py-5 px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="container py-4 px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
 
