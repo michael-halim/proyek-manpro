@@ -19,21 +19,31 @@ include 'connect.php';
    </head>
    <body>
 
-<div class="container ">
-<div class="text-center">
+   <div class="comming-soon" style="background:url('assets/img/bgi.jpg');">
+      <div class="first-header d-flex justify-content-center">
+        <h1 class="display-4 text-white-50 text-center">Renungan Harian dan Pasal Alkitab</h1>
+      </div>
+      <div class="second-header text-center">
+        <h2>Renungan Harian Pasal Alkitab</h2>
+        <p>Kelompok 11 Manpro v1.0</p>
 
+        <div class="d-flex justify-content-center mb-1">
+          <button type="button" class="btn btn-primary btn-block w-75">Get Started</button>
+        </div>
 
-    <h1 class="py-4 mb-4 text-uppercase text-white-50">Renungan dan Pasal Alkitab</h1>
-    <h2 class="text-white-50  mb-5">Lorem ipsum dolor sit amet admine dolo.</h2>
+        <div class="d-flex justify-content-center mb-1">
 
+          <button type="button" class="btn btn-secondary btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
+          
+        </div>
 
-    <button type="button" class="btn  btn-lg btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
-    <button type="button" class="btn btn-lg bg-dark text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn bg-dark btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        </div>
 
+      </div>
+    </div>
 
-</div>
-
-</div>
 
 
 
@@ -50,7 +60,7 @@ include 'connect.php';
                <div class="modal-body mx-3" method="POST">
                   <form class="form-signin">
                      <div class="md-form mb-4">
-                        <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputEmailIn">  Email Address </label>
+                        <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn">  Email Address </label>
                         <input type="email" id="inputEmailIn" class="form-control validate" placeholder="Email address" required>
                      </div>
                      <div class="md-form mb-4">
