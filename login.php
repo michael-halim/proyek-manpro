@@ -22,7 +22,7 @@ include 'connect.php';
            <!-- Navigation-->
            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Admin Login</a>
+                <a class="navbar-brand" href="#page-top">Manpro</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -43,7 +43,7 @@ include 'connect.php';
                     <div class="text-center">
 
 
-                        <h1 class="py-4 mb-4 mx-auto my-0 text-uppercase text-light">Admin Control Panel</h1>
+                        <h1 class="py-4 mb-4 mx-auto my-0 text-uppercase text-light">Renungan dan Pasal Alkitab</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Lorem ipsum dolor sit amet admine dolo.</h2>
 
 
