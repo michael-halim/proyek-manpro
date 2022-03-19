@@ -49,7 +49,7 @@ include 'connect.php';
 
 
       <!-- SIGN IN -->
-      <div id="myModal" class="modal fade" role="dialog">
+      <div id="myModal" class="modal py-5 fade" role="dialog">
       <div class="vertical-alignment-helper">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -80,7 +80,7 @@ include 'connect.php';
                
       <!-- SIGN UP -->
 
-      <div id="myModal2" class="modal fade" role="dialog">
+      <div id="myModal2" class="modal py-4 fade" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
             <div class="modal-content">
@@ -97,7 +97,7 @@ include 'connect.php';
 
                 <div class="md-form mb-4">
                 <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputPhone">Date of Birth</label>
-                <input type="date" id="inputDate" class="form-control"  required>
+                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" required>
                 </div>
 
                 <div class="md-form mb-4">
