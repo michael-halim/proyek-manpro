@@ -12,9 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         $(document).ready(function() {
+
             $('#manage-users').DataTable();
             $.ajax({
-                url: 'admin_users_datatables_action.php',
+                url: 'admin_fetch_update_user.php',
                 method: 'POST',
                 data: {
                     type: 'READ',
@@ -32,11 +33,11 @@
 
                 }
             });
-
+            // Ajax untuk ubah jadi ketua
             $('body').on('click', '.ubah-ketua', function() {
                 var email = $(this).data('email');
                 $.ajax({
-                    url: 'admin_users_datatables_action.php',
+                    url: 'admin_fetch_update_user.php',
                     method: 'POST',
                     data: {
                         type: 'UPDATE',
@@ -53,12 +54,14 @@
                     }
                 });
             });
+
+            // See Detail if click and response
             $('body').on('click', '.see-detail', function() {
                 var obj = $(this).closest('tr');
 
                 var email = obj.find('td:eq(1)').text();
                 $.ajax({
-                    url: 'admin_users_detail_action.php',
+                    url: 'admin_see_detail.php',
                     method: 'POST',
                     data: {
                         email: email

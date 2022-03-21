@@ -22,11 +22,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         $(document).ready(function() {
+
+            // Init 2 DataTables
             $('#manage-users').DataTable();
             $('#assign-users-tables').DataTable();
 
+            // Ajax awal untuk load ketua
             $.ajax({
-                url: 'admin_group_leader_datatables_action.php',
+                url: 'admin_fetch_ketua.php',
                 method: 'POST',
                 data: {
                     type: 'READ',
@@ -44,12 +47,18 @@
 
                 }
             });
+
+            // Ajax for Assigning Group, Fetch user from DB
+            var assignedPerson;
             $('body').on('click', '.assign-group', function() {
+                checkedPerson.splice(0, checkedPerson.length);
+
                 var obj = $(this).closest('tr');
                 var email = obj.find('td:eq(1)').text();
+                assignedPerson = email;
                 // alert(email);
                 $.ajax({
-                    url: 'admin_group_leader_action.php',
+                    url: 'admin_fetch_user.php',
                     method: 'POST',
                     data: {
                         email: email
@@ -66,15 +75,16 @@
 
                     }
                 });
-                // $('#dtablesModal').modal('show');
             });
+
+            // See Detail if click and response
             $('body').on('click', '.see-detail', function() {
                 var obj = $(this).closest('tr');
 
                 var email = obj.find('td:eq(1)').text();
                 alert(email);
                 $.ajax({
-                    url: 'admin_users_detail_action.php',
+                    url: 'admin_see_detail.php',
                     method: 'POST',
                     data: {
                         email: email
@@ -89,6 +99,53 @@
                 });
 
             });
+            // Function and Response if Checkbox is clicked or not
+            const checkedPerson = [];
+            $('body').on('click', 'input[type="checkbox"]', function() {
+
+                if ($(this).prop('checked')) {
+                    var obj = $(this).closest('tr');
+                    var email = obj.find('td:eq(1)').text();
+                    checkedPerson.push(email);
+
+                } else {
+                    // Check email yang kembar ada di index berapa
+                    const index = checkedPerson.indexOf(email);
+
+                    //kalau ketemu masuk if ini
+                    if (index > -1) {
+                        checkedPerson.splice(index, 1); // 2nd parameter means remove one item only
+                    }
+                }
+
+            });
+            // Ajax Funtion Send All Checked Person 
+            $('.save-changes').click(function() {
+                alert(assignedPerson);
+                alert(checkedPerson);
+                const groupName = $('#group-name').val();
+                if (groupName === '') {
+                    alert('Nama Group Tidak Boleh Kosong');
+                } else {
+                    $.ajax({
+                        url: 'admin_save_changes.php',
+                        method: 'POST',
+                        data: {
+                            assignedPerson: assignedPerson,
+                            checkedPerson: checkedPerson,
+                            groupName: groupName
+                        },
+                        success: function(result) {
+                            $('#testing').html(result.output);
+                            $('#secondModal').modal('hide');
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+
+            });
         });
     </script>
 </head>
@@ -100,6 +157,9 @@
         <div class="col-md-8">
             <div class="container">
                 <h1>Content For Manage Group Leader</h1>
+                <h2 id="testing"></h2>
+
+                <!-- DataTables Utama untuk Melihat Semua Ketua  -->
                 <div id="div-manage-users" class="my-5" hidden>
                     <table id="manage-users" class="table table-bordered">
                         <thead>
@@ -124,6 +184,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Modal Untuk Lihat Detail dari Ketua - Ketua -->
                 <div class="modal fade" id="detail" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -139,6 +201,7 @@
                     </div>
                 </div>
 
+                <!-- Modal Isi Data Tables User -->
                 <div class="modal fade" id="dtablesModal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -168,7 +231,33 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" data-bs-target="#secondModal" data-bs-toggle="modal">Open second modal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Modal Kedua Untuk Isi Nama Group -->
+                <div class="modal fade" id="secondModal" tabindex="-1">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="group-name" class="col-form-label">Nama Group :</label>
+                                    <input type="text" class="form-control" id="group-name" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-bs-target="#dtablesModal" data-bs-toggle="modal">Back</button>
+                                <button type="button" class="btn btn-primary save-changes">Save changes</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
