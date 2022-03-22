@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$groupId, $assignedPersonId, '', '', '']);
 
+            
 
             // Insert Anggota Group ke Detail Group
             foreach($checkedPersonId as $personId){
@@ -84,6 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Untuk Memasukkan Anggota Group
                 $stmt->execute([$groupId, $personId,'','','']);
+
+                // Update Group Member jadi 1 --> artinya sudah dimasukkan ke dalam group
+                $sql = "UPDATE user SET group_member = 1 WHERE id = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$personId]);
             }
         }
         
