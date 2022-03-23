@@ -5,13 +5,13 @@
         // declare + assign
         $email = $_POST['email'];
         $password = $_POST['password'];
-
+        
         // check data login
         // SELECT * FROM user WHERE email = '$username'
         $sql = "SELECT * FROM user WHERE email=? LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
-        
+        $_SESSION['useremail']=$email;
         while($rowData = $stmt->fetch()){
 			$hashed_pw = hash('sha512',$password);
 
