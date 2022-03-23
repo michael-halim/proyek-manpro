@@ -13,8 +13,11 @@
     <script>
         $(document).ready(function() {
 
-            $('#manage-users').DataTable();
+            $('#manage-users').DataTable({
+                responsive: true
+            });
             $.ajax({
+
                 url: 'admin_fetch_update_user.php',
                 method: 'POST',
                 data: {
@@ -24,7 +27,9 @@
                 success: function(result) {
                     $('#manage-users').DataTable().destroy();
                     $('#manage-users').html(result.output);
-                    $('#manage-users').DataTable();
+                    $('#manage-users').DataTable({
+                        responsive: true
+                    });
                     $('#div-manage-users').prop('hidden', false);
 
 
@@ -46,7 +51,9 @@
                     success: function(result) {
                         $('#manage-users').DataTable().destroy();
                         $('#manage-users').html(result.output);
-                        $('#manage-users').DataTable();
+                        $('#manage-users').DataTable({
+                            responsive: true
+                        });
                         $('#div-manage-users').prop('hidden', false);
                     },
                     error: function(result) {
