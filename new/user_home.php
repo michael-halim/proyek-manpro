@@ -45,8 +45,8 @@
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
             <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Jadwal</a></li>
-            <li><a href="pricing.html">Materi</a></li>
+            <li><a href="blog.html">Materi</a></li>
+            <li><a href="pricing.html">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi;<?php  echo $email;?></a></li>
           </ul>
           <div class="extra-text visible-xs">
@@ -71,8 +71,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Deskripri(aturan gereja maybe,nanti diatur lagi)</h5>
                     <h6 class="card-subtitle mb-2 text-muted">tidak boleh afk</h6>
-                    <p class="card-text">jadwal</p>
-                    <a href="#" class="card-link">Info lebih lanjut</a>
+                    <p class="card-text">Donasi</p>
+                    <a href="https://saweria.co" class="card-link">donasi klik disini(saweria)</a>
+                    <a href="https://sociabuzz.com" class="card-link">donasi klik disini(socialbuzz)</a>
                 </div>
               </div>
             </div>
