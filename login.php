@@ -12,90 +12,123 @@ include 'connect.php';
 
 <!DOCTYPE html>
 <html>
+   <head>
+       
+      <title>Proyek Manpro 11</title>
+      <?php include('assets/header.php'); ?>
+      <link href="assets/css/admin_login.css" rel="stylesheet" />
 
-<head>
-    <title>Proyek Manpro</title>
+   </head>
+   <body>
 
-    <?php include('assets/header.php'); ?>
-    <link rel="stylesheet" href="css/login_style.css">
-</head>
+   <div class="comming-soon" style="background:url('assets/img/bgi.jpg');">
+      <div class="first-header d-flex justify-content-center">
+        <h1 class="display-4 text-white-50 text-center">Renungan Harian dan Pasal Alkitab</h1>
+      </div>
+      <div class="second-header text-center">
+        <h2>Renungan Harian Pasal Alkitab</h2>
+        <p>Kelompok 11 Manpro v1.0</p>
 
-<body>
-    <img src="img/tokopetra-text.png" class="vertical-align-center">
-    <div class="text-center">
-        <button type="button" class="btn btn-outline-primary btn-lg bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
-        <button type="button" class="btn btn-outline-success btn-lg bg-success text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        <div class="d-flex justify-content-center mb-1">
+          <button type="button" class="btn btn-primary btn-block w-75" href="http://petra.id/manpro11">Get Started</button>
+        </div>
+
+        <div class="d-flex justify-content-center mb-1">
+
+          <button type="button" class="btn btn-secondary btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
+          
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn bg-dark btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        </div>
+
+      </div>
     </div>
 
-    <!-- SIGN IN -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="card-title text-center mx-4 mt-2">Sign In</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" method="POST">
-                        <form class="form-signin">
-                            <div class="form-label-group">
-                                <label for="inputEmailIn">Email address</label>
-                                <input type="email" id="inputEmailIn" class="form-control" placeholder="Email address" required autofocus />
-                            </div>
 
-                            <div class="form-label-group">
-                                <label for="inputPasswordIn">Password</label>
-                                <input type="password" id="inputPasswordIn" class="form-control" placeholder="Password" required />
-                            </div>
-                            <button id="signin" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                            <hr class="my-2">
-                            <p class="text-center">Belum punya akun Tokopetra?
-                                <a href="signup.html" class="text-*-right" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#myModal2">Daftar</a>
-                            </p>
-                        </form>
+
+
+
+      <!-- SIGN IN -->
+      <div id="myModal" class="modal py-5 fade" role="dialog">
+      <div class="vertical-alignment-helper">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body mx-3" method="POST">
+                  <form class="form-signin">
+                     <div class="md-form mb-4">
+                        <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn">  Email Address </label>
+                        <input type="email" id="inputEmailIn" class="form-control validate" placeholder="Email address" >
+                     </div>
+                     <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text">  </i> <label for="inputPasswordIn"> Password </label>
+                        <input type="password" id="inputPasswordIn" class="form-control validate" placeholder="Password" >
+                     </div>
+                     <div class="modal-footer d-flex justify-content-center">
+                        <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Login</button>
+                     </div>
+                  </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- SIGN UP -->
-    <div id="myModal2" class="modal fade" role="dialog">
+    
+               
+      <!-- SIGN UP -->
+
+      <div id="myModal2" class="modal py-4 fade" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="card-title text-center mx-4 mt-2">Sign Up</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-label-group">
-                            <label for="inputFirstName">Name</label>
-                            <input type="text" id="inputName" class="form-control" placeholder="Name : Michael Halim" required>
-                        </div>
-                        <div class="form-label-group">
-                            <label for="inputDate">Date of Birth</label>
-                            <input type="date" id="inputDate" class="form-control" required>
-                        </div>
-                        <div class="form-label-group">
-                            <label for="inputPhone">Phone Number</label>
-                            <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-label-group">
-                            <label for="inputEmailUp">Email address</label>
-                            <input type="email" id="inputEmailUp" class="form-control" placeholder="Email address" required autofocus>
-                        </div>
-                        <div class="form-label-group">
-                            <label for="inputPasswordUp">Password</label>
-                            <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" required>
-                        </div>
-                        <button type="submit" id="signup" class="btn btn-lg btn-success btn-block text-uppercase">Sign
-                            up</button>
-                        <hr class="my-2">
-                    </div>
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mx-3">
+
+                <div class="md-form mb-4">
+                <i class="fas fa-user prefix grey-text"> </i> <label for="inputPhone">Name</label>
+                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" >
                 </div>
+
+                <div class="md-form mb-4">
+                <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputPhone">Date of Birth</label>
+                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" >
+                </div>
+
+                <div class="md-form mb-4">
+                <i class="fas fa-phone prefix grey-text"> </i> <label for="inputPhone">Phone Number</label>
+                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" >
+                </div>
+
+                <div class="md-form mb-4">
+                <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputPhone">Email</label>
+                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" >
+                </div>
+
+                <div class="md-form mb-4">
+                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPhone">Password</label>
+                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" >
+                </div>
+
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button type ="submit" id="signup" class="btn btn-dark">Sign up</button>
+        </div>
+    </div>
+    </div>
+
+                
             </div>
         </div>
     </div>
+      
 
     <script>
         $("[id='signin']").click(function() {
