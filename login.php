@@ -13,9 +13,11 @@ include 'connect.php';
 <!DOCTYPE html>
 <html>
    <head>
+       
       <title>Proyek Manpro 11</title>
       <?php include('assets/header.php'); ?>
       <link href="assets/css/admin_login.css" rel="stylesheet" />
+
    </head>
    <body>
 
@@ -28,7 +30,7 @@ include 'connect.php';
         <p>Kelompok 11 Manpro v1.0</p>
 
         <div class="d-flex justify-content-center mb-1">
-          <button type="button" class="btn btn-primary btn-block w-75">Get Started</button>
+          <button type="button" class="btn btn-primary btn-block w-75" href="http://petra.id/manpro11">Get Started</button>
         </div>
 
         <div class="d-flex justify-content-center mb-1">
@@ -61,11 +63,11 @@ include 'connect.php';
                   <form class="form-signin">
                      <div class="md-form mb-4">
                         <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn">  Email Address </label>
-                        <input type="email" id="inputEmailIn" class="form-control validate" placeholder="Email address" required>
+                        <input type="email" id="inputEmailIn" class="form-control validate" placeholder="Email address" >
                      </div>
                      <div class="md-form mb-4">
                         <i class="fas fa-lock prefix grey-text">  </i> <label for="inputPasswordIn"> Password </label>
-                        <input type="password" id="inputPasswordIn" class="form-control validate" placeholder="Password" required>
+                        <input type="password" id="inputPasswordIn" class="form-control validate" placeholder="Password" >
                      </div>
                      <div class="modal-footer d-flex justify-content-center">
                         <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Login</button>
@@ -92,27 +94,27 @@ include 'connect.php';
 
                 <div class="md-form mb-4">
                 <i class="fas fa-user prefix grey-text"> </i> <label for="inputPhone">Name</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" required>
+                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" >
                 </div>
 
                 <div class="md-form mb-4">
                 <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputPhone">Date of Birth</label>
-                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" required>
+                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" >
                 </div>
 
                 <div class="md-form mb-4">
                 <i class="fas fa-phone prefix grey-text"> </i> <label for="inputPhone">Phone Number</label>
-                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" required>
+                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" >
                 </div>
 
                 <div class="md-form mb-4">
                 <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputPhone">Email</label>
-                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" required>
+                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" >
                 </div>
 
                 <div class="md-form mb-4">
                 <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPhone">Password</label>
-                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" >
                 </div>
 
 
