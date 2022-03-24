@@ -37,11 +37,8 @@
     <div class="row">
         <?php include('assets/admin_sidebar.php'); ?>
 
-        <div class="col-md-8">
-            <div class="container">
-                <h1>Content For Recap</h1>
-
-            </div>
+        <div class="col-md-9">
+            <h1>Content For Recap</h1>
         </div>
     </div>
 

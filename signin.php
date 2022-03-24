@@ -1,28 +1,29 @@
 <?php
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
     include 'connect.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // declare + assign
         $email = $_POST['email'];
         $password = $_POST['password'];
-        
+
         // check data login
         // SELECT * FROM user WHERE email = '$username'
         $sql = "SELECT * FROM user WHERE email=? LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
-        $_SESSION['useremail']=$email;
+        
         while($rowData = $stmt->fetch()){
 			$hashed_pw = hash('sha512',$password);
 
 			if (hash('sha512', $rowData['salt']. $hashed_pw) === $rowData['password']){
+                session_start();
                 $_SESSION['email'] = $email;
                 
                 if($_SESSION['email'] === 'admin@gmail.com'){
-                    echo json_encode(['location' => '/manpro/admin_home.php']);
+                    header("Location: ./admin_home.php");
                 }
                 else{
-                    echo json_encode(['location'=>'/manpro/home.php']);
+                    header("Location: ./home.php");
                 }
 			}
 			else{

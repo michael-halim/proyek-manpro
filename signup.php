@@ -21,13 +21,10 @@
         // query
             $salt = hash("sha512",uniqid());
             $hashed_pw = hash('sha512', $salt . $password );
-            $now = date("Y-m-d H:i:s");
-            $sql = "INSERT INTO user VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,DEFAULT)";
+            $last_login = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO user VALUES (DEFAULT,?,?,?,?,?,?,?,?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$email, $salt, $hashed_pw, $name, $phone, $date, 0, '', $now, '', '', $now, '']);
-
-            // Struktur Database
-            // id | email | salt | password | nama | hp | lahir | ketua | update_ketua | createdAt | updatedProfileAt | updatedProfileBy | last_login | profile_pic_path | group_member
+            $stmt->execute([$email, $salt, $hashed_pw, $name, $phone, $date,0,$last_login]);
 
             $_SESSION['email'] = $email;
             echo json_encode(['location'=>'/manpro/home.php']);

@@ -66,8 +66,6 @@ if (isset($_SESSION['email'])) {
 			echo 'Password Salah';
 		}
 	}
-
-	
 	?>
 
 
