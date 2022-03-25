@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $PAGES = $_GET['page'];
     $OFFSET = ($PAGES - 1) * $MAX_PER_PAGES;
     
-    $sql = "SELECT ga.nama AS nama_group, dg.id_group as id,
+    $sql = "SELECT ga.nama AS nama_group, 
+                    dg.id_group as id,
                     u.email AS email, 
                     u.nama AS nama, 
                     u.ketua,
@@ -24,8 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$MAX_PER_PAGES,$OFFSET]);
+
     $output = '';
     $notif = '';
+
     while($row = $stmt->fetch()){
         $id = $row['id'];
 
@@ -54,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-9">
-                                        <span>'. $row['nama_group'] .'</span>
+                                        <span class="group-name">'. $row['nama_group'] .'</span>
                                     </div>
                                     <div class="col-3 text-right">
                                         '. $badge .'
@@ -63,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">'. $row['nama'] .'</h5>
-                                <p class="card-text">Total : '. $total .' Member</p>
+                                <p class="card-text">Total : '. $total . ' Member</p>
 
                                 <div class="row">
-                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-info detail-group" value="Detail Group"></div>
+                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-info detail-group" value="Detail Group" data-sp="' . $row['id'] . '"></div>
                                     <div class="col-12 col-sm-6"><input type="button" class="btn btn-light detail-event" value="Detail Event"></div>
                                 </div>
                             </div>

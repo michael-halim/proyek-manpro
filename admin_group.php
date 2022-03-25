@@ -13,6 +13,7 @@
     <script>
         $(document).ready(function() {
             $('#group').addClass('active');
+            $('#detail-group-tables').DataTable();
             $.ajax({
                 url: 'admin_fetch_group.php?page=1',
                 method: 'GET',
@@ -25,7 +26,24 @@
                 }
             });
             $('body').on('click', '.detail-group', function() {
-                alert('detail group');
+                var id = $(this).data('sp');
+                var group_name = $(this).closest('span.group-name').text();
+                // cari tau cara dapetin group name
+                console.log(group_name);
+                // alert(group_name);
+                // $.ajax({
+                //     url: 'admin_see_detail_group.php',
+                //     method: 'POST',
+                //     data: {
+
+                //     },
+                //     success: function(result) {
+
+                //     },
+                //     error: function(result) {
+
+                //     }
+                // });
             });
             $('body').on('click', '.detail-event', function() {
                 alert('detail event');
@@ -62,7 +80,7 @@
                     </li>
                 </ul>
             </nav>
-
+            
             <!-- Modal Untuk Detail Group  -->
             <div class="modal fade" id="dtablesModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
