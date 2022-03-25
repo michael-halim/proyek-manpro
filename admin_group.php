@@ -13,6 +13,23 @@
     <script>
         $(document).ready(function() {
             $('#group').addClass('active');
+            $.ajax({
+                url: 'admin_fetch_group.php?page=1',
+                method: 'GET',
+                data: {},
+                success: function(result) {
+                    $('#div-groups').html(result.output);
+                },
+                error: function(result) {
+
+                }
+            });
+            $('body').on('click', '.detail-group', function() {
+                alert('detail group');
+            });
+            $('body').on('click', '.detail-event', function() {
+                alert('detail event');
+            });
         });
     </script>
 </head>
@@ -27,31 +44,7 @@
             <div class="container my-5">
 
                 <div class="row" id="div-groups">
-                    <div class="col-4">
-                        <div class="card text-white bg-secondary mb-3 align-center" style="max-width: 18rem;">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <span>Nama Group</span>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        <span class="badge rounded-pill bg-danger float-end">Non-Active</span>
-                                        <!-- <span class="badge rounded-pill bg-success float-end">Active</span> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Nama Ketua</h5>
-                                <p class="card-text">Total : 70 Member</p>
-
-                                <div class="row">
-                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-info" value="Detail Group"></div>
-                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-light" value="Detail Event"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    <!-- group card -->
                 </div>
             </div>
             <nav aria-label="...">
@@ -70,6 +63,43 @@
                 </ul>
             </nav>
 
+            <!-- Modal Untuk Detail Group  -->
+            <div class="modal fade" id="dtablesModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">List </h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body see-detail-group">
+                            <table id="detail-group-tables" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" data-bs-target="#secondModal" data-bs-toggle="modal">Open second modal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
