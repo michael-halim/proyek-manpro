@@ -65,7 +65,6 @@
                     },
                     success: function(result) {
                         $('#assign-users-tables').DataTable().destroy();
-
                         $('#assign-users-tables').html(result.output);
                         $('#assign-users-tables').DataTable();
                         $('#dtablesModal').modal('show');

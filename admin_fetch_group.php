@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-9">
-                                        <span class="group-name">'. $row['nama_group'] .'</span>
+                                        <span>'. $row['nama_group'] .'</span>
                                     </div>
                                     <div class="col-3 text-right">
                                         '. $badge .'
@@ -69,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <p class="card-text">Total : '. $total . ' Member</p>
 
                                 <div class="row">
-                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-info detail-group" value="Detail Group" data-sp="' . $row['id'] . '"></div>
-                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-light detail-event" value="Detail Event"></div>
+                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-info detail-group" value="Detail Group" data-sp="' . $row['id'] . '" data-group="' . $row['nama_group'] . '"></div>
+                                    <div class="col-12 col-sm-6"><input type="button" class="btn btn-light see-list-event" value="Detail Event" data-sp="' . $row['id'] . '" data-group="' . $row['nama_group'] . '"></div>
                                 </div>
                             </div>
 

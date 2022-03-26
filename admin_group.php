@@ -14,6 +14,7 @@
         $(document).ready(function() {
             $('#group').addClass('active');
             $('#detail-group-tables').DataTable();
+
             $.ajax({
                 url: 'admin_fetch_group.php?page=1',
                 method: 'GET',
@@ -27,26 +28,74 @@
             });
             $('body').on('click', '.detail-group', function() {
                 var id = $(this).data('sp');
-                var group_name = $(this).closest('span.group-name').text();
-                // cari tau cara dapetin group name
-                console.log(group_name);
-                // alert(group_name);
-                // $.ajax({
-                //     url: 'admin_see_detail_group.php',
-                //     method: 'POST',
-                //     data: {
+                var group_name = $(this).data('group');
 
-                //     },
-                //     success: function(result) {
+                $.ajax({
+                    url: 'admin_see_detail_group.php',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        group_name: group_name,
+                    },
+                    success: function(result) {
+                        $('#detail-group-tables').DataTable().destroy();
 
-                //     },
-                //     error: function(result) {
+                        $('#detail-group-tables').html(result.output);
+                        $('#detail-group-tables').DataTable();
+                        $('#dtablesModalDetailGroup').modal('show');
+                    },
+                    error: function(result) {
 
-                //     }
-                // });
+                    }
+                });
             });
-            $('body').on('click', '.detail-event', function() {
-                alert('detail event');
+            $('body').on('click', '.see-list-event', function() {
+                var id = $(this).data('sp');
+                var group_name = $(this).data('group');
+
+                $.ajax({
+                    url: 'admin_see_list_event.php',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        group_name: group_name,
+                    },
+                    success: function(result) {
+                        $('#list-event-tables').DataTable().destroy();
+
+                        $('#list-event-tables').html(result.output);
+                        $('#list-event-tables').DataTable();
+                        $('#dtablesModalListEvent').modal('show');
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+            $('body').on('click', '.see-detail-event', function() {
+                var id = $(this).data('sp');
+                var group_name = $(this).data('group');
+
+                $.ajax({
+                    url: 'admin_see_detail_event.php',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        group_name: group_name,
+                    },
+                    success: function(result) {
+                        $('.detail-header').html(result.outputHeader);
+
+                        $('#detail-event-tables').DataTable().destroy();
+
+                        $('#detail-event-tables').html(result.output);
+                        $('#detail-event-tables').DataTable();
+                        $('#dtablesModalDetailEvent').modal('show');
+                    },
+                    error: function(result) {
+
+                    }
+                });
             });
         });
     </script>
@@ -80,10 +129,10 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <!-- Modal Untuk Detail Group  -->
-            <div class="modal fade" id="dtablesModal" tabindex="-1">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="dtablesModalDetailGroup" tabindex="-1">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">List </h3>
@@ -113,7 +162,78 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" data-bs-target="#secondModal" data-bs-toggle="modal">Open second modal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Untuk List Event  -->
+            <div class="modal fade" id="dtablesModalListEvent" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">List </h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body see-list-event">
+
+                            <table id="list-event-tables" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Untuk Detail Event  -->
+            <div class="modal fade" id="dtablesModalDetailEvent" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Detail Event</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col-6 detail-header"></div>
+                            </div>
+                            <table id="detail-event-tables" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
