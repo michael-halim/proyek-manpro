@@ -1,13 +1,14 @@
 <?php
 include 'connect.php';
-// if(isset($_SESSION['email'])){
-// 	if ($_SESSION['email'] == "admintokopetra@gmail.com") {
-// 		header('location: seller_home.php');
-// 	}
-// 	else {
-// 		header('location: home.php');
-// 	}
-// }
+if(isset($_SESSION['email']))
+{
+	if ($_SESSION['email'] == "admin@gmail.com") {
+		header('location: mobile_admin_home.php');
+	}
+	else {
+		header('location: home.php');
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +25,7 @@ include 'connect.php';
    <div class="comming-soon" style="background:url('assets/img/bgi.jpg');">
       <div class="first-header d-flex justify-content-center">
         <h1 class="display-4 text-white-50 text-center">Renungan Harian dan Pasal Alkitab</h1>
+        <!--  -->
       </div>
       <div class="second-header text-center">
         <h2>Renungan Harian Pasal Alkitab</h2>
@@ -91,36 +93,37 @@ include 'connect.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-3">
-
-                <div class="md-form mb-4">
-                <i class="fas fa-user prefix grey-text"> </i> <label for="inputPhone">Name</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" >
+                <div class="form-label-group mb-4">
+                <i class="fas fa-user prefix grey-text"> </i> <label for="inputName">Name</label>
+                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" required>
                 </div>
 
-                <div class="md-form mb-4">
-                <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputPhone">Date of Birth</label>
-                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" >
+                <div class="form-label-group mb-4">
+                <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputDate">Date of Birth</label>
+                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" required >
                 </div>
 
-                <div class="md-form mb-4">
+                <div class="form-label-group mb-4">
                 <i class="fas fa-phone prefix grey-text"> </i> <label for="inputPhone">Phone Number</label>
-                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" >
+                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" required >
                 </div>
 
-                <div class="md-form mb-4">
-                <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputPhone">Email</label>
-                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" >
+                <div class="form-label-group mb-4">
+                <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputEmailUp">Email</label>
+                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" required>
                 </div>
 
-                <div class="md-form mb-4">
-                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPhone">Password</label>
-                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" >
-                </div>
+                <div class="form-label-group mb-4">
+                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordUp">Password</label>
+                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" required>
+            </div>
+
 
 
             <div class="modal-footer d-flex justify-content-center">
                 <button type ="submit" id="signup" class="btn btn-dark">Sign up</button>
         </div>
+
     </div>
     </div>
 
@@ -161,6 +164,10 @@ include 'connect.php';
             var varemail = $("[id='inputEmailUp']").val();
             var varpassword = $("[id='inputPasswordUp']").val();
             alert(varname);
+            alert(vardate);
+            alert(varemail);
+            alert(varphone);
+            alert(varpassword);
             $.ajax({
                 url: "signup.php",
                 method: "POST",
