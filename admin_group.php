@@ -62,6 +62,7 @@
                     },
                     success: function(result) {
                         $('#list-event-tables').DataTable().destroy();
+                        $('.header-list-event').html(result.outputHeader)
 
                         $('#list-event-tables').html(result.output);
                         $('#list-event-tables').DataTable();
@@ -75,6 +76,7 @@
             $('body').on('click', '.see-detail-event', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
+                var id_event = $(this).closest('tr').data('event');
 
                 $.ajax({
                     url: 'admin_see_detail_event.php',
@@ -82,6 +84,7 @@
                     data: {
                         id: id,
                         group_name: group_name,
+                        id_event: id_event,
                     },
                     success: function(result) {
                         $('.detail-header').html(result.outputHeader);
@@ -91,6 +94,54 @@
                         $('#detail-event-tables').html(result.output);
                         $('#detail-event-tables').DataTable();
                         $('#dtablesModalDetailEvent').modal('show');
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+
+            $('body').on('click', '#add-event', function() {
+                $('#add-event-modal').attr('data-isingroup', true);
+
+                var id = $(this).data('sp');
+                $('#add-event-modal').attr('data-idgroup', id);
+            });
+
+            $('#outside-add-event').click(function() {
+
+                $('#add-event-modal').attr('data-isingroup', false);
+                $('#add-event-modal').attr('data-idgroup', '');
+            });
+
+            $('#submit-event').click(function() {
+                var event = $('#inputEvent').val();
+                var jenis = $('#inputJenisEvent').val();
+                var tempat = $('#inputTempat').val();
+                var link = $('#inputLink').val();
+
+                var isInGroup = $('#add-event-modal').data('isingroup');
+                var id_group = '';
+
+                if (isInGroup) {
+                    id_group = $('#add-event-modal').data('idgroup');
+                }
+
+                $.ajax({
+                    url: 'add_event.php',
+                    method: 'POST',
+                    data: {
+                        event: event,
+                        jenis: jenis,
+                        tempat: tempat,
+                        link: link,
+                        isInGroup: isInGroup,
+                        id_group: id_group,
+                    },
+                    success: function(result) {
+                        alert(result.notif);
+                        $('#add-event-modal').modal('hide');
+
                     },
                     error: function(result) {
 
@@ -176,7 +227,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-list-event">
-
+                            <div class="row mb-5">
+                                <div class="col-4 header-list-event">
+                                    <!-- Button Add Event Inside List Event -->
+                                </div>
+                            </div>
                             <table id="list-event-tables" class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -238,9 +293,48 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
+
+
+            <input type="submit" class="btn btn-primary" id="outside-add-event" data-bs-toggle="modal" data-bs-target="#add-event-modal" value="Add Event">
+            <!-- Modal Add Event -->
+            <div class="modal fade py-4" id="add-event-modal" data-isingroup="false" data-idgroup="" role="dialog">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add Event</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body mx-3">
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-user prefix grey-text"> </i> <label for="inputEvent">Nama Event</label>
+                                    <input type="text" id="inputEvent" class="form-control" placeholder="Pertemuan Hari Rabu" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputJenisEvent">Jenis Event</label>
+                                    <input type="text" id="inputJenisEvent" class="form-control" placeholder="CG In" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-phone prefix grey-text"> </i> <label for="inputTempat">Tempat</label>
+                                    <input type="text" id="inputTempat" class="form-control" placeholder="Zoom" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputLink">Link</label>
+                                    <input type="url" id="inputLink" class="form-control" placeholder="https:www.zoom.com" required>
+                                </div>
+
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="submit" id="submit-event" class="btn btn-dark">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 </body>
