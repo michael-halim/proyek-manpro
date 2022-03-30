@@ -246,6 +246,7 @@
                     },
                     success: function(result) {
                         alert(result.notif);
+                        $('#preview-renungan-modal').modal('hide');
                     },
                     error: function(result) {
 

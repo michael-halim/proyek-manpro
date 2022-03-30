@@ -3,11 +3,11 @@ include 'connect.php';
 header('Content-type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+
     $id_group = $_POST['id'];
     $group_name = $_POST['group_name'];
 
-    $outputHeader= '<input 
+    $outputHeader = '<input 
                         type="submit" 
                         class="btn btn-primary btn-block" 
                         data-sp= "' . $id_group . '" 
@@ -16,6 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         data-bs-target="#add-renungan-modal" 
                         value="Add Renungan">';
 
+    $sql = "SELECT u.nama AS nama,
+                    u.email AS email
+            FROM detail_group AS dg 
+            JOIN user AS u 
+            ON u.id = dg.id_user
+            WHERE u.ketua = 1 AND 
+                    dg.id_group = ?
+            GROUP BY u.id
+            LIMIT 1";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id_group]);
+
+    $dataHeader = $stmt->fetch();
+
+    $outputHeader .= '<table class="table table-borderless">
+                        <tr><td><b>Nama Ketua</b></td><td>' . $dataHeader['nama'] . '</td></tr>
+                        <tr><td><b>Email Ketua</b></td> <td>' . $dataHeader['email'] . '</td></tr>
+                    </table>';
 
     $sql = "SELECT u.nama AS nama, 
                     u.email AS email,
@@ -31,13 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             JOIN user AS u 
             ON u.id = dg.id_user
             JOIN group_alkitab AS ga
-            WHERE dg.id_group = ? AND ga.nama = ?
+            WHERE dg.id_group = ? AND 
+                    ga.nama = ? AND 
+                    ayat != 'Empty'
             ORDER BY created, ketua DESC";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id_group, $group_name]);
 
-     $output = '<table class="table table-bordered">
+    $output = '<table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
@@ -49,29 +70,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </thead>
                                 <tbody>';
     $displayKetua = true;
-    while($row = $stmt->fetch()){
-        if($displayKetua){
-            $output .= '<tr>
-                        <td class="table-primary">' . $row['nama'] . '</td>
-                        <td class="table-primary">' . $row['email'] . '</td>
-                        <td class="table-primary">' . $row['ayat'] . '</td>
-                        <td class="table-primary">' . $row['renungan'] . '</td>
-                        <td class="table-primary">' . $row['created'] . '</td>
-                    </tr>';
-            $displayKetua = false;
+    while ($row = $stmt->fetch()) {
+        $renungan = $row['renungan'];
+
+        if (strlen($renungan) > 50) {
+            $renungan = substr($renungan, 0, 50) . '....';
         }
-        else{
-            $output .= '<tr>
+
+        $output .= '<tr>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['email'] . '</td>
-                        <td>' . $row['ayat'] . '</td>
-                        <td>' . $row['renungan'] . '</td>
+                        <td>' . ucwords($row['ayat']) . '</td>
+                        <td>' . $renungan . '</td>
                         <td>' . $row['created'] . '</td>
                     </tr>';
-        }
-        
     }
     $output .= '</tbody></table>';
     $notif = '';
-    echo json_encode(array('output' => $output, 'outputHeader'=> $outputHeader, 'notif' => $notif));
+    echo json_encode(array('output' => $output, 'outputHeader' => $outputHeader, 'notif' => $notif));
 }

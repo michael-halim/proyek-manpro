@@ -35,7 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 FROM detail_group AS dg
                 JOIN user AS u 
                 ON u.id = dg.id_user
-                WHERE id_group = ?";
+                WHERE id_group = ? AND  
+                        u.ketua = 0
+                GROUP BY id_user";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id_group]);
