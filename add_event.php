@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         // dapetin semua id_user untuk masukkan data ke detail_event
-        $sql = "SELECT de.id_user AS id_user
-                FROM detail_group AS de
+        $sql = "SELECT dg.id_user AS id_user
+                FROM detail_group AS dg
                 JOIN user AS u 
-                ON u.id = de.id_user
+                ON u.id = dg.id_user
                 WHERE id_group = ?";
 
         $stmt = $pdo->prepare($sql);

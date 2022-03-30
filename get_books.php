@@ -4,6 +4,8 @@ header('Content-type: application/json');
 
 // dapetin semua bab dalam alkitab
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $id_group = $_GET['id_group'];
     $sql = "SELECT MAX(pasal) AS total_bab, 
                     kitab
             FROM isi_alkitab
@@ -18,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         while ($row = $stmt->fetch()) {
             $output .= '<option data-max="' . $row['total_bab'] . '" 
                                 value="' . $row['kitab'] . '">' .
-                            ucwords($row['kitab'])  .
-                        '</option>';
+                ucwords($row['kitab'])  .
+                '</option>';
         }
     }
 
     $notif = '';
 
-    echo json_encode(array('output' => $output, 'notif' => $notif));
+    echo json_encode(array('output' => $output, 'notif' => $notif, 'id_group' => $id_group));
 }

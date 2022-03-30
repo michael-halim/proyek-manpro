@@ -36,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $outputAyat = '<span><i class="fas fa-user prefix grey-text"></i><label class="form-label">Ayat</label>
-                    <input type="text" class="form-control" disabled value="' . $formatAyat  . '"></span>';
+                    <input id="content-ayat" type="text" class="form-control" disabled value="' . $formatAyat  . '"></span>';
 
     $outputRenungan = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label">Renungan</label>
-                    <textarea class="form-control" style="width:100%; height:300px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
+                    <textarea id="content-renungan" class="form-control" style="width:100%; height:300px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
     
     $notif = '';
 

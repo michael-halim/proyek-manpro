@@ -24,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     a.createdAt AS created,
                     a.updatedAt AS updated,
                     dg.sudah_baca AS baca,
-                    dg.sudah_baca_at AS baca_at,
-                    a.tanggal_dikasih AS tanggal_dikasih
+                    dg.sudah_baca_at AS baca_at
             FROM detail_group AS dg
             JOIN alkitab AS a 
             ON a.id = dg.id_alkitab
@@ -57,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td class="table-primary">' . $row['email'] . '</td>
                         <td class="table-primary">' . $row['ayat'] . '</td>
                         <td class="table-primary">' . $row['renungan'] . '</td>
-                        <td class="table-primary">' . $row['tanggal_dikasih'] . '</td>
+                        <td class="table-primary">' . $row['created'] . '</td>
                     </tr>';
             $displayKetua = false;
         }
@@ -67,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td>' . $row['email'] . '</td>
                         <td>' . $row['ayat'] . '</td>
                         <td>' . $row['renungan'] . '</td>
-                        <td>' . $row['tanggal_dikasih'] . '</td>
+                        <td>' . $row['created'] . '</td>
                     </tr>';
         }
         

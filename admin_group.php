@@ -29,6 +29,8 @@
             $('body').on('click', '.detail-group', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
+                // alert(id);
+                // alert(group_name);
 
                 $.ajax({
                     url: 'admin_see_detail_group.php',
@@ -40,7 +42,7 @@
                     success: function(result) {
                         $('#detail-group-tables').DataTable().destroy();
                         $('.header-list-renungan').html(result.outputHeader);
-                        
+
                         $('#detail-group-tables').html(result.output);
                         $('#detail-group-tables').DataTable();
                         $('#dtablesModalDetailGroup').modal('show');
@@ -152,11 +154,17 @@
 
             // Add Renungan Handler
             $('body').on('click', '#add-renungan', function() {
+                var id_group = $(this).data('sp');
+                // alert(id_group);
                 $.ajax({
                     url: 'get_books.php',
                     method: 'GET',
+                    data: {
+                        id_group: id_group,
+                    },
                     success: function(result) {
                         $('#inputKitab').html(result.output);
+                        $('#submit-renungan').attr('data-group', result.id_group);
                     },
                     error: function(result) {
 
@@ -191,12 +199,11 @@
                 var awal = $('#inputAyatStart').val();
                 var akhir = $('#inputAyatEnd').val();
                 var renungan = $('#inputRenungan').val();
+                // var id_group = $('')
                 if (kitab === '' || bab === '' || awal === '' || akhir === '' | renungan === '') {
                     alert('Kitab / Bab / Ayat Awal / Ayat Akhir Masih Kosong');
 
                 } else if (parseInt(akhir) < parseInt(awal)) {
-                    // alert(akhir);
-                    // alert(awal);
                     alert('Ayat Akhir Tidak Boleh Dibawah Ayat Awal');
 
                 } else {
@@ -223,6 +230,27 @@
                     });
                 }
 
+            });
+            $('#submit-renungan').click(function() {
+                var ayat = $('#content-ayat').val().toLowerCase();
+                var renungan = $('#content-renungan').text();
+                var id_group = $(this).data('group');
+
+                $.ajax({
+                    url: 'add_renungan.php',
+                    method: 'POST',
+                    data: {
+                        ayat: ayat,
+                        renungan: renungan,
+                        id_group: id_group,
+                    },
+                    success: function(result) {
+                        alert(result.notif);
+                    },
+                    error: function(result) {
+
+                    }
+                });
             });
         });
     </script>
@@ -441,7 +469,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
-                            <button type="button" id="submit-renungan" class="btn btn-primary">Submit</button>
+                            <button type="button" data-group="" id="submit-renungan" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
