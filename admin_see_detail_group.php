@@ -6,6 +6,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $id_group = $_POST['id'];
     $group_name = $_POST['group_name'];
+
+    $outputHeader= '<input 
+                        type="submit" 
+                        class="btn btn-primary btn-block" 
+                        data-sp= "' . $id_group . '" 
+                        id="add-renungan" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#add-renungan-modal" 
+                        value="Add Renungan">';
+
+
     $sql = "SELECT u.nama AS nama, 
                     u.email AS email,
                     a.ayat AS ayat, 
@@ -42,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     while($row = $stmt->fetch()){
         if($displayKetua){
             $output .= '<tr>
-                        <td style="background: #d1e7dd;">' . $row['nama'] . '</td>
-                        <td style="background: #d1e7dd;">' . $row['email'] . '</td>
-                        <td style="background: #d1e7dd;">' . $row['ayat'] . '</td>
-                        <td style="background: #d1e7dd;">' . $row['renungan'] . '</td>
-                        <td style="background: #d1e7dd;">' . $row['tanggal_dikasih'] . '</td>
+                        <td class="table-primary">' . $row['nama'] . '</td>
+                        <td class="table-primary">' . $row['email'] . '</td>
+                        <td class="table-primary">' . $row['ayat'] . '</td>
+                        <td class="table-primary">' . $row['renungan'] . '</td>
+                        <td class="table-primary">' . $row['tanggal_dikasih'] . '</td>
                     </tr>';
             $displayKetua = false;
         }
@@ -61,9 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
     }
-    $output .= '</tbody>
-                </table>';
+    $output .= '</tbody></table>';
     $notif = '';
-
-    echo json_encode(array('output' => $output, 'notif' => $notif));
+    echo json_encode(array('output' => $output, 'outputHeader'=> $outputHeader, 'notif' => $notif));
 }

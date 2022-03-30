@@ -39,7 +39,8 @@
                     },
                     success: function(result) {
                         $('#detail-group-tables').DataTable().destroy();
-
+                        $('.header-list-renungan').html(result.outputHeader);
+                        
                         $('#detail-group-tables').html(result.output);
                         $('#detail-group-tables').DataTable();
                         $('#dtablesModalDetailGroup').modal('show');
@@ -148,6 +149,81 @@
                     }
                 });
             });
+
+            // Add Renungan Handler
+            $('body').on('click', '#add-renungan', function() {
+                $.ajax({
+                    url: 'get_books.php',
+                    method: 'GET',
+                    success: function(result) {
+                        $('#inputKitab').html(result.output);
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+            var max_chapter;
+            var book;
+            $('body').on('change', '#inputKitab', function() {
+                max_chapter = $(this).find(':selected').data('max');
+                book = $(this).find(':selected').text();
+            });
+
+            $('body').on('change', 'input[type=number]', function() {
+                if ($(this).val() < 1) {
+                    alert('Bab / Ayat Tidak Boleh Dibawah 1');
+                    $(this).val('');
+                }
+            });
+            $('body').on('change', '#inputBab', function() {
+                var inputBab = $('#inputBab').val();
+                if (max_chapter < inputBab) {
+                    alert('Bab yang diinput melebihi Bab Maksimal Kitab ' + book);
+                    $('#inputKitab').val([]);
+                    $('#inputBab').val('');
+                }
+            });
+
+            $('#preview-renungan-btn').click(function() {
+                var kitab = $('#inputKitab').val();
+                var bab = $('#inputBab').val();
+                var awal = $('#inputAyatStart').val();
+                var akhir = $('#inputAyatEnd').val();
+                var renungan = $('#inputRenungan').val();
+                if (kitab === '' || bab === '' || awal === '' || akhir === '' | renungan === '') {
+                    alert('Kitab / Bab / Ayat Awal / Ayat Akhir Masih Kosong');
+
+                } else if (parseInt(akhir) < parseInt(awal)) {
+                    // alert(akhir);
+                    // alert(awal);
+                    alert('Ayat Akhir Tidak Boleh Dibawah Ayat Awal');
+
+                } else {
+                    $.ajax({
+                        url: 'get_preview_renungan.php',
+                        method: 'POST',
+                        data: {
+                            kitab: kitab,
+                            bab: bab,
+                            awal: awal,
+                            akhir: akhir,
+                            renungan: renungan,
+                        },
+                        success: function(result) {
+                            // alert(result.outputAyat);
+                            $('#preview-firman').html(result.outputFirman);
+                            $('#preview-ayat').html(result.outputAyat);
+                            $('#preview-renungan').html(result.outputRenungan);
+
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+
+            });
         });
     </script>
 </head>
@@ -186,10 +262,15 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title">List </h3>
+                            <h3 class="modal-title">List Renungan</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-detail-group">
+                            <div class="row mb-5">
+                                <div class="col-4 header-list-renungan">
+                                    <!-- Button Add Renungan -->
+                                </div>
+                            </div>
                             <table id="detail-group-tables" class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -293,8 +374,78 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Add Renungan -->
+            <div class="modal fade py-4" id="add-renungan-modal" data-isingroup="false" data-idgroup="" role="dialog">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog modal-lg vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add Renungan</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputKitab">Kitab</label>
+                                        <select id="inputKitab" name="inputKitab" class="form-select">
 
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputBab">Bab</label>
+                                        <input type="number" min="1" class="form-control rounded" name="inputBab" id="inputBab">
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputAyatStart">Awal</label>
+                                        <input type="number" min="1" class="form-control rounded" name="inputAyatStart" id="inputAyatStart">
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputAyatEnd">Akhir</label>
+                                        <input type="number" min="1" class="form-control rounded" name="inputAyatEnd" id="inputAyatEnd">
+                                    </div>
+                                </div>
+                                <div>
+                                    <i class="fas fa-user prefix grey-text"></i> <label for="inputRenungan">Input Renungan</label>
+                                    <textarea class="form-control" id="inputRenungan" placeholder="Leave a comment here"></textarea>
+                                </div>
 
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-dark" id="preview-renungan-btn" data-bs-target="#preview-renungan-modal" data-bs-toggle="modal">Preview Renungan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Untuk Preview Renungan -->
+            <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6" id="preview-firman">
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3" id="preview-ayat"></div>
+                                        <div class="row" id="preview-renungan"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
+                            <button type="button" id="submit-renungan" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <input type="submit" class="btn btn-primary" id="outside-add-event" data-bs-toggle="modal" data-bs-target="#add-event-modal" value="Add Event">
             <!-- Modal Add Event -->
             <div class="modal fade py-4" id="add-event-modal" data-isingroup="false" data-idgroup="" role="dialog">
