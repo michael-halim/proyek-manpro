@@ -42,7 +42,7 @@
                     success: function(result) {
                         $('#detail-group-tables').DataTable().destroy();
                         $('.header-list-renungan').html(result.outputHeader);
-
+                        $('.info-list-renungan').html(result.outputInfo);
                         $('#detail-group-tables').html(result.output);
                         $('#detail-group-tables').DataTable();
                         $('#dtablesModalDetailGroup').modal('show');
@@ -296,8 +296,11 @@
                         </div>
                         <div class="modal-body see-detail-group">
                             <div class="row mb-5">
-                                <div class="col-4 header-list-renungan">
+                                <div class="col-9 header-list-renungan mb-3">
                                     <!-- Button Add Renungan -->
+                                </div>
+                                <div class="col-4 info-list-renungan">
+                                    <!-- Info Nama dan Email Ketua -->
                                 </div>
                             </div>
                             <table id="detail-group-tables" class="table table-bordered">

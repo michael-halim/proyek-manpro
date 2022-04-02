@@ -7,14 +7,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_group = $_POST['id'];
     $group_name = $_POST['group_name'];
 
-    $outputHeader = '<input 
-                        type="submit" 
-                        class="btn btn-primary btn-block" 
-                        data-sp= "' . $id_group . '" 
-                        id="add-renungan" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#add-renungan-modal" 
-                        value="Add Renungan">';
+    $outputHeader = '<div class="row">
+                        <div class="col-3">
+                                <input 
+                                    type="submit" 
+                                    class="btn btn-primary btn-block" 
+                                    data-sp= "' . $id_group . '" 
+                                    id="add-renungan" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#add-renungan-modal" 
+                                    value="Add Renungan">
+                        </div>
+                        <div class="col-3 mr-3">
+                                <input 
+                                    type="submit" 
+                                    class="btn btn-info btn-block" 
+                                    id="update-renungan-btn"
+                                    value="Update Renungan">
+                        </div>
+                        <div class="col-3">
+                                <input 
+                                    type="submit" 
+                                    class="btn btn-success btn-block" 
+                                    id="save-renungan-btn"
+                                    value="Save Renungan"
+                                    style="cursor: not-allowed;">
+                        </div>
+                        <div class="col-3">
+                                <input 
+                                    type="submit" 
+                                    class="btn btn-danger btn-block" 
+                                    id="delete-renungan-btn"
+                                    value="Delete Renungan">
+                        </div>
+                    </div>';
 
     $sql = "SELECT u.nama AS nama,
                     u.email AS email
@@ -31,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $dataHeader = $stmt->fetch();
 
-    $outputHeader .= '<table class="table table-borderless">
+    $outputInfo = '<table class="table table-borderless">
                         <tr><td><b>Nama Ketua</b></td><td>' . $dataHeader['nama'] . '</td></tr>
                         <tr><td><b>Email Ketua</b></td> <td>' . $dataHeader['email'] . '</td></tr>
                     </table>';
@@ -69,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </tr>
                                 </thead>
                                 <tbody>';
-    $displayKetua = true;
+
     while ($row = $stmt->fetch()) {
         $renungan = $row['renungan'];
 
@@ -87,5 +113,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $output .= '</tbody></table>';
     $notif = '';
-    echo json_encode(array('output' => $output, 'outputHeader' => $outputHeader, 'notif' => $notif));
+    echo json_encode(array('output' => $output, 'outputHeader' => $outputHeader, 'outputInfo' => $outputInfo, 'notif' => $notif));
 }
