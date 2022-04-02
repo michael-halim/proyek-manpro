@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 JOIN group_alkitab AS ga
                 ON ga.id = dg.id_group
                 WHERE u.ketua = 0 AND ga.id = ?
-                GROUP BY dg.id_group
+                GROUP BY dg.id_user
                 LIMIT 1";
 
         $stmtCount = $pdo->prepare($sqlCount);

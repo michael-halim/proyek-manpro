@@ -253,6 +253,73 @@
                     }
                 });
             });
+
+            //Checkbox Renungan
+            const checkedId = [];
+            $('body').on('click', 'input[type="checkbox"]', function() {
+                // alert();
+                var obj = $(this).closest('tr');
+                var id = obj.data('id');
+
+                if ($(this).prop('checked')) {
+                    checkedId.push(id);
+
+                } else {
+                    // Check id yang kembar ada di index berapa
+                    const index = checkedId.indexOf(id);
+
+                    //kalau ketemu masuk if ini
+                    if (index > -1) {
+                        checkedId.splice(index, 1);
+                    }
+                }
+            });
+            $('body').on('click', '#update-renungan-btn', function() {
+                // alert();
+                if (checkedId.length !== 0) {
+                    for (const id of checkedId) {
+                        // alert(id);
+                        $('tr[data-id=' + id + ']').find('input').prop('disabled', false);
+                    }
+
+                    $('#save-renungan-btn').css('cursor', 'pointer');
+                } else {
+                    alert('empty');
+                }
+
+            });
+
+
+            $('body').on('click', '#save-renungan-btn', function() {
+                const updatedAyat = [];
+                const updatedRenungan = [];
+                const id_alkitab = [];
+                for (const id of checkedId) {
+
+                    var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
+                    if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
+                        id_alkitab.push(tmp_id_alkitab);
+                        updatedAyat.push($('tr[data-id=' + id + ']').find('td:eq(3)').find('input').val());
+                        updatedRenungan.push($('tr[data-id=' + id + ']').find('td:eq(4)').find('input').val());
+                    }
+
+                }
+                $.ajax({
+                    url: 'admin_update_renungan.php',
+                    method: 'POST',
+                    data: {
+                        updatedAyat: updatedAyat,
+                        updatedRenungan: updatedRenungan,
+                        id_alkitab: id_alkitab,
+                    },
+                    success: function(result) {
+                        $('#dtablesModalDetailGroup').modal('hide');
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -311,10 +378,12 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

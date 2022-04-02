@@ -69,7 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     a.createdAt AS created,
                     a.updatedAt AS updated,
                     dg.sudah_baca AS baca,
-                    dg.sudah_baca_at AS baca_at
+                    dg.sudah_baca_at AS baca_at,
+                    dg.id_alkitab AS id_alkitab
             FROM detail_group AS dg
             JOIN alkitab AS a 
             ON a.id = dg.id_alkitab
@@ -87,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $output = '<table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Ayat</th>
@@ -97,17 +99,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <tbody>';
 
     while ($row = $stmt->fetch()) {
+        
+        // Unique ID untuk penanda tiap row
+        
+        
         $renungan = $row['renungan'];
-
         if (strlen($renungan) > 50) {
             $renungan = substr($renungan, 0, 50) . '....';
         }
 
-        $output .= '<tr>
+        $output .= '<tr data-id="'. uniqid() .'" data-alkitab="'. $row['id_alkitab'] .'">
+                        <td><input class="form-check-input" type="checkbox"></td>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['email'] . '</td>
-                        <td>' . ucwords($row['ayat']) . '</td>
-                        <td>' . $renungan . '</td>
+                        <td><input class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>
+                        <td><input class="form-control" type="text" value="' . $renungan . '" disabled></td>
                         <td>' . $row['created'] . '</td>
                     </tr>';
     }
