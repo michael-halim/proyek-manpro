@@ -67,8 +67,9 @@
                         $('#list-event-tables').DataTable().destroy();
                         $('.header-list-event').html(result.outputHeader)
 
-                        $('#list-event-tables').html(result.output);
                         $('#list-event-tables').DataTable();
+                        $('#list-event-tables').html(result.output);
+
                         $('#dtablesModalListEvent').modal('show');
                     },
                     error: function(result) {
@@ -255,29 +256,29 @@
             });
 
             //Checkbox Renungan
-            const checkedId = [];
+            const checkedIdGroup = [];
             $('body').on('click', 'input[type="checkbox"]', function() {
                 // alert();
                 var obj = $(this).closest('tr');
                 var id = obj.data('id');
 
                 if ($(this).prop('checked')) {
-                    checkedId.push(id);
+                    checkedIdGroup.push(id);
 
                 } else {
                     // Check id yang kembar ada di index berapa
-                    const index = checkedId.indexOf(id);
+                    const index = checkedIdGroup.indexOf(id);
 
                     //kalau ketemu masuk if ini
                     if (index > -1) {
-                        checkedId.splice(index, 1);
+                        checkedIdGroup.splice(index, 1);
                     }
                 }
             });
             $('body').on('click', '#update-renungan-btn', function() {
                 // alert();
-                if (checkedId.length !== 0) {
-                    for (const id of checkedId) {
+                if (checkedIdGroup.length !== 0) {
+                    for (const id of checkedIdGroup) {
                         // alert(id);
                         $('tr[data-id=' + id + ']').find('input').prop('disabled', false);
                     }
@@ -294,7 +295,7 @@
                 const updatedAyat = [];
                 const updatedRenungan = [];
                 const id_alkitab = [];
-                for (const id of checkedId) {
+                for (const id of checkedIdGroup) {
 
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
                     if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
@@ -314,7 +315,7 @@
                     },
                     success: function(result) {
                         $('#dtablesModalDetailGroup').modal('hide');
-                        checkedId.splice(0, checkedId.length);
+                        checkedIdGroup.splice(0, checkedIdGroup.length);
                     },
                     error: function(result) {
 
@@ -324,7 +325,7 @@
 
             $('body').on('click', '#delete-renungan-btn', function() {
                 const id_alkitab = [];
-                for (const id of checkedId) {
+                for (const id of checkedIdGroup) {
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
                     if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
                         id_alkitab.push(tmp_id_alkitab);
@@ -339,7 +340,7 @@
                     },
                     success: function(result) {
                         $('#dtablesModalDetailGroup').modal('hide');
-                        checkedId.splice(0, checkedId.length);
+                        checkedIdGroup.splice(0, checkedIdGroup.length);
 
                     },
                     error: function(result) {
@@ -349,7 +350,7 @@
             });
             $('body').on('click', '#restore-renungan-btn', function() {
                 const id_alkitab = [];
-                for (const id of checkedId) {
+                for (const id of checkedIdGroup) {
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
                     if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
                         id_alkitab.push(tmp_id_alkitab);
@@ -364,13 +365,90 @@
                     },
                     success: function(result) {
                         $('#dtablesModalDetailGroup').modal('hide');
-                        checkedId.splice(0, checkedId.length);
+                        checkedIdGroup.splice(0, checkedIdGroup.length);
 
                     },
                     error: function(result) {
 
                     }
                 });
+            });
+            $('.close-renungan').click(function() {
+                checkedIdGroup.splice(0, checkedIdGroup.length);
+            });
+            // Radio Button Event
+            var checkedIdEvent = null;
+
+            $('body').on('click', 'input[type="radio"]', function() {
+                $('input[type=radio]').prop('checked', false);
+                $(this).prop('checked', true);
+                var obj = $(this).closest('tr');
+
+                checkedIdEvent = obj.data('event');
+            });
+
+            // Show Modal bila klik button "Update Event" dan beri alert bila belum memilih radio button
+            $('body').on('click', '#update-event-btn', function() {
+                if (checkedIdEvent === null) {
+                    alert('Belum Memilih Group yang Akan di Update');
+                } else {
+                    $('#dtablesModalListEvent').modal('hide');
+
+                    // Populate Input
+                    $.ajax({
+                        url: 'populate_update_event.php',
+                        method: 'POST',
+                        data: {
+                            checkedIdEvent: checkedIdEvent
+
+                        },
+                        success: function(result) {
+                            $('#update-event-modal').modal('show');
+                            $('#update-event-submit').attr('data-id', result.id_event);
+                            $('#updateEvent').val(result.nama);
+                            $('#updateJenisEvent').val(result.jenis);
+                            $('#updateTempat').val(result.tempat);
+                            $('#updateLink').val(result.link);
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+            });
+
+            // Ajax Response untuk Submit Update di Modal Update
+            $('#update-event-submit').click(function() {
+                var id = $(this).data('id');
+                var nama = $('#updateEvent').val();
+                var jenis = $('#updateJenisEvent').val();
+                var tempat = $('#updateTempat').val();
+                var link = $('#updateLink').val();
+
+
+                $.ajax({
+                    url: 'admin_update_event.php',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        nama: nama,
+                        jenis: jenis,
+                        tempat: tempat,
+                        link: link,
+                    },
+                    success: function(result) {
+                        alert(result.notif);
+                        $('#update-event-modal').modal('hide');
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+
+
+            $('.close-event').click(function() {
+                checkedIdEvent = null;
             });
         });
     </script>
@@ -382,7 +460,6 @@
 
         <div class="col-md-9">
             <h1>Content For Managing Group</h1>
-
             <div class="container my-5">
 
                 <div class="row" id="div-groups">
@@ -406,12 +483,12 @@
             </nav>
 
             <!-- Modal Untuk Detail Group  -->
-            <div class="modal fade" id="dtablesModalDetailGroup" tabindex="-1">
+            <div class="modal fade" data-bs-backdrop="static" id="dtablesModalDetailGroup" tabindex="-1">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">List Renungan</h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close close-renungan" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-detail-group">
                             <div class="row mb-5">
@@ -448,29 +525,30 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary close-renungan" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Modal Untuk List Event  -->
-            <div class="modal fade" id="dtablesModalListEvent" tabindex="-1">
+            <div class="modal fade" data-bs-backdrop="static" id="dtablesModalListEvent" tabindex="-1">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">List </h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close close-event" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-list-event">
                             <div class="row mb-5">
-                                <div class="col-4 header-list-event">
+                                <div class="col-12 header-list-event">
                                     <!-- Button Add Event Inside List Event -->
                                 </div>
                             </div>
                             <table id="list-event-tables" class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -483,12 +561,13 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary close-event" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -642,7 +721,45 @@
                 </div>
             </div>
 
+            <!-- Modal Update Event -->
+            <div class="modal fade py-4" id="update-event-modal" data-isingroup="false" data-idgroup="" role="dialog">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Update Event</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body mx-3">
 
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-user prefix grey-text"> </i> <label for="updateEvent">Nama Event</label>
+                                    <input type="text" id="updateEvent" class="form-control" placeholder="Pertemuan Hari Kamis" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="updateJenisEvent">Jenis Event</label>
+                                    <input type="text" id="updateJenisEvent" class="form-control" placeholder="CG In" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-phone prefix grey-text"> </i> <label for="updateTempat">Tempat</label>
+                                    <input type="text" id="updateTempat" class="form-control" placeholder="Zoom" required>
+                                </div>
+
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-envelope prefix grey-text"> </i> <label for="updateLink">Link</label>
+                                    <input type="url" id="updateLink" class="form-control" placeholder="https:www.zoom.com" required>
+                                </div>
+
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="submit" id="update-event-submit" class="btn btn-dark">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 
 </html>

@@ -3,12 +3,12 @@ include 'connect.php';
 header('Content-type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+
     // dapetin data dari POST yang dikirim ajax
     $id_group = $_POST['id'];
     $group_name = $_POST['group_name'];
     $id_event = $_POST['id_event'];
-    
+
     // ambil nama, status ketua, tanggal dibuat, jenis, tempat, link utk header
     $sql = "SELECT u.nama AS nama,
                     u.ketua AS ketua,
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // HTML utk header diatas DataTable
     $outputHeader = '<table class="table table-borderless">
-                        <tr><td><b>Tanggal</b></td><td>'. $dataHeader['tanggal_dibuat'] . '</td></tr>
+                        <tr><td><b>Tanggal</b></td><td>' . $dataHeader['tanggal_dibuat'] . '</td></tr>
                         <tr><td><b>Jenis Pertemuan</b></td> <td>' . $dataHeader['jenis'] . '</td></tr>
-                        <tr><td><b>Tempat</b></td> <td>'. $dataHeader['tempat'] .'</td></tr>
-                        <tr><td><b>Link</b></td> <td>'. $dataHeader['link'] .'</td></tr>
-                        <tr><td><b>Ketua Group</b></td> <td>'. $dataHeader['nama'] .'</td></tr>
+                        <tr><td><b>Tempat</b></td> <td>' . $dataHeader['tempat'] . '</td></tr>
+                        <tr><td><b>Link</b></td> <td>' . $dataHeader['link'] . '</td></tr>
+                        <tr><td><b>Ketua Group</b></td> <td>' . $dataHeader['nama'] . '</td></tr>
                     </table>';
 
 
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id_group, $group_name, $id_event]);
-                    
+
     $output = '<table class="table table-bordered">
                 <thead>
                     <tr>
@@ -74,12 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </thead>
                 <tbody>';
 
+
     $count = 0;
     while ($row = $stmt->fetch()) {
 
         //beri icon centang bila masuk dan X bila tidak masuk
         $icon = '<i class="fa fa-check" style="color:green;"></i>';
-        if(!$row['absen']){
+        if (!$row['absen']) {
             $icon = '<i class="fa fa-remove" style="color:red;"></i>';
         }
 
