@@ -141,7 +141,7 @@ if (isset($_SESSION['email'])) {
                     </div>
 
                 <!-- more contaienr -->
-                <div class="container">
+                <div class="container mb-5">
                     <div class="card">
                         <div class="card-body">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
