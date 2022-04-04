@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "UPDATE alkitab SET isActive = ? , 
                                     deletedAt = ? , 
                                     deletedBy = ?
-                WHERE id = ? ";
+                WHERE id = ?";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$isActiveStatus, $deletedAt, $deletedBy, $id_alkitab[$i]]);

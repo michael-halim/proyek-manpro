@@ -446,10 +446,59 @@
                 });
             });
 
+            $('body').on('click', '#delete-event-btn', function() {
+                if (checkedIdEvent === null) {
+                    alert('Belum Memilih Group yang Akan di Delete');
+                } else {
 
+                    // Ajax untuk Delete Event
+                    $.ajax({
+                        url: 'admin_delete_restore_event.php',
+                        method: 'POST',
+                        data: {
+                            checkedIdEvent: checkedIdEvent,
+                            type: "DELETE",
+                        },
+                        success: function(result) {
+                            alert(result.notif);
+                            $('#dtablesModalListEvent').modal('hide');
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+            });
+
+            $('body').on('click', '#restore-event-btn', function() {
+                if (checkedIdEvent === null) {
+                    alert('Belum Memilih Group yang Akan di Restore');
+                } else {
+
+                    // Ajax untuk Delete Event
+                    $.ajax({
+                        url: 'admin_delete_restore_event.php',
+                        method: 'POST',
+                        data: {
+                            checkedIdEvent: checkedIdEvent,
+                            type: "RESTORE",
+                        },
+                        success: function(result) {
+                            alert(result.notif);
+                            $('#dtablesModalListEvent').modal('hide');
+
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+            });
             $('.close-event').click(function() {
                 checkedIdEvent = null;
             });
+
+
         });
     </script>
 </head>
@@ -553,10 +602,12 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
