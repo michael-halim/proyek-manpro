@@ -314,6 +314,58 @@
                     },
                     success: function(result) {
                         $('#dtablesModalDetailGroup').modal('hide');
+                        checkedId.splice(0, checkedId.length);
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+
+            $('body').on('click', '#delete-renungan-btn', function() {
+                const id_alkitab = [];
+                for (const id of checkedId) {
+                    var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
+                    if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
+                        id_alkitab.push(tmp_id_alkitab);
+                    }
+                }
+                $.ajax({
+                    url: 'admin_delete_restore_renungan.php',
+                    method: 'POST',
+                    data: {
+                        id_alkitab: id_alkitab,
+                        type: "DELETE",
+                    },
+                    success: function(result) {
+                        $('#dtablesModalDetailGroup').modal('hide');
+                        checkedId.splice(0, checkedId.length);
+
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
+            $('body').on('click', '#restore-renungan-btn', function() {
+                const id_alkitab = [];
+                for (const id of checkedId) {
+                    var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
+                    if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
+                        id_alkitab.push(tmp_id_alkitab);
+                    }
+                }
+                $.ajax({
+                    url: 'admin_delete_restore_renungan.php',
+                    method: 'POST',
+                    data: {
+                        id_alkitab: id_alkitab,
+                        type: "RESTORE",
+                    },
+                    success: function(result) {
+                        $('#dtablesModalDetailGroup').modal('hide');
+                        checkedId.splice(0, checkedId.length);
+
                     },
                     error: function(result) {
 
@@ -363,7 +415,7 @@
                         </div>
                         <div class="modal-body see-detail-group">
                             <div class="row mb-5">
-                                <div class="col-9 header-list-renungan mb-3">
+                                <div class="col-12 header-list-renungan mb-3">
                                     <!-- Button Add Renungan -->
                                 </div>
                                 <div class="col-4 info-list-renungan">
@@ -379,10 +431,12 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

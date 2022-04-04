@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $group_name = $_POST['group_name'];
 
     $outputHeader = '<div class="row">
-                        <div class="col-3">
+                        <div class="col-1"></div>
+                        <div class="col-2">
                                 <input 
                                     type="submit" 
                                     class="btn btn-primary btn-block" 
@@ -18,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     data-bs-target="#add-renungan-modal" 
                                     value="Add Renungan">
                         </div>
-                        <div class="col-3 mr-3">
+                        <div class="col-2 mr-3">
                                 <input 
                                     type="submit" 
                                     class="btn btn-info btn-block" 
                                     id="update-renungan-btn"
                                     value="Update Renungan">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                                 <input 
                                     type="submit" 
                                     class="btn btn-success btn-block" 
@@ -33,13 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     value="Save Renungan"
                                     style="cursor: not-allowed;">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                                 <input 
                                     type="submit" 
                                     class="btn btn-danger btn-block" 
                                     id="delete-renungan-btn"
                                     value="Delete Renungan">
                         </div>
+                        <div class="col-2">
+                                <input 
+                                    type="submit" 
+                                    class="btn btn-warning btn-block" 
+                                    id="restore-renungan-btn"
+                                    value="Restore Renungan">
+                        </div>
+                        <div class="col-1"></div>
                     </div>';
 
     $sql = "SELECT u.nama AS nama,
@@ -68,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     a.renungan AS renungan ,
                     a.createdAt AS created,
                     a.updatedAt AS updated,
+                    a.isActive AS isActive,
                     dg.sudah_baca AS baca,
                     dg.sudah_baca_at AS baca_at,
                     dg.id_alkitab AS id_alkitab
@@ -94,15 +104,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <th>Ayat</th>
                                         <th>Renungan</th>
                                         <th>Tanggal Dikasih</th>
+                                        <th>Status Aktif</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
 
     while ($row = $stmt->fetch()) {
-        
-        // Unique ID untuk penanda tiap row
-        
-        
+
+        $isActiveStatus = '<i class="fa fa-check" style="color:green;"></i>';
+        if (!$row['isActive']) {
+            $isActiveStatus = '<i class="fa fa-remove" style="color:red;"></i>';
+        }
+
         $renungan = $row['renungan'];
         if (strlen($renungan) > 50) {
             $renungan = substr($renungan, 0, 50) . '....';
@@ -115,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><input class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>
                         <td><input class="form-control" type="text" value="' . $renungan . '" disabled></td>
                         <td>' . $row['created'] . '</td>
+                        <td>' . $isActiveStatus . '</td>
                     </tr>';
     }
     $output .= '</tbody></table>';
