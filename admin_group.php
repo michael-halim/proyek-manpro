@@ -67,8 +67,8 @@
                         $('#list-event-tables').DataTable().destroy();
                         $('.header-list-event').html(result.outputHeader)
 
-                        $('#list-event-tables').DataTable();
                         $('#list-event-tables').html(result.output);
+                        $('#list-event-tables').DataTable();
 
                         $('#dtablesModalListEvent').modal('show');
                     },
@@ -386,6 +386,11 @@
 
                 checkedIdEvent = obj.data('event');
             });
+
+            $('body').on('click', '#clearRadio', function() {
+                $('input[type=radio]').prop('checked', false);
+            });
+
 
             // Show Modal bila klik button "Update Event" dan beri alert bila belum memilih radio button
             $('body').on('click', '#update-event-btn', function() {

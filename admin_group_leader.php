@@ -118,6 +118,16 @@
                 }
 
             });
+            $('.next-modal-btn').click(function() {
+                if (checkedPerson.length === 0) {
+                    alert('Belum Memilih User');
+                } else {
+                    $('#dtablesModal').modal('hide');
+                    $('#secondModal').modal('show');
+                }
+            });
+
+
             // Ajax Funtion Send All Checked Person 
             $('.save-changes').click(function() {
                 alert(assignedPerson);
@@ -205,8 +215,8 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">List </h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h3 class="modal-title">User List</h3>
+                                <button type="button" class="btn-close close-modal-user" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body assign-users-body">
                                 <table id="assign-users-tables" class="table table-bordered">
@@ -231,8 +241,8 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" data-bs-target="#secondModal" data-bs-toggle="modal">Open second modal</button>
+                                <button type="button" class="btn btn-secondary close-modal-user" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary next-modal-btn">Next</button>
                             </div>
                         </div>
                     </div>
@@ -243,8 +253,8 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">Nama Group</h5>
+                                <button type="button" class="btn-close close-second-modal" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">

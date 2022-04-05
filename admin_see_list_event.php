@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $output = '<table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width:10px;">Clear</th>
+                            <th style="width:5px;"><input type="button" id="clearRadio" class="btn btn-secondary btn-block" value="Clear"></th>
                             <th>No</th>
                             <th>Nama Event</th>
                             <th>Tanggal Dibuat</th>
