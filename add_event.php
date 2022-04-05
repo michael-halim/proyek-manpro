@@ -50,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Masukkan data ke detail event
         while($row = $stmt->fetch()){
-                $sql = "INSERT INTO detail_event (id, id_group, id_user, id_event, absen, alasan)
-                        VALUES (DEFAULT,?,?,?,?,?)";
+                $sql = "INSERT INTO detail_event (id, id_group, id_user, id_event, absen, alasan, updatedAt, updatedBy)
+                        VALUES (DEFAULT,?,?,?,?,?,?,?)";
 
                 $stmtInsert = $pdo->prepare($sql);
-                $stmtInsert->execute([$id_group, $row['id_user'], $id_event, 0, '']);
+                $stmtInsert->execute([$id_group, $row['id_user'], $id_event, 0, '', NULL, '']);
         }
         
         $notif = 'Query Successful';

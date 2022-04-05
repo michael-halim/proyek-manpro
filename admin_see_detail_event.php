@@ -41,13 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <tr><td><b>Tempat</b></td> <td>' . $dataHeader['tempat'] . '</td></tr>
                         <tr><td><b>Link</b></td> <td>' . $dataHeader['link'] . '</td></tr>
                         <tr><td><b>Ketua Group</b></td> <td>' . $dataHeader['nama'] . '</td></tr>
-                    </table>';
+                    </table>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <input type="button" id="update-detail-event" class="btn btn-success" value="Update Detail Event" disabled>
+                        </div>
+                    </div> ';
 
 
     // Ambil semua nama user, alasan, dan absen dari DB yang bukan ketua dan sesuai event
     $sql = "SELECT u.nama AS nama,
                     de.alasan AS alasan,
-                    de.absen AS absen
+                    de.absen AS absen,
+                    de.id AS id
             FROM detail_event AS de 
             JOIN event AS e 
             ON e.id = de.id_event
@@ -66,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $output = '<table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th></th>
                         <th><b>No</b></th>
                         <th><b>Nama</b></th>
                         <th><b>Absen</b></th>
@@ -79,17 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     while ($row = $stmt->fetch()) {
 
         //beri icon centang bila masuk dan X bila tidak masuk
-        $icon = '<i class="fa fa-check" style="color:green;"></i>';
+        $icon = '<input type="button" class="btn btn-success event-absen" value="Hadir" disabled>';
         if (!$row['absen']) {
-            $icon = '<i class="fa fa-remove" style="color:red;"></i>';
+            $icon = '<input type="button" class="btn btn-danger event-absen" value="Tidak Hadir" disabled>';
         }
-
-        $output .= '<tr>
-        <td>' . ++$count . '</td>
-        <td>' . $row['nama'] . '</td>
-        <td>' . $icon . '</td>
-        <td>' . $row['alasan'] . '</td>
-        </tr>';
+        $output .= '<tr data-devent="' . $row['id'] . '">
+                        <td><input class="form-check-input checkbox-detail-event" type="checkbox"></td>
+                        <td>' . ++$count . '</td>
+                        <td>' . $row['nama'] . '</td>
+                        <td>' . $icon . '</td>
+                        <td>
+                            <textarea class="form-control event-alasan" style="width:100%; height:15px;" type="text" value="' . $row['alasan'] . '" disabled >' . $row['alasan'] . '</textarea></span>
+                        </td>
+                    </tr>';
     }
 
     $output .= '</tbody></table>';

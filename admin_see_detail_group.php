@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $output .= '<tr data-id="'. uniqid() .'" data-alkitab="'. $row['id_alkitab'] .'">
-                        <td><input class="form-check-input" type="checkbox"></td>
+                        <td><input class="form-check-input checkbox-renungan" type="checkbox"></td>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['email'] . '</td>
                         <td><input class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>

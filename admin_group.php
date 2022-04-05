@@ -98,6 +98,7 @@
                         $('#detail-event-tables').html(result.output);
                         $('#detail-event-tables').DataTable();
                         $('#dtablesModalDetailEvent').modal('show');
+                        checkedIdDetailEvent.splice(0, checkedIdDetailEvent.length);
                     },
                     error: function(result) {
 
@@ -257,8 +258,7 @@
 
             //Checkbox Renungan
             const checkedIdGroup = [];
-            $('body').on('click', 'input[type="checkbox"]', function() {
-                // alert();
+            $('body').on('click', 'input[type="checkbox"].checkbox-renungan', function() {
                 var obj = $(this).closest('tr');
                 var id = obj.data('id');
 
@@ -503,6 +503,81 @@
                 checkedIdEvent = null;
             });
 
+            const checkedIdDetailEvent = [];
+            $('body').on('click', 'input[type=checkbox].checkbox-detail-event', function() {
+                var obj = $(this).closest('tr');
+                var id = obj.data('devent');
+
+                if ($(this).prop('checked')) {
+                    checkedIdDetailEvent.push(id);
+                    obj.find('td:eq(3)').find('input').prop('disabled', false);
+                    obj.find('td:eq(4)').find('textarea').prop('disabled', false);
+                    $('#update-detail-event').prop('disabled', false);
+                } else {
+                    // Check id yang kembar ada di index berapa
+                    const index = checkedIdDetailEvent.indexOf(id);
+
+                    //kalau ketemu masuk if ini
+                    if (index > -1) {
+                        checkedIdDetailEvent.splice(index, 1);
+
+                        obj.find('td:eq(3)').find('input').prop('disabled', true);
+                        obj.find('td:eq(4)').find('textarea').prop('disabled', true);
+                    }
+                }
+
+                if (checkedIdDetailEvent.length > 0) {
+                    $('#update-detail-event').prop('disabled', false);
+                } else {
+                    $('#update-detail-event').prop('disabled', true);
+                }
+            });
+
+            $('body').on('click', '.event-absen', function() {
+                if ($(this).hasClass('btn-danger') && $(this).val() === 'Tidak Hadir') {
+                    $(this).removeClass('btn-danger').addClass('btn-success').val('Hadir');
+
+                } else if ($(this).hasClass('btn-success') && $(this).val() === 'Hadir') {
+                    $(this).removeClass('btn-success').addClass('btn-danger').val('Tidak Hadir');
+                }
+            });
+
+            $('body').on('click', '#update-detail-event', function() {
+                const absen = [];
+                const alasan = [];
+                for (const id of checkedIdDetailEvent) {
+                    var tmp_obj = $('tr[data-devent=' + id + ']');
+                    var tmp_absen = tmp_obj.find('td:eq(3)').find('input');
+
+                    if (tmp_absen.hasClass('btn-danger') && tmp_absen.val() === 'Tidak Hadir') {
+                        absen.push(0);
+                    } else if (tmp_absen.hasClass('btn-success') && tmp_absen.val() === 'Hadir') {
+                        absen.push(1);
+                    }
+                    else{
+                        absen.push(2);
+                    }
+                    var tmp_alasan = tmp_obj.find('td:eq(4)').find('textarea').val();
+                    alasan.push(tmp_alasan);
+                }
+                
+                $.ajax({
+                    url: 'admin_update_detail_event.php',
+                    method: 'POST',
+                    data: {
+                        absen: absen,
+                        alasan: alasan,
+                        checkedIdDetailEvent: checkedIdDetailEvent,
+                    },
+                    success: function(result) {
+                        alert(result.notif);
+                        $('#dtablesModalDetailEvent').modal('hide');
+                    },
+                    error: function(result) {
+
+                    }
+                });
+            });
 
         });
     </script>
@@ -647,10 +722,12 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
