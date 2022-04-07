@@ -20,7 +20,15 @@
     <![endif]-->
   </head>
   <body>
- 
+  <style>
+    .calendar{
+      background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: cover;
+       background-color: #464646;
+       width:100%;
+    }
+    </style>
 
 
   <!-- START: header -->
@@ -34,9 +42,9 @@
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="blog.html">Home</a></li>
-            <li><a href="index.html">Materi</a></li>
-            <li><a href="pricing.html">Grup</a></li>
+          <li><a href="home.php">Home</a></li>
+            <li><a href="material.php">Materi</a></li>
+            <li><a href="grup.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
           </ul>
           <div class="extra-text visible-xs">
@@ -81,61 +89,61 @@
           <center><a>Jadwal</a></center>
           <div class="probootstrap-pricing">
             
-            <img src="calendar.png">
+            <img class="calendar" src="img/calendar.png">
           </div>
       </div>
       <!-- END row -->
       
       <div class="row mb50">
         <div class="col-md-12 section-heading text-center">
-          <h2>Anggota(bisa berubah, rencana model gini)</h2>
+          <h2>Anggota</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <div class="anggota1" style="background-color:grey;border-radius:8px;margin-top:10px;">
+          <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
             <h1>ASDASD</h1>
             <h2>deskripsi</h2></div>
-            <div class="anggota2" style="background-color:brown;border-radius:8px;margin-top:10px;">
+            <div class="anggota2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
               <h1>ASDASD</h1>
               <h2>deskripsi</h2></div>
-              <div class="anggota3" style="background-color:brown;border-radius:8px;margin-top:10px;">
+              <div class="anggota3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
                 <h1>ASDASD</h1>
                 <h2>deskripsi</h2></div>
 
         </div>
         <div class="col-md-3">
-          <div class="anggotakiri1" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri2" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri3" style="background-color:brown;border-radius:8px;margin-top:10px;">
-              <h1>ASDASD</h1>
-              <h2>deskripsi</h2></div>
+          <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+              <h1  style="margin-left:10px">ASDASD</h1>
+              <h2  style="margin-left:10px">deskripsi</h2></div>
         </div>
         <div class="col-md-3">
-          <div class="anggotakiri1" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri2" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri3" style="background-color:brown;border-radius:8px;margin-top:10px;">
-              <h1>ASDASD</h1>
-              <h2>deskripsi</h2></div>
+          <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+              <h1  style="margin-left:10px">ASDASD</h1>
+              <h2  style="margin-left:10px">deskripsi</h2></div>
         </div>
         <div class="col-md-3">
-          <div class="anggotakiri1" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri2" style="background-color:brown;border-radius:8px;margin-top:10px;">
-            <h1>ASDASD</h1>
-            <h2>deskripsi</h2></div>
-          <div class="anggotakiri3" style="background-color:brown;border-radius:8px;margin-top:10px;">
-              <h1>ASDASD</h1>
-              <h2>deskripsi</h2></div>
+          <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1  style="margin-left:10px">ASDASD</h1>
+            <h2  style="margin-left:10px">deskripsi</h2></div>
+          <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+              <h1  style="margin-left:10px">ASDASD</h1>
+              <h2  style="margin-left:10px">deskripsi</h2></div>
         </div>
       </div>
     </div>
@@ -148,54 +156,21 @@
   <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="probootstrap-footer-widget">
-            <h3>About</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <h3>Tentang Kita</h3>
+            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
             <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="probootstrap-footer-widget">
-            <h3>Blog</h3>
-            <ul class="probootstrap-blog-list">
-              <li>
-                <a href="#">
-                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                  <div class="text">
-                    <h4>River named Duden flows</h4>
-                    <p>A small river named Duden flows by their place</p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure><img src="img/img_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                  <div class="text">
-                    <h4>River named Duden flows</h4>
-                    <p>A small river named Duden flows by their place</p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure><img src="img/img_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                  <div class="text">
-                    <h4>River named Duden flows</h4>
-                    <p>A small river named Duden flows by their place</p>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
+        
+        <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <h3>Contact</h3>
             <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-              <li><i class="icon-mail"></i><span>info@domain.com</span></li>
-              <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
+              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
+              <li><i class="icon-mail"></i><span>namagereja@domain.com</span></li>
+              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
             </ul>
             
           </div>
@@ -209,7 +184,7 @@
             <li><a href=""><i class="icon-instagram2"></i></a></li>
           </ul>
           <p>
-            <small>&copy; 2017 <a href="https://uicookies.com/" target="_blank">uiCookies:Sublime</a>. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://uicookies.com/" target="_blank">uicookies.com</a> Demo Images: Unsplash</small>
+            <small>&copy; 2021 <a href="https://uicookies.com/" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
           </p>
           
         </div>
