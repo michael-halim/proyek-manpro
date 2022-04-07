@@ -89,7 +89,7 @@ if (isset($_SESSION['email'])) {
 
     <!-- end navbar -->
     <div class="profile shwnav">
-    <h2>Group List</h2>
+    <h2>Materi List</h2>
     <div class="container bootstrap snippets bootdey">
     <div class="row">
         <div class="col-lg-12">
@@ -122,7 +122,7 @@ if (isset($_SESSION['email'])) {
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 1</h4>
+                            <h4>Materi 1</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>
@@ -150,7 +150,7 @@ if (isset($_SESSION['email'])) {
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 2</h4>
+                            <h4>Materi 2</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ if (isset($_SESSION['email'])) {
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 3</h4>
+                            <h4>Materi 3</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>

@@ -89,7 +89,7 @@ if (isset($_SESSION['email'])) {
 
     <!-- end navbar -->
     <div class="profile shwnav">
-    <h2>Group List</h2>
+    <h2>User List</h2>
     <div class="container bootstrap snippets bootdey">
     <div class="row">
         <div class="col-lg-12">
@@ -111,18 +111,18 @@ if (isset($_SESSION['email'])) {
                 <div class="panel-body p-t-10">
                     <div class="media-main">
                         <a class="pull-left" href="#">
-                            <!-- <img class=" circle responsive-img" src="https://bootdey.com/img/Content/user_1.jpg" alt=""> -->
+                            <img class=" circle responsive-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="">
                         </a>
                         <div class="pull-right btn-group-sm">
                             <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-pencil"></i>
                             </a>
                             <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 1</h4>
+                            <h4>Jonathan Smith</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>
@@ -139,18 +139,18 @@ if (isset($_SESSION['email'])) {
                 <div class="panel-body p-t-10">
                     <div class="media-main">
                         <a class="pull-left" href="#">
-                            <!-- <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_2.jpg" alt=""> -->
+                            <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_2.jpg" alt="">
                         </a>
                         <div class="pull-right btn-group-sm">
                             <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-pencil"></i>
                             </a>
                             <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 2</h4>
+                            <h4>Jonathan Smith</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>
@@ -166,18 +166,18 @@ if (isset($_SESSION['email'])) {
                 <div class="panel-body p-t-10">
                     <div class="media-main">
                         <a class="pull-left" href="#">
-                            <!-- <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_3.jpg" alt=""> -->
+                            <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_3.jpg" alt="">
                         </a>
                         <div class="pull-right btn-group-sm">
                             <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-pencil"></i>
                             </a>
                             <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
                         <div class="info">
-                            <h4>Group 3</h4>
+                            <h4>Jonathan Smith</h4>
                             <p class="text-muted">Graphics Designer</p>
                         </div>
                     </div>
@@ -189,11 +189,105 @@ if (isset($_SESSION['email'])) {
         </div>
 
 
+        <div class="col-sm-6">
+            <div class="panel">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h4>Jonathan Smith</h4>
+                            <p class="text-muted">Graphics Designer</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="panel">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_2.jpg" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h4>Jonathan Smith</h4>
+                            <p class="text-muted">Graphics Designer</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="panel">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h4>Jonathan Smith</h4>
+                            <p class="text-muted">Graphics Designer</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
 
 
 </div>
 
     </div>
+    <br>
+
+
+
+
+
 
 
 

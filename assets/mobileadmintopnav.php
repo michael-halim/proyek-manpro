@@ -76,7 +76,9 @@
     <a href="#email"><span class="white-text email"><?= $_SESSION['email']; ?></span></a>
   </div></li>
   <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
-  <li> <a href="mobile_user_group.php"><i class="material-icons">group</i>My Group</a></li>
+  <li> <a href="mobile_admin_group.php"><i class="material-icons">group</i>Group List</a></li>
+  <li> <a href="mobile_admin_event.php"><i class="material-icons">event_note</i>Event</a></li>
+  <li> <a href="mobile_admin_materi.php"><i class="material-icons">book</i>Materi</a></li>
   <li> <a href="logout.php"><i class="material-icons">account_circle</i>Logout</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Subheader</a></li>

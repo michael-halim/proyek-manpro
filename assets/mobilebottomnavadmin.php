@@ -7,17 +7,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="mobile_admin_leader.php" class="nav-link">
                                 <i class="fa fa-user" aria-hidden="true"> Leader</i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="mobile_admin_group.php" class="nav-link">
                                 <i class="fa fa-group" aria-hidden="true"> Groups</i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="mobile_admin_user.php" class="nav-link">
                                 <i class="fa fa-user" aria-hidden="true"> Users</i>
                             </a>
                         </li>
