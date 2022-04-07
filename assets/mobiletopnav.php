@@ -11,6 +11,8 @@
 
     <!-- batas coba navbar -->
 <script>
+
+  //sidenav
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems, options);
@@ -25,9 +27,46 @@
   $(document).ready(function(){
     $('.sidenav').sidenav();
   });
+  ////////////////////////////////////////////////////////////////////////
+
+  //hide nav
+  $(document).ready(function(){
+  $(".hdnnav").click(function(){
+    $("nav").hide();
+  });
+  $(".shwnav").click(function(){
+    $("nav").show();
+  });
+});
+
+  /////////////////
+
+  //collpasible
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+///////////////////////////////////////////////////////
+
+  // Toast Alert
+
+  M.toast({html: 'I am a toast!'})
+  
+
+  ///////////////////////////////////////////////////////////////
   </script>
 
-<ul id="slide-out" class="sidenav">
+  <style>
+
+  </style>
+
+<ul id="slide-out" class="sidenav position-absolute">
   <li><div class="user-view">
     <div class="background">
       <img src="assets/img/cover.png">
@@ -36,12 +75,12 @@
     <a href="#name"><span class="white-text name"><?= $_SESSION['email']; ?></span></a>
     <a href="#email"><span class="white-text email"><?= $_SESSION['email']; ?></span></a>
   </div></li>
-  <li><a href="#!"><i class="material-icons">cloud</i>Test Link With Icon</a></li>
-  <li> <a href="logout.php"><i class="material-icons">account_circle</i>Logout</a></li>
+  <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
+  <li> <a href="logout.php"><i class="material-icons">group</i>My Group</a></li>
   <li> <a href="logout.php"><i class="material-icons">account_circle</i>Logout</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Subheader</a></li>
   <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 </ul>
 
-<a href="#" data-target="slide-out" class="sidenav-trigger"> <i class=" small material-icons py-4 px-2">menu</i> </a>
+<a href="#" data-target="slide-out" class="sidenav-trigger hdnnav"> <i class=" small material-icons py-4 px-2">menu</i> </a> <i class="small py-4 px-2 shwnav" >Renungan</i>

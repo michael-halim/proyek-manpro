@@ -29,6 +29,7 @@ if (isset($_SESSION['email'])) {
 	<!-- <link rel="stylesheet" type="text/css" href="assets/css/uhome.css"> -->
 <!-- </head> -->
 
+
 <body>
 	<?php
 	// admin sha512
@@ -88,10 +89,29 @@ if (isset($_SESSION['email'])) {
 
 
     <!-- end navbar -->
-    <div class="profile">
-        <div class="card rounded-0">
+    
+
+
+
+    <div class="profile shwnav">
+        <div class="card rounded-0 shwnav">
 		<h2>HOME</h2>
+        <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
 		<div class="container">
+
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
             <!-- <div class="card-header">  -->

@@ -1,4 +1,4 @@
-<div>
+<div class="shwnav">
                 <nav class="navbar navbar-dark bg-dark navbar-expand fixed-bottom">
                     <ul class="navbar-nav nav-justified w-100">
                         <li class="nav-item">
