@@ -18,7 +18,9 @@
 			if (hash('sha512', $rowData['salt']. $hashed_pw) === $rowData['password']){
                 session_start();
                 $_SESSION['email'] = $email;
-                
+                $_SESSION['nama'] = $rowData['nama'];
+                $_SESSION['foto'] = $rowData['foto'];
+
                 if($_SESSION['email'] === 'admin@gmail.com'){
                     header("Location: ./admin_home.php");
                 }

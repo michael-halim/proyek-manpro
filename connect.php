@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $host = 'localhost'; //IP MySQL nya dimana
     $db = 'manpro';
     $user = 'root';
