@@ -8,11 +8,11 @@ include "connect.php";
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content=
-	"width=device-width, initial-scale=1.0">	
+	"width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">	
 </head>
-
 <body>
-<table class="table table-striped table-hover">
+<table id="viewuploads">
                 <thead>
                     <tr>
                         <th>#</th>
