@@ -91,7 +91,7 @@ if (isset($_SESSION['email'])) {
     <div class="profile">
         <div class="card rounded-0">
 		<h2>Materi & bacaan</h2>
-		<div class="container">
+		<div class="container mb-5">
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
             <!-- <div class="card-header">  -->

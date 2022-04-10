@@ -14,9 +14,13 @@
         $_SESSION['useremail']=$email;
         while($rowData = $stmt->fetch()){
 			$hashed_pw = hash('sha512',$password);
+            $id = $rowData["id"];
+            $nama = $rowData["nama"];
 
 			if (hash('sha512', $rowData['salt']. $hashed_pw) === $rowData['password']){
+                $_SESSION['id'] = $id;
                 $_SESSION['email'] = $email;
+                $_SESSION['nama'] = $nama;
                 
                 if($_SESSION['email'] === 'admin@gmail.com'){
                     echo json_encode(['location' => 'admin_home.php']);

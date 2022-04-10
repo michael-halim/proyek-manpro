@@ -88,10 +88,10 @@ if (isset($_SESSION['email'])) {
 
 
     <!-- end navbar -->
-    <div class="profile">
+    <div class="profile shwnav">
         <div class="card rounded-0">
 		<h2>HOME</h2>
-		<div class="container">
+		<div class="container mb-5">
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
             <!-- <div class="card-header">  -->
@@ -162,7 +162,6 @@ if (isset($_SESSION['email'])) {
                 </div>
 
                 <!-- more contaienr -->
-                <div class="container">
                     <div class="card">
                         <div class="card-body">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
@@ -175,7 +174,7 @@ if (isset($_SESSION['email'])) {
                             </p>
                         </div>
                     </div>
-                </div>
+
                 <!-- more container -->
 
 

@@ -72,17 +72,17 @@
       <img src="assets/img/cover.png">
     </div>
     <a href="#user"><img class="circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6At_WsdMZrn_ImShsz-Wm3yjXRdjZ905U8gLF_XJ3MJMbaEE9BIk_Q-2ALVvEOJXcfY&usqp=CAU"></a>
-    <a href="#name"><span class="white-text name"><?= $_SESSION['email']; ?></span></a>
+    <a href="#name"><span class="white-text name"><?= $_SESSION['nama']; ?></span></a>
     <a href="#email"><span class="white-text email"><?= $_SESSION['email']; ?></span></a>
   </div></li>
-  <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
+  <li><a href="mobile_admin_home.php"><i class="material-icons">home</i>Home</a></li>
   <li> <a href="mobile_admin_group.php"><i class="material-icons">group</i>Group List</a></li>
   <li> <a href="mobile_admin_event.php"><i class="material-icons">event_note</i>Event</a></li>
   <li> <a href="mobile_admin_materi.php"><i class="material-icons">book</i>Materi</a></li>
-  <li> <a href="logout.php"><i class="material-icons">account_circle</i>Logout</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Subheader</a></li>
   <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  <li> <a href="logout.php"><i class="material-icons">exit_to_app</i>Logout</a></li>
 </ul>
 
 <a href="#" data-target="slide-out" class="sidenav-trigger hdnnav"> <i class=" small material-icons py-4 px-2">menu</i> </a> <i class="small py-4 px-2 shwnav" >Renungan</i>

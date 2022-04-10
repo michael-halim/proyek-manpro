@@ -1,10 +1,10 @@
 <?php
 include 'connect.php';
-if (isset($_SESSION['email'])) {
-	// if ($_SESSION['email'] == "admintokopetra@gmail.com") {
-	// 	header('location: seller_home.php');
+if (!isset($_SESSION['email'])) {
+	// if ($_SESSION['email'] == "admin@gmail.com") {
+	// 	header('location: mobile_admin_home.php');
 	// } else {
-	// 	header('location: home.php');
+		header("Location: login.php");
 	// }
 
 	// echo $_SESSION['email'];
@@ -110,7 +110,7 @@ if (isset($_SESSION['email'])) {
       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
     </li>
   </ul>
-		<div class="container">
+		<div class="container mb-5">
 
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
