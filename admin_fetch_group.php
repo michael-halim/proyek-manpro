@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     u.email AS email, 
                     u.nama AS nama, 
                     u.ketua,
-                    ga.isActive
+                    ga.isActive,
+                    ga.id AS groupId
             FROM  detail_group as dg
             JOIN group_alkitab AS ga
             ON ga.id = dg.id_group
@@ -50,20 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $total = $stmtCount->fetch()['sum_total'];
         
 
-        $badge = '<span class="badge rounded-pill bg-success float-end">Active</span>';
+        $badge = '<span style="cursor:pointer;" data-id="' . $row['groupId'] . '" class="badge-group badge rounded-pill bg-success float-end">Active</span>';
         if(!$row['isActive']){
-            $badge = '<span class="badge rounded-pill bg-danger float-end">Non-Active</span>';
+            $badge = '<span style="cursor:pointer;" data-id="' . $row['groupId'] . '" class="badge-group badge rounded-pill bg-danger float-end">Non-Active</span>';
         }
 
         $output .= '<div class="col-4">
                         <div class="card text-white bg-secondary mb-3 align-center" style="max-width: 18rem;">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-9">
-                                        <span>'. $row['nama_group'] .'</span>
+                                    <div class="col-8">
+                                        <span>
+                                            <input 
+                                                type="text" 
+                                                class="form-control group-name-input" 
+                                                value="' . $row['nama_group'] . '" 
+                                                disabled
+                                                data-id="'. $row['groupId'] .'">
+                                        </span>
                                     </div>
-                                    <div class="col-3 text-right">
-                                        '. $badge .'
+                                    <div class="col-4 text-right align-middle">
+                                         '. $badge .'
                                     </div>
                                 </div>
                             </div>

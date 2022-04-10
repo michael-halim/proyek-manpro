@@ -29,8 +29,6 @@
             $('body').on('click', '.detail-group', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
-                // alert(id);
-                // alert(group_name);
 
                 $.ajax({
                     url: 'admin_see_detail_group.php',
@@ -553,14 +551,13 @@
                         absen.push(0);
                     } else if (tmp_absen.hasClass('btn-success') && tmp_absen.val() === 'Hadir') {
                         absen.push(1);
-                    }
-                    else{
+                    } else {
                         absen.push(2);
                     }
                     var tmp_alasan = tmp_obj.find('td:eq(4)').find('textarea').val();
                     alasan.push(tmp_alasan);
                 }
-                
+
                 $.ajax({
                     url: 'admin_update_detail_event.php',
                     method: 'POST',
@@ -579,11 +576,77 @@
                 });
             });
 
+            // Update Group
+            $('body').on('dblclick', '.group-name-input', function() {
+                $(this).prop('disabled', false);
+            });
+
+            $('body').on('change', '.group-name-input', function() {
+                if (confirm("Nama Group Ini Akan Terubah. Apakah Anda Yakin ?")) {
+
+                    var id = $(this).data('id');
+                    var updatedName = $(this).val();
+
+                    $.ajax({
+                        url: 'admin_update_group.php',
+                        method: 'POST',
+                        data: {
+                            id: id,
+                            updatedName: updatedName,
+                        },
+                        success: function(result) {
+                            alert(result.notif);
+                            $('input[data-id=' + id + '].group-name-input').prop('disabled', true);
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+
+            });
+            // Delete and Restore Group
+            $('body').on('click', '.badge-group', function() {
+
+                // Cek Kalau ada class bg-danger dan tulisannya Non-Active maka ubah jadi aktif dan sebaliknya
+                if ($(this).hasClass('bg-danger') && $(this).text('Non-Active')) {
+                    newStatus = 1;
+                } else if ($(this).hasClass('bg-success') && $(this).text('Active')) {
+                    newStatus = 0;
+                }
+
+                var statusQuestion = newStatus ? "Aktifkan" : "Non-Aktifkan";
+                if (confirm("Group Ini Akan di " + statusQuestion + ". Apakah Anda Yakin ? ")) {
+
+                    var id = $(this).data('id');
+
+                    $.ajax({
+                        url: 'admin_delete_restore_group.php',
+                        method: 'POST',
+                        data: {
+                            id: id,
+                            newStatus: newStatus,
+                        },
+                        success: function(result) {
+                            alert(result.notif);
+                            if (newStatus) {
+                                $('span[data-id='+ id +'].badge-group').removeClass('bg-danger').addClass('bg-success').text('Active')
+                            } else {
+                                $('span[data-id='+ id +'].badge-group').removeClass('bg-success').addClass('bg-danger').text('Non-Active')
+                            }
+                        },
+                        error: function(result) {
+
+                        }
+                    });
+                }
+            });
+
         });
     </script>
 </head>
 
-<body>
+<body style="overflow-x:scroll;">
     <div class="row">
         <?php include('assets/admin_sidebar.php'); ?>
 

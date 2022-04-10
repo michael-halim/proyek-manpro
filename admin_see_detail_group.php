@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     u.email AS email,
                     a.ayat AS ayat, 
                     a.renungan AS renungan ,
-                    a.createdAt AS created,
+                    DATE_FORMAT(a.createdAt, '%d %M %Y') AS created,
                     a.updatedAt AS updated,
                     a.isActive AS isActive,
                     dg.sudah_baca AS baca,

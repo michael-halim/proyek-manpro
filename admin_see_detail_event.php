@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // ambil nama, status ketua, tanggal dibuat, jenis, tempat, link utk header
     $sql = "SELECT u.nama AS nama,
                     u.ketua AS ketua,
-                    e.createdAt AS tanggal_dibuat, 
+                    DATE_FORMAT( e.createdAt, '%d %M %Y') AS tanggal_dibuat,
                     e.jenis AS jenis, 
                     e.tempat AS tempat, 
                     e.link AS link

@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>';
 
     // Ambil semua nama, createdAt, dan id_event dari table event yang namanya bukan 'Empty'
-    $sql = "SELECT e.nama AS nama, 
-                    e.createdAt AS created, 
+    $sql = "SELECT e.nama AS nama,
+                    DATE_FORMAT(e.createdAt, '%d %M %Y') AS created,
                     de.id_event AS id_event,
                     e.isActive AS isActive
             FROM detail_event AS de 

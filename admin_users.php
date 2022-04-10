@@ -55,6 +55,25 @@
                             responsive: true
                         });
                         $('#div-manage-users').prop('hidden', false);
+                        Command: toastr["success"]("asdsad", "Sudah Terganti")
+
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": true,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "100",
+                            "hideDuration": "1000",
+                            "timeOut": "1500",
+                            "extendedTimeOut": "500",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
                     },
                     error: function(result) {
 
@@ -87,7 +106,7 @@
     </script>
 </head>
 
-<body>
+<body style="overflow-x:hidden;">
     <div class="row">
         <?php include('assets/admin_sidebar.php'); ?>
         <div class="col-md-9">
