@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     u.email AS email,
                     a.ayat AS ayat, 
                     a.renungan AS renungan ,
-                    DATE_FORMAT(a.createdAt, '%d %M %Y') AS created,
+                    a.createdAt AS created,
                     a.updatedAt AS updated,
                     a.isActive AS isActive,
                     dg.sudah_baca AS baca,
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             WHERE dg.id_group = ? AND 
                     ga.nama = ? AND 
                     ayat != 'Empty'
-            ORDER BY created, ketua DESC";
+            ORDER BY created DESC";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id_group, $group_name]);
@@ -125,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><input class="form-check-input checkbox-renungan" type="checkbox"></td>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['email'] . '</td>
-                        <td><input class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>
+                        <td><input style="width:80%;" class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>
                         <td><input class="form-control" type="text" value="' . $renungan . '" disabled></td>
-                        <td>' . $row['created'] . '</td>
+                        <td data-order="'. $row['created'].'">' . date("d F Y G:i", strtotime($row['created'])) . '</td>
                         <td>' . $isActiveStatus . '</td>
                     </tr>';
     }

@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Bangkok");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $kitab = $_POST['kitab'];
-    $pasal = $_POST['bab'];
+    $pasal = $_POST['pasal'];
     $awal = $_POST['awal'];
     $akhir = $_POST['akhir'];
     $renungan = $_POST['renungan'];

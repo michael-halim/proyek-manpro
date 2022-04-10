@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td style="width:10px;">' . $radioButton . '</td>
                         <td>' . ++$count . '</td>
                         <td>' . $row['nama'] . '</td>
-                        <td>' . $row['created'] . '</td>
+                        <td data-order="' . $row['created'] . '">' . date("d F Y G:i", strtotime($row['created'])) . '</td>
                         <td>' . $isActiveStatus . '</td>
                         <td>' . $detail_button . '</td>
                     </tr>';

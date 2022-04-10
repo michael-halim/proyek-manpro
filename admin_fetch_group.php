@@ -33,22 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     while($row = $stmt->fetch()){
         $id = $row['id'];
 
-        $sqlCount = "SELECT SUM(total) AS sum_total
-                        FROM ( SELECT COUNT(*) AS total
-                                FROM  detail_group AS dg
-                                JOIN user AS u 
-                                ON u.id = dg.id_user
-                                JOIN group_alkitab AS ga
-                                ON ga.id = dg.id_group
-                                WHERE u.ketua = 0 AND 
-                                        ga.id = ? AND 
-                                        dg.id_alkitab != 0
-                                GROUP BY dg.id_user
-                            ) AS myCount;";
+        $sqlCount = "SELECT COUNT(id_user) AS total
+                    FROM (
+                        SELECT dg.id_user as id_user
+                        FROM  detail_group AS dg
+                        JOIN user AS u 
+                        ON u.id = dg.id_user
+                        JOIN group_alkitab AS ga
+                        ON ga.id = dg.id_group
+                        WHERE u.ketua = 0 AND 
+                                ga.id = ? AND 
+                                dg.id_alkitab != 0
+                        GROUP BY dg.id_user 
+                    ) AS myCount";
 
         $stmtCount = $pdo->prepare($sqlCount);
         $stmtCount->execute([$id]);     
-        $total = $stmtCount->fetch()['sum_total'];
+        $total = $stmtCount->fetch()['total'];
         
 
         $badge = '<span style="cursor:pointer;" data-id="' . $row['groupId'] . '" class="badge-group badge rounded-pill bg-success float-end">Active</span>';

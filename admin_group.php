@@ -14,22 +14,25 @@
         $(document).ready(function() {
             $('#group').addClass('active');
             $('#detail-group-tables').DataTable();
+            fetchGroup();
 
-            $.ajax({
-                url: 'admin_fetch_group.php?page=1',
-                method: 'GET',
-                data: {},
-                success: function(result) {
-                    $('#div-groups').html(result.output);
-                },
-                error: function(result) {
+            function fetchGroup(page = 1) {
+                $.ajax({
+                    url: 'admin_fetch_group.php?page='+page,
+                    method: 'GET',
+                    data: {},
+                    success: function(result) {
+                        $('#div-groups').html(result.output);
+                    },
+                    error: function(result) {
 
-                }
-            });
+                    }
+                });
+            }
             $('body').on('click', '.detail-group', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
-
+                checkedIdGroup.splice(0, checkedIdGroup.length);
                 $.ajax({
                     url: 'admin_see_detail_group.php',
                     method: 'POST',
@@ -53,7 +56,7 @@
             $('body').on('click', '.see-list-event', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
-
+                checkedIdEvent = null;
                 $.ajax({
                     url: 'admin_see_list_event.php',
                     method: 'POST',
@@ -92,7 +95,6 @@
                         $('.detail-header').html(result.outputHeader);
 
                         $('#detail-event-tables').DataTable().destroy();
-
                         $('#detail-event-tables').html(result.output);
                         $('#detail-event-tables').DataTable();
                         $('#dtablesModalDetailEvent').modal('show');
@@ -155,7 +157,11 @@
             // Add Renungan Handler
             $('body').on('click', '#add-renungan', function() {
                 var id_group = $(this).data('sp');
-                // alert(id_group);
+
+                // Reset Pasal
+                $('input[type=number]').val('');
+                $('#inputRenungan').val('');
+
                 $.ajax({
                     url: 'get_books.php',
                     method: 'GET',
@@ -180,28 +186,28 @@
 
             $('body').on('change', 'input[type=number]', function() {
                 if ($(this).val() < 1) {
-                    alert('Bab / Ayat Tidak Boleh Dibawah 1');
+                    alert('Pasal / Ayat Tidak Boleh Dibawah 1');
                     $(this).val('');
                 }
             });
-            $('body').on('change', '#inputBab', function() {
-                var inputBab = $('#inputBab').val();
-                if (max_chapter < inputBab) {
-                    alert('Bab yang diinput melebihi Bab Maksimal Kitab ' + book);
+            $('body').on('change', '#inputPasal', function() {
+                var inputPasal = $('#inputPasal').val();
+                if (max_chapter < inputPasal) {
+                    alert('Pasal yang diinput melebihi Pasal Maksimal Kitab ' + book);
                     $('#inputKitab').val([]);
-                    $('#inputBab').val('');
+                    $('#inputPasal').val('');
                 }
             });
 
             $('#preview-renungan-btn').click(function() {
                 var kitab = $('#inputKitab').val();
-                var bab = $('#inputBab').val();
+                var pasal = $('#inputPasal').val();
                 var awal = $('#inputAyatStart').val();
                 var akhir = $('#inputAyatEnd').val();
                 var renungan = $('#inputRenungan').val();
-                // var id_group = $('')
-                if (kitab === '' || bab === '' || awal === '' || akhir === '' | renungan === '') {
-                    alert('Kitab / Bab / Ayat Awal / Ayat Akhir Masih Kosong');
+
+                if (kitab === '' || pasal === '' || awal === '' || akhir === '' | renungan === '') {
+                    alert('Kitab / Pasal / Ayat Awal / Ayat Akhir Masih Kosong');
 
                 } else if (parseInt(akhir) < parseInt(awal)) {
                     alert('Ayat Akhir Tidak Boleh Dibawah Ayat Awal');
@@ -212,17 +218,17 @@
                         method: 'POST',
                         data: {
                             kitab: kitab,
-                            bab: bab,
+                            pasal: pasal,
                             awal: awal,
                             akhir: akhir,
                             renungan: renungan,
                         },
                         success: function(result) {
-                            // alert(result.outputAyat);
                             $('#preview-firman').html(result.outputFirman);
                             $('#preview-ayat').html(result.outputAyat);
                             $('#preview-renungan').html(result.outputRenungan);
-
+                            $('#add-renungan-modal').modal('hide');
+                            $('#preview-renungan-modal').modal('show');
                         },
                         error: function(result) {
 
@@ -274,10 +280,8 @@
                 }
             });
             $('body').on('click', '#update-renungan-btn', function() {
-                // alert();
                 if (checkedIdGroup.length !== 0) {
                     for (const id of checkedIdGroup) {
-                        // alert(id);
                         $('tr[data-id=' + id + ']').find('input').prop('disabled', false);
                     }
 
@@ -287,7 +291,6 @@
                 }
 
             });
-
 
             $('body').on('click', '#save-renungan-btn', function() {
                 const updatedAyat = [];
@@ -370,9 +373,6 @@
 
                     }
                 });
-            });
-            $('.close-renungan').click(function() {
-                checkedIdGroup.splice(0, checkedIdGroup.length);
             });
             // Radio Button Event
             var checkedIdEvent = null;
@@ -496,9 +496,6 @@
                         }
                     });
                 }
-            });
-            $('.close-event').click(function() {
-                checkedIdEvent = null;
             });
 
             const checkedIdDetailEvent = [];
@@ -630,9 +627,9 @@
                         success: function(result) {
                             alert(result.notif);
                             if (newStatus) {
-                                $('span[data-id='+ id +'].badge-group').removeClass('bg-danger').addClass('bg-success').text('Active')
+                                $('span[data-id=' + id + '].badge-group').removeClass('bg-danger').addClass('bg-success').text('Active')
                             } else {
-                                $('span[data-id='+ id +'].badge-group').removeClass('bg-success').addClass('bg-danger').text('Non-Active')
+                                $('span[data-id=' + id + '].badge-group').removeClass('bg-success').addClass('bg-danger').text('Non-Active')
                             }
                         },
                         error: function(result) {
@@ -675,12 +672,12 @@
             </nav>
 
             <!-- Modal Untuk Detail Group  -->
-            <div class="modal fade" data-bs-backdrop="static" id="dtablesModalDetailGroup" tabindex="-1">
+            <div class="modal fade" id="dtablesModalDetailGroup" tabindex="-1">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">List Renungan</h3>
-                            <button type="button" class="btn-close close-renungan" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-detail-group">
                             <div class="row mb-5">
@@ -717,19 +714,19 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary close-renungan" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Modal Untuk List Event  -->
-            <div class="modal fade" data-bs-backdrop="static" id="dtablesModalListEvent" tabindex="-1">
+            <div class="modal fade" id="dtablesModalListEvent" tabindex="-1">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">List </h3>
-                            <button type="button" class="btn-close close-event" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body see-list-event">
                             <div class="row mb-5">
@@ -761,7 +758,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary close-event" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -822,8 +819,8 @@
                                         </select>
                                     </div>
                                     <div class="col-2">
-                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputBab">Bab</label>
-                                        <input type="number" min="1" class="form-control rounded" name="inputBab" id="inputBab">
+                                        <i class="fas fa-user prefix grey-text"> </i> <label for="inputPasal">Pasal</label>
+                                        <input type="number" min="1" class="form-control rounded" name="inputPasal" id="inputPasal">
                                     </div>
                                     <div class="col-2">
                                         <i class="fas fa-user prefix grey-text"> </i> <label for="inputAyatStart">Awal</label>
@@ -840,7 +837,7 @@
                                 </div>
 
                                 <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-dark" id="preview-renungan-btn" data-bs-target="#preview-renungan-modal" data-bs-toggle="modal">Preview Renungan</button>
+                                    <button class="btn btn-dark" id="preview-renungan-btn">Preview Renungan</button>
                                 </div>
                             </div>
                         </div>
