@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Ambil semua nama, createdAt, dan id_event dari table event yang namanya bukan 'Empty'
     $sql = "SELECT e.nama AS nama,
-                    DATE_FORMAT(e.createdAt, '%d %M %Y') AS created,
+                    e.createdAt AS created,
                     de.id_event AS id_event,
                     e.isActive AS isActive
             FROM detail_event AS de 
@@ -71,7 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ON e.id = de.id_event
             WHERE de.id_group = ? AND ga.nama = ?
             GROUP BY created
-            HAVING nama != 'Empty'";
+            HAVING nama != 'Empty'
+            ORDER BY created DESC";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id_group, $group_name]);

@@ -2,6 +2,7 @@
 include 'connect.php';
 header('Content-type: application/json');
 
+// FILE UNTUK HANDLE MEMASUKKAN ORANG KE DALAM GROUP
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Struktur Database Detail Group
     // id | id_group | id_user | id_alkitab | sudah_baca | sudah_baca_at
@@ -18,14 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $now = date("Y-m-d H:i:s");
 
 
-    $sql = "INSERT INTO group_alkitab VALUES (DEFAULT,?,?,?,?,?,1,?,?)";
+    $sql = "INSERT INTO group_alkitab VALUES (DEFAULT, ?, ?, ?, ?, ?, 1, ?, ?)";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$groupName, $now, $createdBy,'','','','']);
+    $stmt->execute([$groupName, $now, $createdBy, '', '', '', '']);
 
     $notif = 'Query Group Alkitab Error';
-    if($stmt){
-        
+    if ($stmt) {
+
         $sql = "SELECT id 
                 FROM group_alkitab 
                 WHERE createdAt = ? AND createdBy = ?";
@@ -50,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Dapet ID User
             $checkedPersonId = array();
-            foreach($checkedPerson as $person){
+            foreach ($checkedPerson as $person) {
                 $sql = "SELECT id 
                         FROM user
                         WHERE email = ? LIMIT 1";
@@ -75,16 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$groupId, $assignedPersonId, '', '', '']);
 
-            
+
 
             // Insert Anggota Group ke Detail Group
-            foreach($checkedPersonId as $personId){
+            foreach ($checkedPersonId as $personId) {
 
                 $sql = "INSERT INTO detail_group VALUES (DEFAULT,?,?,?,?,?)";
                 $stmt = $pdo->prepare($sql);
 
                 // Untuk Memasukkan Anggota Group
-                $stmt->execute([$groupId, $personId,'','','']);
+                $stmt->execute([$groupId, $personId, '', '', '']);
 
                 // Update Group Member jadi 1 --> artinya sudah dimasukkan ke dalam group
                 $sql = "UPDATE user SET group_member = 1 WHERE id = ?";
@@ -92,9 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->execute([$personId]);
             }
         }
-        
     }
 
     echo json_encode(array('output' => $output, 'notif' => $notif));
-
 }

@@ -25,11 +25,14 @@
 
                 },
                 success: function(result) {
+                    // Restart dan Isi DataTable
                     $('#manage-users').DataTable().destroy();
                     $('#manage-users').html(result.output);
                     $('#manage-users').DataTable({
                         responsive: true
                     });
+
+                    // Unhide Div
                     $('#div-manage-users').prop('hidden', false);
 
 
@@ -49,31 +52,15 @@
                         email: email
                     },
                     success: function(result) {
+                        // Restart dan Isi DataTable
                         $('#manage-users').DataTable().destroy();
                         $('#manage-users').html(result.output);
                         $('#manage-users').DataTable({
                             responsive: true
                         });
-                        $('#div-manage-users').prop('hidden', false);
-                        Command: toastr["success"]("asdsad", "Sudah Terganti")
 
-                        toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": true,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "100",
-                            "hideDuration": "1000",
-                            "timeOut": "1500",
-                            "extendedTimeOut": "500",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        // Unhide Div
+                        $('#div-manage-users').prop('hidden', false);
                     },
                     error: function(result) {
 
@@ -157,7 +144,5 @@
         </div>
     </div>
 
-
 </body>
-
 </html>

@@ -2,8 +2,10 @@
 include 'connect.php';
 header('Content-type: application/json');
 
+// FILE UNTUK RESPONSE PENGAMBILAN DATA SUATU GROUP DARI DB
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
+    // SQL untuk ambil data group dengan pagination
     $MAX_PER_PAGES = 9;
     $PAGES = $_GET['page'];
     $OFFSET = ($PAGES - 1) * $MAX_PER_PAGES;
@@ -30,9 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $output = '';
     $notif = '';
 
+    // Setiap Group dihitung jumlah membernya
     while($row = $stmt->fetch()){
         $id = $row['id'];
 
+        // SQL untuk hitung member
         $sqlCount = "SELECT COUNT(id_user) AS total
                     FROM (
                         SELECT dg.id_user as id_user
@@ -51,12 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $stmtCount->execute([$id]);     
         $total = $stmtCount->fetch()['total'];
         
-
+        // Badge aktif dan non-aktif dari suatu group
         $badge = '<span style="cursor:pointer;" data-id="' . $row['groupId'] . '" class="badge-group badge rounded-pill bg-success float-end">Active</span>';
         if(!$row['isActive']){
             $badge = '<span style="cursor:pointer;" data-id="' . $row['groupId'] . '" class="badge-group badge rounded-pill bg-danger float-end">Non-Active</span>';
         }
 
+        // Card dari group
         $output .= '<div class="col-4">
                         <div class="card text-white bg-secondary mb-3 align-center" style="max-width: 18rem;">
                             <div class="card-header">
@@ -91,8 +96,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     }
     
-
-
-
     echo json_encode(array('output' => $output, 'notif' => $notif));
 }

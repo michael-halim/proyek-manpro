@@ -3,6 +3,7 @@ include 'connect.php';
 header('Content-type: application/json');
 date_default_timezone_set("Asia/Bangkok");
 
+// FILE UNTUK HANDLE ADD RENUNGAN REQUEST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // dapetin data dari POST Ajax

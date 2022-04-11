@@ -14,14 +14,20 @@
         $(document).ready(function() {
             $('#group').addClass('active');
             $('#detail-group-tables').DataTable();
+
+            // Fetching Group Untuk Ambil Group dari DB
             fetchGroup();
 
+            // Dibuat Function agar bisa dipanggil lagi dari tempat lain
             function fetchGroup(page = 1) {
+
+                // Function ini sudah dilengkapi dengan pagination, biar tidak terlalu lama loading
                 $.ajax({
-                    url: 'admin_fetch_group.php?page='+page,
+                    url: 'admin_fetch_group.php?page=' + page,
                     method: 'GET',
                     data: {},
                     success: function(result) {
+                        // nampilin group ke div
                         $('#div-groups').html(result.output);
                     },
                     error: function(result) {
@@ -29,10 +35,15 @@
                     }
                 });
             }
+
+            // Handler ketika klik Detail Group Button
             $('body').on('click', '.detail-group', function() {
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
+
+                // Reset State dari id Group yang dipilih (Checkbox)
                 checkedIdGroup.splice(0, checkedIdGroup.length);
+
                 $.ajax({
                     url: 'admin_see_detail_group.php',
                     method: 'POST',
@@ -41,11 +52,20 @@
                         group_name: group_name,
                     },
                     success: function(result) {
-                        $('#detail-group-tables').DataTable().destroy();
+                        // Isi Header nya dengan Button
                         $('.header-list-renungan').html(result.outputHeader);
+
+                        // Isi Info Nama dan Email Ketua
                         $('.info-list-renungan').html(result.outputInfo);
+
+                        // Restart dan Isi DataTable
+                        $('#detail-group-tables').DataTable().destroy();
                         $('#detail-group-tables').html(result.output);
-                        $('#detail-group-tables').DataTable();
+                        $('#detail-group-tables').DataTable({
+                            responsive: true
+                        });
+
+                        // Tampilin Modal untuk Detail Group
                         $('#dtablesModalDetailGroup').modal('show');
                     },
                     error: function(result) {
@@ -53,9 +73,14 @@
                     }
                 });
             });
+
+            // Handler Untuk Klik List Event
             $('body').on('click', '.see-list-event', function() {
+                //Ambil id dan nama group
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
+
+                // Reset State id Event yang dipilih dari radio
                 checkedIdEvent = null;
                 $.ajax({
                     url: 'admin_see_list_event.php',
@@ -65,12 +90,15 @@
                         group_name: group_name,
                     },
                     success: function(result) {
-                        $('#list-event-tables').DataTable().destroy();
+                        // Isi Atasnya Modal Dengan Button
                         $('.header-list-event').html(result.outputHeader)
 
+                        // Restart dan Isi DataTable
+                        $('#list-event-tables').DataTable().destroy();
                         $('#list-event-tables').html(result.output);
                         $('#list-event-tables').DataTable();
 
+                        //Tampilin Modalnya
                         $('#dtablesModalListEvent').modal('show');
                     },
                     error: function(result) {
@@ -78,7 +106,10 @@
                     }
                 });
             });
+
+            // Untuk Handle Klik Detail Event
             $('body').on('click', '.see-detail-event', function() {
+                // ambil id group, nama group, dan id event
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
                 var id_event = $(this).closest('tr').data('event');
@@ -92,12 +123,18 @@
                         id_event: id_event,
                     },
                     success: function(result) {
+                        // Tampilin Info Detail dari Event tsb
                         $('.detail-header').html(result.outputHeader);
 
+                        // Restart dan Isi DataTable
                         $('#detail-event-tables').DataTable().destroy();
                         $('#detail-event-tables').html(result.output);
                         $('#detail-event-tables').DataTable();
+
+                        // Tampilin Modalnya
                         $('#dtablesModalDetailEvent').modal('show');
+
+                        // Reset Checkbox Button untuk Update Detail Event
                         checkedIdDetailEvent.splice(0, checkedIdDetailEvent.length);
                     },
                     error: function(result) {
@@ -105,6 +142,7 @@
                     }
                 });
             });
+
 
             $('body').on('click', '#add-event', function() {
                 $('#add-event-modal').attr('data-isingroup', true);
@@ -119,7 +157,9 @@
                 $('#add-event-modal').attr('data-idgroup', '');
             });
 
+            // Handler Submit Event untuk dimasukkan ke DB
             $('#submit-event').click(function() {
+                // Dapetin semua info dari modal
                 var event = $('#inputEvent').val();
                 var jenis = $('#inputJenisEvent').val();
                 var tempat = $('#inputTempat').val();
@@ -144,7 +184,10 @@
                         id_group: id_group,
                     },
                     success: function(result) {
+                        // Tampilin Notif Sukses dan Hide Modal untuk Input Event
                         alert(result.notif);
+
+                        // Hide Modal untuk Add Event
                         $('#add-event-modal').modal('hide');
 
                     },
@@ -169,7 +212,10 @@
                         id_group: id_group,
                     },
                     success: function(result) {
+                        // Masukin data semua kitab ke dalam Selection
                         $('#inputKitab').html(result.output);
+
+                        // Selipkan id group ke dalam tombol Submit Renungan
                         $('#submit-renungan').attr('data-group', result.id_group);
                     },
                     error: function(result) {
@@ -177,19 +223,26 @@
                     }
                 });
             });
+
+            // Init variable Batas Maximum dari Kitab Tertentu dan Kitabnya
             var max_chapter;
             var book;
+
+            // Kalau Kitab nya diganti, dia akan menyimpan batas max dan nama kitab nya di variable
             $('body').on('change', '#inputKitab', function() {
                 max_chapter = $(this).find(':selected').data('max');
                 book = $(this).find(':selected').text();
             });
 
+            // Kalau dia input sesuatu di modal renungan di bawah 1 maka akan langsung di peringati
             $('body').on('change', 'input[type=number]', function() {
                 if ($(this).val() < 1) {
                     alert('Pasal / Ayat Tidak Boleh Dibawah 1');
                     $(this).val('');
                 }
             });
+
+            // Kalau Pasal nya Melebihi Batas Pasal Maximum maka akan di reset otomatis
             $('body').on('change', '#inputPasal', function() {
                 var inputPasal = $('#inputPasal').val();
                 if (max_chapter < inputPasal) {
@@ -199,6 +252,7 @@
                 }
             });
 
+            // Handler untuk Preview Renungan
             $('#preview-renungan-btn').click(function() {
                 var kitab = $('#inputKitab').val();
                 var pasal = $('#inputPasal').val();
@@ -206,13 +260,17 @@
                 var akhir = $('#inputAyatEnd').val();
                 var renungan = $('#inputRenungan').val();
 
+                // Check bila ada inputan yang kosong
                 if (kitab === '' || pasal === '' || awal === '' || akhir === '' | renungan === '') {
                     alert('Kitab / Pasal / Ayat Awal / Ayat Akhir Masih Kosong');
 
                 } else if (parseInt(akhir) < parseInt(awal)) {
+                    // Check bila ayat terakhir lebih kecil dari yang awal (tidak valid)
                     alert('Ayat Akhir Tidak Boleh Dibawah Ayat Awal');
 
                 } else {
+                    // Bila sudah valid semua maka bisa melihat preview nya
+
                     $.ajax({
                         url: 'get_preview_renungan.php',
                         method: 'POST',
@@ -224,9 +282,12 @@
                             renungan: renungan,
                         },
                         success: function(result) {
+                            // Menampilkan Preview Firman, Ayat, dan Renungan
                             $('#preview-firman').html(result.outputFirman);
                             $('#preview-ayat').html(result.outputAyat);
                             $('#preview-renungan').html(result.outputRenungan);
+
+                            // Hide Modal Add Renungan dan tampilkan Preview Renungan
                             $('#add-renungan-modal').modal('hide');
                             $('#preview-renungan-modal').modal('show');
                         },
@@ -237,7 +298,9 @@
                 }
 
             });
+            // Handler untuk submit Renungan setelah di Preview
             $('#submit-renungan').click(function() {
+                // Ambil data ayat, renungan, dan id group
                 var ayat = $('#content-ayat').val().toLowerCase();
                 var renungan = $('#content-renungan').text();
                 var id_group = $(this).data('group');
@@ -251,6 +314,7 @@
                         id_group: id_group,
                     },
                     success: function(result) {
+                        // Memberi tahu bila sudah sukses dan Tutup Modal Preview Renungan
                         alert(result.notif);
                         $('#preview-renungan-modal').modal('hide');
                     },
@@ -263,9 +327,11 @@
             //Checkbox Renungan
             const checkedIdGroup = [];
             $('body').on('click', 'input[type="checkbox"].checkbox-renungan', function() {
+                // Dapetin id group
                 var obj = $(this).closest('tr');
                 var id = obj.data('id');
 
+                // Kalau di Check Checkboxnya masukkan ke dalam variable "checkedIdGroup" kalau di Uncheck di remove
                 if ($(this).prop('checked')) {
                     checkedIdGroup.push(id);
 
@@ -279,12 +345,15 @@
                     }
                 }
             });
+            // Handler untuk Update Renungan
             $('body').on('click', '#update-renungan-btn', function() {
+                // Kalau belum ada yang dipilih, diperingati, Kalau Sudah, bisa edit input yang di disabled
                 if (checkedIdGroup.length !== 0) {
                     for (const id of checkedIdGroup) {
                         $('tr[data-id=' + id + ']').find('input').prop('disabled', false);
                     }
 
+                    // ubah cursor not-allowed di "Save Renungan" jadi cursor pointer (bentuk tangan)
                     $('#save-renungan-btn').css('cursor', 'pointer');
                 } else {
                     alert('empty');
@@ -292,10 +361,15 @@
 
             });
 
+            // Handler untuk Save Renungan
             $('body').on('click', '#save-renungan-btn', function() {
+                // variable untuk dapetin ayat, renungan, dan id alkitab yang unik
                 const updatedAyat = [];
                 const updatedRenungan = [];
                 const id_alkitab = [];
+
+                // setiap yang di check checkboxnya, check apakah id group nya sama atau tidak
+                // kalau sama dianggap 1 aja, lalu dimasukkan ke variable
                 for (const id of checkedIdGroup) {
 
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
@@ -315,6 +389,7 @@
                         id_alkitab: id_alkitab,
                     },
                     success: function(result) {
+                        // Hide Modal untuk Detail Group dan Reset id group yang di check
                         $('#dtablesModalDetailGroup').modal('hide');
                         checkedIdGroup.splice(0, checkedIdGroup.length);
                     },
@@ -324,7 +399,9 @@
                 });
             });
 
+            // Handler untuk Delete Renungan
             $('body').on('click', '#delete-renungan-btn', function() {
+                //cari id alkitab yang unik dalam 1 group, kalau sama diabaikan yang penting ada 1
                 const id_alkitab = [];
                 for (const id of checkedIdGroup) {
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
@@ -332,6 +409,7 @@
                         id_alkitab.push(tmp_id_alkitab);
                     }
                 }
+
                 $.ajax({
                     url: 'admin_delete_restore_renungan.php',
                     method: 'POST',
@@ -340,16 +418,19 @@
                         type: "DELETE",
                     },
                     success: function(result) {
+                        // Hide Modal Detail Group dan Reset id group yang di check
                         $('#dtablesModalDetailGroup').modal('hide');
                         checkedIdGroup.splice(0, checkedIdGroup.length);
-
                     },
                     error: function(result) {
 
                     }
                 });
             });
+
+            // Handler untuk Restore Renungan
             $('body').on('click', '#restore-renungan-btn', function() {
+                //cari id alkitab yang unik dalam 1 group, kalau sama diabaikan yang penting ada 1
                 const id_alkitab = [];
                 for (const id of checkedIdGroup) {
                     var tmp_id_alkitab = $('tr[data-id=' + id + ']').data('alkitab');
@@ -365,28 +446,33 @@
                         type: "RESTORE",
                     },
                     success: function(result) {
+                        // Hide Modal Detail Group dan Reset id group yang di check
                         $('#dtablesModalDetailGroup').modal('hide');
                         checkedIdGroup.splice(0, checkedIdGroup.length);
-
                     },
                     error: function(result) {
 
                     }
                 });
             });
+
             // Radio Button Event
             var checkedIdEvent = null;
-
             $('body').on('click', 'input[type="radio"]', function() {
+                // Setting Behavior dari radio, ketika 1 radio di check, yang lain harus dihilangkan
                 $('input[type=radio]').prop('checked', false);
                 $(this).prop('checked', true);
                 var obj = $(this).closest('tr');
 
+                // ambil id event dan masukkan ke variable
                 checkedIdEvent = obj.data('event');
             });
 
+            // kalau di klik clear button maka radio button nya hilang dan tidak ada pilihan
             $('body').on('click', '#clearRadio', function() {
+                // Set semua radio button untuk un-check dan reset id event 
                 $('input[type=radio]').prop('checked', false);
+                checkedIdEvent = null;
             });
 
 
@@ -406,6 +492,7 @@
 
                         },
                         success: function(result) {
+                            // Show Modal Update Event dan Populate isi Form nya
                             $('#update-event-modal').modal('show');
                             $('#update-event-submit').attr('data-id', result.id_event);
                             $('#updateEvent').val(result.nama);
@@ -440,6 +527,7 @@
                         link: link,
                     },
                     success: function(result) {
+                        // Alert pesan dan Hide Modal Update Event
                         alert(result.notif);
                         $('#update-event-modal').modal('hide');
                     },
@@ -463,6 +551,7 @@
                             type: "DELETE",
                         },
                         success: function(result) {
+                            // Alert pesan dan Hide Modal List Event
                             alert(result.notif);
                             $('#dtablesModalListEvent').modal('hide');
                         },
@@ -487,6 +576,7 @@
                             type: "RESTORE",
                         },
                         success: function(result) {
+                            // Alert pesan dan Hide Modal List Event
                             alert(result.notif);
                             $('#dtablesModalListEvent').modal('hide');
 
@@ -498,11 +588,14 @@
                 }
             });
 
+            // Handler untuk Detail Setiap Event
             const checkedIdDetailEvent = [];
             $('body').on('click', 'input[type=checkbox].checkbox-detail-event', function() {
+                // ambil id detail event
                 var obj = $(this).closest('tr');
                 var id = obj.data('devent');
 
+                // kalau checkbox nya di check maka tombol absen sama alasan di dibuka, tombol update juga diperbolehkan
                 if ($(this).prop('checked')) {
                     checkedIdDetailEvent.push(id);
                     obj.find('td:eq(3)').find('input').prop('disabled', false);
@@ -521,6 +614,7 @@
                     }
                 }
 
+                // Kalau Tidak Ada Yang Dipilih Dikembalikan Ke State Semula (Tombol Update Detail Event)
                 if (checkedIdDetailEvent.length > 0) {
                     $('#update-detail-event').prop('disabled', false);
                 } else {
@@ -528,6 +622,7 @@
                 }
             });
 
+            // Handler untuk klik Absen, jika tulisan tidak hadir di klik akan jadi hadir dan sebaliknya
             $('body').on('click', '.event-absen', function() {
                 if ($(this).hasClass('btn-danger') && $(this).val() === 'Tidak Hadir') {
                     $(this).removeClass('btn-danger').addClass('btn-success').val('Hadir');
@@ -537,9 +632,13 @@
                 }
             });
 
+            // Handler untuk Update Detail Event
             $('body').on('click', '#update-detail-event', function() {
+                // Variable untuk simpan absen dan alasan
                 const absen = [];
                 const alasan = [];
+
+                // Untuk setiap id detail event, dapatkan absen dan alasan nya
                 for (const id of checkedIdDetailEvent) {
                     var tmp_obj = $('tr[data-devent=' + id + ']');
                     var tmp_absen = tmp_obj.find('td:eq(3)').find('input');
@@ -564,6 +663,7 @@
                         checkedIdDetailEvent: checkedIdDetailEvent,
                     },
                     success: function(result) {
+                        // Keluarkan Notif dan Hide Modal Detail Event
                         alert(result.notif);
                         $('#dtablesModalDetailEvent').modal('hide');
                     },
@@ -574,13 +674,16 @@
             });
 
             // Update Group
+            // Handler untuk Double Klik Nama Group
             $('body').on('dblclick', '.group-name-input', function() {
                 $(this).prop('disabled', false);
             });
 
+            // Handler untuk Pergantian Nama Group
             $('body').on('change', '.group-name-input', function() {
+                // Ada Modal Confirm (yes/no), bila yes masuk if ini
                 if (confirm("Nama Group Ini Akan Terubah. Apakah Anda Yakin ?")) {
-
+                    // ambil id dan nama ter-update
                     var id = $(this).data('id');
                     var updatedName = $(this).val();
 
@@ -592,6 +695,7 @@
                             updatedName: updatedName,
                         },
                         success: function(result) {
+                            // Keluarkan Notif dan Disabled kembali Nama Group nya
                             alert(result.notif);
                             $('input[data-id=' + id + '].group-name-input').prop('disabled', true);
                         },
@@ -625,6 +729,7 @@
                             newStatus: newStatus,
                         },
                         success: function(result) {
+                            // Keluarkan Notif dan Ubah Tampilan Aktif ke Non-Aktif dan sebaliknya
                             alert(result.notif);
                             if (newStatus) {
                                 $('span[data-id=' + id + '].badge-group').removeClass('bg-danger').addClass('bg-success').text('Active')
@@ -638,7 +743,6 @@
                     });
                 }
             });
-
         });
     </script>
 </head>
@@ -954,5 +1058,4 @@
                 </div>
             </div>
 </body>
-
 </html>

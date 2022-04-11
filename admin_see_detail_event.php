@@ -2,6 +2,7 @@
 include 'connect.php';
 header('Content-type: application/json');
 
+// FILE UNTUK HANDLE REQUEST LIHAT DETAIL EVENT
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // dapetin data dari POST yang dikirim ajax
