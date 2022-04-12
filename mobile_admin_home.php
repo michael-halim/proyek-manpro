@@ -1,10 +1,10 @@
 <?php
 include 'connect.php';
-if (!isset($_SESSION['email'])) {
-	// if ($_SESSION['email'] == "admin@gmail.com") {
-	// 	header('location: mobile_admin_home.php');
+if (isset($_SESSION['email'])) {
+	// if ($_SESSION['email'] == "admintokopetra@gmail.com") {
+	// 	header('location: seller_home.php');
 	// } else {
-		header("Location: login.php");
+	// 	header('location: home.php');
 	// }
 
 	// echo $_SESSION['email'];
@@ -28,7 +28,6 @@ if (!isset($_SESSION['email'])) {
 	<!-- <link rel="stylesheet" type="text/css" href="css/home_style.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="assets/css/uhome.css"> -->
 <!-- </head> -->
-
 
 <body>
 	<?php
@@ -83,35 +82,16 @@ if (!isset($_SESSION['email'])) {
 
 
     <!-- navbar -->
-<?php require_once 'assets/mobiletopnav.php'; ?>
+<?php require_once 'assets/mobileadmintopnav.php'; ?>
 
 
 
 
     <!-- end navbar -->
-    
-
-
-
     <div class="profile shwnav">
-        <div class="card rounded-0 shwnav">
+        <div class="card rounded-0">
 		<h2>HOME</h2>
-        <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
 		<div class="container mb-5">
-
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
             <!-- <div class="card-header">  -->
@@ -182,7 +162,6 @@ if (!isset($_SESSION['email'])) {
                 </div>
 
                 <!-- more contaienr -->
-                <div class="container">
                     <div class="card">
                         <div class="card-body">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
@@ -195,7 +174,7 @@ if (!isset($_SESSION['email'])) {
                             </p>
                         </div>
                     </div>
-                </div>
+
                 <!-- more container -->
 
 
@@ -218,7 +197,7 @@ if (!isset($_SESSION['email'])) {
             <!-- batas copas -->
 
 
-			<?php require_once 'assets/mobilebottomnav.php'; ?>
+			<?php require_once 'assets/mobilebottomnavadmin.php'; ?>
 
 
 

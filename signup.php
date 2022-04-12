@@ -6,7 +6,6 @@
         $name = $_POST['name'];
         $date = $_POST['date'];
         $phone = $_POST['phone'];
-        
         $email = $_POST['email'];
         $cekemail = '%'.$email.'%';
         $password = hash("sha512", $_POST['password']);

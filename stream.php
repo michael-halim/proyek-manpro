@@ -1,10 +1,10 @@
 <?php
 include 'connect.php';
-if (!isset($_SESSION['email'])) {
-	// if ($_SESSION['email'] == "admin@gmail.com") {
-	// 	header('location: mobile_admin_home.php');
+if (isset($_SESSION['email'])) {
+	// if ($_SESSION['email'] == "admintokopetra@gmail.com") {
+	// 	header('location: seller_home.php');
 	// } else {
-		header("Location: login.php");
+	// 	header('location: home.php');
 	// }
 
 	// echo $_SESSION['email'];
@@ -28,8 +28,7 @@ if (!isset($_SESSION['email'])) {
 	<!-- <link rel="stylesheet" type="text/css" href="css/home_style.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="assets/css/uhome.css"> -->
 <!-- </head> -->
-
-
+<link rel="stylesheet" type="text/css" href="assets/css/ustream.css">
 <body>
 	<?php
 	// admin sha512
@@ -89,80 +88,32 @@ if (!isset($_SESSION['email'])) {
 
 
     <!-- end navbar -->
-    
+    <div class="profile">
+        <div class="card rounded-0">
 
-
-
-    <div class="profile shwnav">
-        <div class="card rounded-0 shwnav">
-		<h2>HOME</h2>
-        <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-		<div class="container mb-5">
-
-		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
-		</div>
-            <!-- <div class="card-header">  -->
-
-
-            <!-- </div> -->
-
-            <div class="card-body py-5 ">
-                <div class="author">
-                    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB6At_WsdMZrn_ImShsz-Wm3yjXRdjZ905U8gLF_XJ3MJMbaEE9BIk_Q-2ALVvEOJXcfY&usqp=CAU"
-                        class="rounded-circle img-thumbnail shadow" width="150" alt="bootcatch light admin theme"> -->
-                    <!-- <div class="author-data ">
-                        <h4 class="text-dark mb-3" href="#"></h4>
-                        <div class="mt-2 mb-2 w-100 d-flex justify-content-between">
-                            <button class="btn btn-primary btn-sm btn-rounded d-flex align-items-center">
-                                <i class="material-icons mr-2">person_pin</i>
-                                Member
-                            </button>
-                            <button class="btn btn-warning btn-sm btn-rounded d-flex align-items-center">
-                                <i class="material-icons mr-2">message</i>
-                                Comunity</button>
-                            <button class="btn btn-success btn-sm btn-rounded d-flex align-items-center">
-                                <i class="material-icons mr-2">people</i>
-                                Group
-                            </button>
-                        </div>
-                    </div> -->
-                    <!-- <div class="author-info">
-                        <div>
-                            <h5>3K</h5>
-                            <p>Friends</p>
-                        </div>
-                        <div>
-                            <h5>99</h5>
-                            <p>Photos</p>
-                        </div>
-                        <div>
-                            <h5>1k</h5>
-                            <p>Followers</p>
-                        </div>
-                    </div> -->
-                    <div class="horizontal-line">
-                        <span class="border-bottom w-75"></span>
-                    </div>
-                    <div class="author-info">
+            <div class="card-header"> 
+            <div class="author-info">
                         <div>
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
                                 libero mollitia esse, illum odio ex perspiciatis omnis voluptate ducimus, corporis
                                 cupiditate nobis corrupti voluptatum fugit at dolor eaque. <a href="#">Show More</a></p>
                         </div>
                     </div>
+            <!-- <img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg " alt="bootcatch light admin theme"> -->
+
+            </div>
+
+            <div class="card-body p-3">
+
+                    <div class="horizontal-line">
+                        <span class="border-bottom w-75"></span>
+                    </div>
+
+                    <div class="containerforvid"> 
+  <iframe class="responsive-iframe" src="https://www.youtube.com/embed/DHFkOIMm7Ms"></iframe>
+</div>
+
+
                     <div class="photos border shadow-sm">
                         <div class="d-flex justify-content-end">
                             <a href="#">View All</a>
@@ -178,11 +129,19 @@ if (!isset($_SESSION['email'])) {
                             <img src="img/pic1.jpg">
                             <img src="img/pic2.jpg">
                         </div>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
+                                libero
+                                mollitia esse,
+                                illum odio ex perspiciatis omnis voluptate ducimus, corporis cupiditate nobis corrupti
+                                voluptatum
+                                fugit at
+                                dolor eaque.
+                            </p>
+
                     </div>
-                </div>
 
                 <!-- more contaienr -->
-                <div class="container">
+                <div class="container mb-5">
                     <div class="card">
                         <div class="card-body">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
