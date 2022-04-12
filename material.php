@@ -13,7 +13,7 @@
     <style>
       .probootstrap-header{
        background-color:cadetblue; 
-       background-image: url("img/classroom.png");
+       background-image: url("assets/user/img/classroom.png");
        background-position: center center;
        background-repeat: no-repeat;
        background-attachment: fixed;
@@ -42,9 +42,9 @@
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-          <li><a href="home.php">Home</a></li>
+          <li><a href="user_home.php">Home</a></li>
             <li><a href="material.php">Materi</a></li>
-            <li><a href="grup.php">Grup</a></li>
+            <li><a href="group.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
           </ul>
           <div class="extra-text visible-xs">

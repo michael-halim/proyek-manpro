@@ -3,19 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
-    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/styles-merged.css">
-    <link rel="stylesheet" href="css/style.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="assets/user/css/styles-merged.css">
+    <link rel="stylesheet" href="assets/user/css/style.min.css">
+    <link rel="stylesheet" href="assets/user/css/custom.css">
 
-    <!--[if lt IE 9]>
-      <script src="js/vendor/html5shiv.min.js"></script>
-      <script src="js/vendor/respond.min.js"></script>
-    <![endif]-->
+   
   
     <style>
       .probootstrap-header{
@@ -49,9 +43,9 @@
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-          <li><a href="home.php">Home</a></li>
+          <li><a href="user_home.php">Home</a></li>
             <li><a href="material.php">Materi</a></li>
-            <li><a href="grup.php">Grup</a></li>
+            <li><a href="group.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
           </ul>
           <div class="extra-text visible-xs">

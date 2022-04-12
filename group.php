@@ -31,9 +31,9 @@
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-          <li><a href="home.php">Home</a></li>
+          <li><a href="user_home.php">Home</a></li>
             <li><a href="material.php">Materi</a></li>
-            <li><a href="grup.php">Grup</a></li>
+            <li><a href="group.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
           </ul>
           <div class="extra-text visible-xs">
@@ -78,7 +78,7 @@
           <center><a>Jadwal</a></center>
           <div class="probootstrap-pricing">
             
-            <img class="calendar" src="img/calendar.png">
+            <img class="calendar" src="assets/user/img/calendar.png">
           </div>
       </div>
       <!-- END row -->
