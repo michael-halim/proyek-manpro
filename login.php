@@ -1,17 +1,39 @@
 <?php
 include 'connect.php';
-// if(isset($_SESSION['email'])){
-// 	if ($_SESSION['email'] == "admintokopetra@gmail.com") {
-// 		header('location: seller_home.php');
-// 	}
-// 	else {
-// 		header('location: home.php');
-// 	}
-// }
+if(isset($_SESSION['email']))
+{
+	if ($_SESSION['email'] == "admin@gmail.com") {
+		header('location: mobile_admin_home.php');
+	}
+	else {
+		header('location: home.php');
+	}
+}
 ?>
 
 <!DOCTYPE html>
 <html>
+   <head>
+       
+      <title>Proyek Manpro 11</title>
+      <?php include('assets/header.php'); ?>
+      <link href="assets/css/admin_login.css" rel="stylesheet" />
+
+   </head>
+   <body>
+
+   <div class="comming-soon" style="background:url('assets/img/bgi.jpg');">
+      <div class="first-header d-flex justify-content-center">
+        <h1 class="display-4 text-white-50 text-center">Renungan Harian dan Pasal Alkitab</h1>
+        <!--  -->
+      </div>
+      <div class="second-header text-center">
+        <h2>Renungan Harian Pasal Alkitab</h2>
+        <p>Kelompok 11 Manpro v1.0</p>
+
+        <div class="d-flex justify-content-center mb-1">
+          <button type="button" class="btn btn-primary btn-block w-75" href="http://petra.id/manpro11">Get Started</button>
+        </div>
 
 <head>
 
