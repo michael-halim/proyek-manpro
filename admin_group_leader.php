@@ -36,19 +36,20 @@
 
                 },
                 success: function(result) {
+                    // Restart dan Isi DataTable
                     $('#manage-users').DataTable().destroy();
                     $('#manage-users').html(result.output);
                     $('#manage-users').DataTable();
+
+                    // Tampilan Div yang di Hidden
                     $('#div-manage-users').prop('hidden', false);
-
-
                 },
                 error: function(result) {
 
                 }
             });
 
-            // Ajax for Assigning Group, Fetch user from DB
+            // Handler untuk klik Assign Group
             var assignedPerson;
             $('body').on('click', '.assign-group', function() {
                 checkedPerson.splice(0, checkedPerson.length);
@@ -64,10 +65,12 @@
                         email: email
                     },
                     success: function(result) {
+                        // Restart dan Isi DataTable
                         $('#assign-users-tables').DataTable().destroy();
-
                         $('#assign-users-tables').html(result.output);
                         $('#assign-users-tables').DataTable();
+
+                        // Tampilin modal
                         $('#dtablesModal').modal('show');
 
                     },
@@ -77,12 +80,12 @@
                 });
             });
 
-            // See Detail if click and response
+            // Handler untuk klik See Detail
             $('body').on('click', '.see-detail', function() {
+                // Ambil Email
                 var obj = $(this).closest('tr');
-
                 var email = obj.find('td:eq(1)').text();
-                alert(email);
+
                 $.ajax({
                     url: 'admin_see_detail.php',
                     method: 'POST',
@@ -90,6 +93,7 @@
                         email: email
                     },
                     success: function(result) {
+                        // Tampilkan Detail di Modal dan di show
                         $('.detail-body').html(result.output);
                         $('#detail').modal('show');
                     },
@@ -99,7 +103,7 @@
                 });
 
             });
-            // Function and Response if Checkbox is clicked or not
+            // Handler untuk behavior checkbox
             const checkedPerson = [];
             $('body').on('click', 'input[type="checkbox"]', function() {
 
@@ -119,10 +123,22 @@
                 }
 
             });
-            // Ajax Funtion Send All Checked Person 
+
+            // Handler untuk klik "next" di modal Assign Group
+            $('.next-modal-btn').click(function() {
+                // Kalau Belum milih tidak bisa next modal
+                if (checkedPerson.length === 0) {
+                    alert('Belum Memilih User');
+                } else {
+                    $('#dtablesModal').modal('hide');
+                    $('#secondModal').modal('show');
+                }
+            });
+
+
+            // Handler untuk klik save changes
             $('.save-changes').click(function() {
-                alert(assignedPerson);
-                alert(checkedPerson);
+
                 const groupName = $('#group-name').val();
                 if (groupName === '') {
                     alert('Nama Group Tidak Boleh Kosong');
@@ -136,7 +152,7 @@
                             groupName: groupName
                         },
                         success: function(result) {
-                            $('#testing').html(result.output);
+                            // Hide Modal untuk Nama Group
                             $('#secondModal').modal('hide');
                         },
                         error: function(result) {
@@ -157,7 +173,6 @@
         <div class="col-md-8">
             <div class="container">
                 <h1>Content For Manage Group Leader</h1>
-                <h2 id="testing"></h2>
 
                 <!-- DataTables Utama untuk Melihat Semua Ketua  -->
                 <div id="div-manage-users" class="my-5" hidden>
@@ -206,8 +221,8 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">List </h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h3 class="modal-title">User List</h3>
+                                <button type="button" class="btn-close close-modal-user" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body assign-users-body">
                                 <table id="assign-users-tables" class="table table-bordered">
@@ -232,8 +247,8 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" data-bs-target="#secondModal" data-bs-toggle="modal">Open second modal</button>
+                                <button type="button" class="btn btn-secondary close-modal-user" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-primary next-modal-btn">Next</button>
                             </div>
                         </div>
                     </div>
@@ -244,8 +259,8 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">Nama Group</h5>
+                                <button type="button" class="btn-close close-second-modal" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
@@ -256,7 +271,6 @@
                             <div class="modal-footer">
                                 <button class="btn btn-primary" data-bs-target="#dtablesModal" data-bs-toggle="modal">Back</button>
                                 <button type="button" class="btn btn-primary save-changes">Save changes</button>
-
                             </div>
                         </div>
                     </div>
@@ -264,8 +278,6 @@
             </div>
         </div>
     </div>
-
-
 </body>
 
 </html>

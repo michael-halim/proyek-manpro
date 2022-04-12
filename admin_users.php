@@ -25,11 +25,14 @@
 
                 },
                 success: function(result) {
+                    // Restart dan Isi DataTable
                     $('#manage-users').DataTable().destroy();
                     $('#manage-users').html(result.output);
                     $('#manage-users').DataTable({
                         responsive: true
                     });
+
+                    // Unhide Div
                     $('#div-manage-users').prop('hidden', false);
 
 
@@ -49,11 +52,14 @@
                         email: email
                     },
                     success: function(result) {
+                        // Restart dan Isi DataTable
                         $('#manage-users').DataTable().destroy();
                         $('#manage-users').html(result.output);
                         $('#manage-users').DataTable({
                             responsive: true
                         });
+
+                        // Unhide Div
                         $('#div-manage-users').prop('hidden', false);
                     },
                     error: function(result) {
@@ -87,7 +93,7 @@
     </script>
 </head>
 
-<body>
+<body style="overflow-x:hidden;">
     <div class="row">
         <?php include('assets/admin_sidebar.php'); ?>
         <div class="col-md-9">
@@ -138,7 +144,5 @@
         </div>
     </div>
 
-
 </body>
-
 </html>

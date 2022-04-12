@@ -2,8 +2,8 @@
 include 'connect.php';
 header('Content-type: application/json');
 
+// FILE UNTUK RESPONSE UPDATE (UBAH JADI KETUA ATAU MEMBER) DAN AMBIL SEMUA USER. 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
 
     // Update Status Ketua
     if($_POST['type'] == 'UPDATE'){
@@ -20,14 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Read Semua User Kecuali Admin
     // Bila $_POST['type'] = update maka akan mengupdate dan tampilan 
     // akan otomatis terganti karena bawahnya langsung di read
-
-    $sql = "SELECT email, nama, hp, FLOOR(DATEDIFF(NOW(),lahir)/365.25) as umur , ketua, group_member
+    $sql = "SELECT email, 
+                    nama, 
+                    hp, 
+                    FLOOR(DATEDIFF(NOW(),lahir)/365.25) as umur, 
+                    ketua, 
+                    group_member
             FROM user
             WHERE email != 'admin@gmail.com'";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
+    // Isi DataTable
     $output =
     '<table id="manage-users" class="table table-bordered">
         <thead>
@@ -56,27 +61,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="submit" class="btn btn-warning ubah-ketua btn-block" data-email="' . $row['email'] . '" value="Ubah Jadi Member">
                         </div>
                     </div> ';
+
         if( $row['ketua'] == 0 ){
             $button = '<div class="container">
                             <div class="row">
                                 <input type="submit" class="btn btn-success btn-block ubah-ketua" data-email="' . $row['email'] . '" value="Ubah Jadi Ketua">
                             </div>
                         </div>';
-
         }
 
         $output .= '<tr>
-        <td>'. ++$count .'</td>
-        <td>'. $row['email'] .'</td>
-        <td>'. $row['nama'] .'</td>
-        <td>'. $row['hp'] .'</td>
-        <td>'. $button .'</td>
-        <td>'. $detail_button .'</td>
-        </tr>';
+                        <td>'. ++$count .'</td>
+                        <td>'. $row['email'] .'</td>
+                        <td>'. $row['nama'] .'</td>
+                        <td>'. $row['hp'] .'</td>
+                        <td>'. $button .'</td>
+                        <td>'. $detail_button .'</td>
+                    </tr>';
     }
     $output .= '</tbody></table>';
 
   echo json_encode(array('output' => $output));
 }
-
 ?>
