@@ -114,10 +114,10 @@ if (isset($_SESSION['email'])) {
                             <!-- <img class=" circle responsive-img" src="https://bootdey.com/img/Content/user_1.jpg" alt=""> -->
                         </a>
                         <div class="pull-right btn-group-sm">
-                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                        <a href="#" class="btn btn-success tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal" data-original-title="Edit">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal2" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
@@ -225,10 +225,10 @@ if (isset($_SESSION['email'])) {
                             <!-- <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_2.jpg" alt=""> -->
                         </a>
                         <div class="pull-right btn-group-sm">
-                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                        <a href="#" class="btn btn-success tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal" data-original-title="Edit">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal2" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
@@ -253,10 +253,10 @@ if (isset($_SESSION['email'])) {
                             <!-- <img class="thumb-lg circle bx-s" src="https://bootdey.com/img/Content/user_3.jpg" alt=""> -->
                         </a>
                         <div class="pull-right btn-group-sm">
-                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                            <a href="#" class="btn btn-success tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal" data-original-title="Edit">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-bs-toggle="modal" data-bs-target="#myModal2" data-original-title="Delete">
                                 <i class="fa fa-close"></i>
                             </a>
                         </div>
@@ -319,7 +319,44 @@ if (isset($_SESSION['email'])) {
         </div>
     </div>
 
+    <!-- Modals  -->
+     <!-- Modal Trigger -->
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
+<!-- Modal Structure -->
+      <!-- Modal Edit User-->
+      <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+      <h4>Edit User</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Edit</a>
+    </div>
+                </div>
+        </div>
+    </div>
+<!-- End Modals -->
+
+
+<!-- Modal Structure -->
+      <!-- Modal Delete User-->
+      <div id="myModal2" class="modal fade" role="dialog">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+      <h4>Delete User</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Edit</a>
+    </div>
+                </div>
+        </div>
+    </div>
+<!-- End Modals -->
 
 
 

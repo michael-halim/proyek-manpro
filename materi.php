@@ -91,6 +91,20 @@ if (isset($_SESSION['email'])) {
     <div class="profile">
         <div class="card rounded-0">
 		<h2>Materi & bacaan</h2>
+        <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">books</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">books</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">books</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
 		<div class="container mb-5">
 		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
 		</div>
