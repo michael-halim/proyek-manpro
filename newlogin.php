@@ -1,27 +1,27 @@
 <?php
 include 'connect.php';
-if(isset($_SESSION['email']))
-{
-	if ($_SESSION['email'] == "admin@gmail.com") {
-		header('location: mobile_admin_home.php');
-	}
-	else {
-		header('location: home.php');
-	}
-}
+// if(isset($_SESSION['email']))
+// {
+// 	if ($_SESSION['email'] == "admin@gmail.com") {
+// 		header('location: admin_home.php');
+// 	}
+// 	else {
+// 		header('location: home.php');
+// 	}
+// }
 ?>
 
 <!DOCTYPE html>
 <html>
+   <head>
+       
+      <title>Proyek Manpro 11</title>
+      <?php include('assets/header.php'); ?>
+      <link href="assets/css/admin_login.css" rel="stylesheet" />
 
-<head>
-    <title>Proyek Manpro</title>
+   </head>
+   <body>
 
-<<<<<<< Updated upstream
-    <?php include('assets/header.php'); ?>
-    <link rel="stylesheet" href="css/login_style.css">
-</head>
-=======
    <div class="comming-soon" style="background:url('assets/img/bgi.jpg');">
       <div class="first-header d-flex justify-content-center">
         <h1 class="display-4 text-white-50 text-center">Renungan Harian dan Pasal Alkitab</h1>
@@ -30,16 +30,29 @@ if(isset($_SESSION['email']))
       <div class="second-header text-center">
         <h2>Renungan Harian Pasal Alkitab</h2>
         <p>Kelompok 11 Manpro v1.0</p>
->>>>>>> Stashed changes
 
-<body>
-    <img src="img/tokopetra-text.png" class="vertical-align-center">
-    <div class="text-center">
-        <button type="button" class="btn btn-outline-primary btn-lg bg-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
-        <button type="button" class="btn btn-outline-success btn-lg bg-success text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        <div class="d-flex justify-content-center mb-1">
+          <button type="button" class="btn btn-primary btn-block w-75" href="http://petra.id/manpro11">Get Started</button>
+        </div>
+
+        <div class="d-flex justify-content-center mb-1">
+
+          <button type="button" class="btn btn-secondary btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
+          
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn bg-dark btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+        </div>
+
+      </div>
     </div>
 
-    <!-- SIGN IN -->
+
+
+
+
+         <!-- SIGN IN -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
@@ -74,7 +87,6 @@ if(isset($_SESSION['email']))
     <div id="myModal2" class="modal fade" role="dialog">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog vertical-align-center">
-<<<<<<< Updated upstream
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="card-title text-center mx-4 mt-2">Sign Up</h5>
@@ -106,52 +118,10 @@ if(isset($_SESSION['email']))
                         <hr class="my-2">
                     </div>
                 </div>
-=======
-            <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="form-label-group mb-4">
-                <i class="fas fa-user prefix grey-text"> </i> <label for="inputName">Name</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Name: Budi" required>
-                </div>
-
-                <div class="form-label-group mb-4">
-                <i class="fas fa-calendar-alt prefix grey-text"> </i> <label for="inputDate">Date of Birth</label>
-                <input type="date" id="inputDate" class="form-control"  placeholder="d/m/y" required >
-                </div>
-
-                <div class="form-label-group mb-4">
-                <i class="fas fa-phone prefix grey-text"> </i> <label for="inputPhone">Phone Number</label>
-                <input type="text" id="inputPhone" class="form-control" placeholder="Phone Number" required >
-                </div>
-
-                <div class="form-label-group mb-4">
-                <i class="fas fa-envelope prefix grey-text"> </i> <label for="inputEmailUp">Email</label>
-                <input type="email" id="inputEmailUp" class="form-control" placeholder="Email" required>
-                </div>
-
-                <div class="form-label-group mb-4">
-                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordUp">Password</label>
-                <input type="password" id="inputPasswordUp" class="form-control" placeholder="Password" required>
-            </div>
-
-
-
-            <div class="modal-footer d-flex justify-content-center">
-                <button type ="submit" id="signup" class="btn btn-dark">Sign up</button>
-        </div>
-
-    </div>
-    </div>
-
-                
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
+      
 
     <script>
         $("[id='signin']").click(function() {
