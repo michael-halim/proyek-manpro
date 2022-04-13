@@ -3,32 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Baca Alkitab &mdash;</title>
+    <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
     <link rel="stylesheet" href="assets/user/css/styles-merged.css">
     <link rel="stylesheet" href="assets/user/css/style.min.css">
     <link rel="stylesheet" href="assets/user/css/custom.css">
 
-    <link rel="stylesheet" href="assets/user/css/responsivevideo.css">
-    
+
+  
+    <style>
+      .probootstrap-header{
+       background-color:cadetblue; 
+       background-image: url("assets/user/img/classroom.png");
+       background-position: center center;
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: cover;
+       background-color: #464646;
+       width:100%;
+       height:auto;
+      }
+      .responsive{
+        width:100%;
+        height:auto;
+      }
+    </style>
   </head>
   <body>
     
+
+
   <!-- START: header -->
-  <header role="banner" class="probootstrap-header">
+  <header role="banner" class="probootstrap-header img-responsive">
     <div class="container-fluid">
       <!-- <div class="row"> -->
         <a href="index.html" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
-        
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
 
         <nav role="navigation" class="probootstrap-nav hidden-xs">
           <ul class="probootstrap-main-nav">
-            <li><a href="user_home.php">Home</a></li>
+          <li><a href="user_home.php">Home</a></li>
             <li><a href="material.php">Materi</a></li>
-            <li><a href="group.php">Grup</a></li>
+            <li><a href="grup.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
           </ul>
           <div class="extra-text visible-xs">
@@ -39,29 +59,16 @@
               <li><a href="#"><i class="icon-facebook"></i></a></li>
               <li><a href="#"><i class="icon-instagram2"></i></a></li>
             </ul>
-            <p><small>&copy; Kelompok 11.2021.</small></p>
+            <p><small>&copy; Copyright 2021. All Rights Reserved.</small></p>
           </div>
         </nav>
 
-        <section class="probootstrap-intro">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <iframe class="responsive-iframe" style="margin-right:2px;border-radius:4px;"width="880" height="440" src="https://www.youtube.com/embed/mkh6AWm_LO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="col2">
-                <div class="card" style="width: 100%;background-color:#f3f3f3;border-radius:8px;">
-                  <div class="card-body">
-                      <h5 class="card-title">Aturan Misa Gereja</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">1. tidak boleh afk</h6>
-                      <h6 class="card-subtitle mb-2 text-muted">2. tidak diperbolehkan main hp saat misa</h6>
-                      <h6 class="card-subtitle mb-2 text-muted">3.tidak diperbolehkan makan dan tidur selama misa</h6>
-                      <a href="#" class="card-link">Info lebih lanjut, klik disini</a>
-                  </div>
-                </div>
-              </div>  
-            </div>
-          </div>
+        <section class="probootstrap-intro" style="height: 600px;">
+         
+            <!--<div class="row">
+              <img src="img/classroom.png" style="max-width:100%;max-height:100%">
+            </div>-->
+          
         </section>
 
       <!-- </div> -->
@@ -74,6 +81,38 @@
   
 
   
+
+  <!-- START: section -->
+  <section class="probootstrap-section probootstrap-section-extra">
+    <center><h1>Materi</h1></center>
+    <div class="col-md-12">
+      <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+        <a href="user_materi.php">
+        <h1 style="padding:10px">Renungan ayat matius</h1>
+        <h2 style="padding-left:10px"> Matius 3:3-9</h2></a></div>
+      <div class="anggota2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+        <a href="user_materi.php">
+          <h1 style="padding:10px">Laporan Baca</h1>
+          <h2 style="padding-left:10px">Baca Renungan harian senin 1 maret - jumat 7 maret</h2></div>
+      <div class="anggota3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1 style="padding:10px">Pengabdian Masyarakat</h1>
+            <h2 style="margin-left:10px">Sumbangan ke orang terdekat</h2></div>
+      <div class="anggota4" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+        <a href="user_materi.php">
+        <h1 style="padding:10px">Tugas membaca alkitab</h1>
+        <h2 style="padding-left:10px"> Markus 1 : 1-2</h2></a></div>
+      <div class="anggota5" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+          <h1 style="padding:10px">Tugas membuat Renungan</h1>
+          <h2 style="padding-left:10px">Matius 1:1-2</h2></div>
+      <div class="anggota6" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
+            <h1 style="padding:10px">Tugas membaca alkitab</h1>
+            <h2 style="margin-left:10px">Matius 1 : 1-2</h2></div>
+
+    </div>
+  </section>
+  <!-- END: section -->
+  
+
   
   <!-- START: footer -->
   <footer role="contentinfo" class="probootstrap-footer">
@@ -86,7 +125,7 @@
             <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
         </div>
-        
+       
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <h3>Contact</h3>
@@ -110,6 +149,7 @@
             <small>&copy; 2021 <a href="https://uicookies.com/" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
           </p>
           
+          
         </div>
       </div>
     </div>
@@ -121,6 +161,5 @@
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
-
   </body>
 </html>
