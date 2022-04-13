@@ -6,7 +6,7 @@ if(isset($_SESSION['email']))
 		header('location: admin_home.php');
 	}
 	else {
-		header('location: home.php');
+		header('location: user_home.php');
 	}
 }
 ?>
