@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <th>No</th>
                             <th>Nama Event</th>
                             <th>Tanggal Dibuat</th>
-                            <th>Status Aktif</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -97,9 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $count = 0;
     while ($row = $stmt->fetch()) {
         
-        $isActiveStatus = '<i class="fa fa-check" style="color:green;"></i>';
+        $isActiveStatus = '<div class="text-center"><i class="fa fa-check" style="color:green;"></i></div>';
         if (!$row['isActive']) {
-            $isActiveStatus = '<i class="fa fa-remove" style="color:red;"></i>';
+            $isActiveStatus = '<div class="text-center"><i class="fa fa-remove" style="color:red;"></i></div>';
         }
 
 

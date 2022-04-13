@@ -106,10 +106,10 @@
             // Handler untuk behavior checkbox
             const checkedPerson = [];
             $('body').on('click', 'input[type="checkbox"]', function() {
+                var obj = $(this).closest('tr');
+                var email = obj.find('td:eq(1)').text();
 
                 if ($(this).prop('checked')) {
-                    var obj = $(this).closest('tr');
-                    var email = obj.find('td:eq(1)').text();
                     checkedPerson.push(email);
 
                 } else {

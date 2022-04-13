@@ -46,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         JOIN group_alkitab AS ga
                         ON ga.id = dg.id_group
                         WHERE u.ketua = 0 AND 
-                                ga.id = ? AND 
-                                dg.id_alkitab != 0
+                                ga.id = ?
                         GROUP BY dg.id_user 
                     ) AS myCount";
 
