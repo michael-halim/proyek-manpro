@@ -25,29 +25,7 @@
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
       <!-- <div class="row"> -->
-        <a href="index.html" class="probootstrap-logo">Sublime<span>.</span></a>
-        
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-          <li><a href="user_home.php">Home</a></li>
-            <li><a href="material.php">Materi</a></li>
-            <li><a href="group.php">Grup</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
-          </ul>
-          <div class="extra-text visible-xs">
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Social</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-            <p><small>&copy; Copyright 2017. All Rights Reserved.</small></p>
-          </div>
-        </nav>
+        <?php require_once('user_navbar.php') ?>
 
         <section class="probootstrap-intro">
           <div class="container">
@@ -91,9 +69,56 @@
       </div>
       <div class="row">
         <div class="col-md-3">
+
+        <?php 
+    $emailnya = $_SESSION["email"];
+    $sql = "SELECT DISTINCT nama,email,hp from user join detail_group where user.id=detail_group.id_user and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
+    echo $sql;
+
+    // $result = $link -> query($sql);
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$emailnya]);
+
+
+ 
+     while ($row = $stmt->fetch())
+     {
+      $nama = $row["nama"];
+      $email = $row["email"];
+      $hp = $row["hp"];
+  
+    // echo "<div class=\"card\">
+    // <div class=\"card-body\">";
+    //  echo "<br><div class=\" text-white\"><tr><td><br><img src=" .$txt1.$row["gambar"].'"width="300" height="400" class =" img-fluid img-thumbnail" '."<br><br><br>
+    //  <h5 class=\"card-title\">".$row["nama_hunian"]."</h5><br>
+    //  <p class=\"card-text\">".$row["jenis_hunian"]."<br><br>
+    //  Status : ".$row["status_hunian"]."<br><br>Deskripsi<br>
+    //  ".$row["deskripsi_hunian"]."<br></p>";
+    //  echo "<br><div class=\"card-footer\">  &nbsp 
+    //  <a href='users_bayar.php?RoomId=$id' class='btn btn-info'>Konfirmasi</a> &nbsp <a href='users_komplain.php?id=$id' class='btn btn-danger'>Services</a>";
+    echo '    <div class="col-md-12">';
+     echo"      <div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
+     <a href='user_materi.php'>
+     <h1 style='padding:10px'>$nama</h1>
+     <h2 style='padding-left:10px'> $email</h2></a></div>
+     <h3 style='padding-left:10px'> $hp</h3></a></div>
+     </div>";
+  
+      
+        
+
+     }
+     echo "</div>";
+    //  echo"<br><br>";
+
+
+    ?>
+
           <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
             <h1>ASDASD</h1>
             <h2>deskripsi</h2></div>
+
             <div class="anggota2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
               <h1>ASDASD</h1>
               <h2>deskripsi</h2></div>
