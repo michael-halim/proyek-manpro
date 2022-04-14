@@ -1,4 +1,17 @@
+<?php
+include 'connect.php';
+if (!isset($_SESSION['email'])) {
+	// if ($_SESSION['email'] == "admin@gmail.com") {
+	// 	header('location: mobile_admin_home.php');
+	// } else {
+		header("Location: login.php");
+	// }
 
+	// echo $_SESSION['email'];
+	// echo date("Y-m-d H:i:s");
+	
+}
+?>
 
 
 <a href="index.html" class="probootstrap-logo">Baca Alkitab<span>.</span></a>

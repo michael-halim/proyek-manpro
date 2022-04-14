@@ -40,28 +40,7 @@
   <header role="banner" class="probootstrap-header img-responsive">
     <div class="container-fluid">
       <!-- <div class="row"> -->
-        <a href="index.html" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
-        <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
-        <div class="mobile-menu-overlay"></div>
-
-        <nav role="navigation" class="probootstrap-nav hidden-xs">
-          <ul class="probootstrap-main-nav">
-          <li><a href="user_home.php">Home</a></li>
-            <li><a href="material.php">Materi</a></li>
-            <li><a href="grup.php">Grup</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Hi , nama</a></li>
-          </ul>
-          <div class="extra-text visible-xs">
-            <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
-            <h5>Social</h5>
-            <ul class="social-buttons">
-              <li><a href="#"><i class="icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-instagram2"></i></a></li>
-            </ul>
-            <p><small>&copy; Copyright 2021. All Rights Reserved.</small></p>
-          </div>
-        </nav>
+       <?php require_once('user_navbar.php') ?>
 
         <section class="probootstrap-intro" style="height: 600px;">
          
@@ -85,6 +64,51 @@
   <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
     <center><h1>Materi</h1></center>
+    <!-- query  -->
+    <?php 
+    $emailnya = $_SESSION["email"];
+    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at FROM alkitab ,detail_group JOIN user where detail_group.id_user = user.id and detail_group.id_alkitab = alkitab.id and user.email=?";
+    echo $sql;
+
+    // $result = $link -> query($sql);
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$emailnya]);
+
+
+ 
+     while ($row = $stmt->fetch())
+     {
+      $ayat = $row["ayat"];
+      $renungan = $row["renungan"];
+      $sb = $row["sudah_baca"];
+      $sbt = $row["sudah_baca_at"];
+  
+    // echo "<div class=\"card\">
+    // <div class=\"card-body\">";
+    //  echo "<br><div class=\" text-white\"><tr><td><br><img src=" .$txt1.$row["gambar"].'"width="300" height="400" class =" img-fluid img-thumbnail" '."<br><br><br>
+    //  <h5 class=\"card-title\">".$row["nama_hunian"]."</h5><br>
+    //  <p class=\"card-text\">".$row["jenis_hunian"]."<br><br>
+    //  Status : ".$row["status_hunian"]."<br><br>Deskripsi<br>
+    //  ".$row["deskripsi_hunian"]."<br></p>";
+    //  echo "<br><div class=\"card-footer\">  &nbsp 
+    //  <a href='users_bayar.php?RoomId=$id' class='btn btn-info'>Konfirmasi</a> &nbsp <a href='users_komplain.php?id=$id' class='btn btn-danger'>Services</a>";
+    echo '    <div class="col-md-12">';
+     echo"      <div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
+     <a href='user_materi.php'>
+     <h1 style='padding:10px'>$renungan</h1>
+     <h2 style='padding-left:10px'> $ayat</h2></a></div>
+     </div>";
+  
+      
+        
+
+     }
+     echo "</div>";
+    //  echo"<br><br>";
+
+
+    ?>
     <div class="col-md-12">
       <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
         <a href="user_materi.php">
