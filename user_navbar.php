@@ -25,6 +25,7 @@ if (!isset($_SESSION['email'])) {
             <li><a href="material.php">Materi</a></li>
             <li><a href="group.php">Grup</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi, <?= $_SESSION['nama']; ?></a> </li>
+            
           </ul>
           <div class="extra-text visible-xs">
             <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
