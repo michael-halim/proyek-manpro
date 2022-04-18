@@ -8,6 +8,16 @@ include 'connect.php';
 // 		header('location: home.php');
 // 	}
 // }
+session_start();
+if(isset($_SESSION['email']))
+{
+	if ($_SESSION['email'] == "admin@gmail.com") {
+		header('location: admin_home.php');
+	}
+	else {
+		header('location: home.php');
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,6 +83,29 @@ include 'connect.php';
                         <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Login</button>
                      </div>
                   </form>
+    <!-- SIGN IN -->
+    <div id="myModal" class="modal py-5 fade" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body mx-3" method="POST">
+                        <form class="form-signin" action="./signin.php" method="POST">
+                            <div class="md-form mb-4">
+                                <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn"> Email Address </label>
+                                <input type="email" id="inputEmailIn" class="form-control validate" placeholder="Email address" name="email">
+                            </div>
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> Password </label>
+                                <input type="password" id="inputPasswordIn" class="form-control validate" placeholder="Password" name="password">
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Login</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

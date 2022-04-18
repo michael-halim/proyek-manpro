@@ -7,6 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // tentukan lokasi file akan dipindahkan
     $dirUpload = "image/";
 
+    //hash 256
+    $pathinfo = explode('.', $namaFile);
+    $tmp = hash('sha256', $namaFile).".".$pathinfo[1];
+    $namaFile = $tmp;
+
     // pindahkan file
     $terupload = move_uploaded_file($namaSementara, $dirUpload.$namaFile);
 
@@ -25,14 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include 'connect.php';
-            $query = "UPDATE user SET foto='".$url."' WHERE email = '".$email."'";
+            $query = "UPDATE user SET pic_path='".$url."' WHERE email = '".$email."'";
             $user = mysqli_query($conn, $query);
             header("Location: ./userProfile.php");
+            $query = "UPDATE user SET pic_path='".$url."' WHERE email = '".$email."'";
+            $user = mysqli_query($conn, $query);
+            header("Location: ./user_profile.php");
         }
     } else {
         echo "Upload Gagal!";
     }
 
 }
-header('Location: userProfile.php');
+header('Location: user_profile.php');
 ?>

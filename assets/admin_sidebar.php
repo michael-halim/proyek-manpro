@@ -1,3 +1,11 @@
+<?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "manpro";
+
+$conn = mysqli_connect($host, $user, $password, $database);
+?>
 <style>
     body{
             font-family: candara;
@@ -41,12 +49,26 @@
         </ul>
         <hr>
         <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> 
-            <img src="<?php echo $_SESSION['foto']; ?>" alt="" width="32" height="32" class="rounded-circle me-2"> <strong>
-            <?php echo $_SESSION['nama'];?></strong> </a>
+            <?php
+                                $email = $_SESSION['email'];
+                                $query = "SELECT * FROM user WHERE email = '".$email."'";
+                                $user = mysqli_query($conn, $query);
+
+                                while($data = mysqli_fetch_array($user)){
+                                    $profile = $data;
+                                    break;
+                                }
+
+                                $foto = $profile['pic_path'];
+                                $nama = $profile['nama'];
+                                
+                        ?>
+            <img src="<?php echo $foto ?>" alt="" width="32" height="32" class="rounded-circle me-2"> <strong>
+            <?php echo $nama; ?></strong> </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="#">New project</a></li>
                 <li><a class="dropdown-item" href="settings.php">Settings</a></li>
-                <li><a class="dropdown-item" href="userProfile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="user_profile.php">Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
