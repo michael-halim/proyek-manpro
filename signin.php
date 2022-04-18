@@ -12,6 +12,7 @@
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
 
+        $_SESSION['useremail'] = $email;
         while($rowData = $stmt->fetch()){
 			$hashed_pw = hash('sha512',$password);
             $nama = $rowData["nama"];
@@ -22,10 +23,13 @@
                 $_SESSION['nama'] = $nama;
                 
                 if($_SESSION['email'] === 'admin@gmail.com'){
-                    header("Location: ./admin_home.php");
+                    echo json_encode(['location' => 'admin_home.php']);
+                    echo json_encode(['berhasil']);
                 }
                 else{
-                    header("Location: ./home.php");
+                    echo json_encode(['location'=>'home.php']);
+                    echo json_encode(['notif'=>'Halo user !']);
+
                 }
 			}
 			else{

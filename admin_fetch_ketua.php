@@ -2,17 +2,23 @@
 include 'connect.php';
 header('Content-type: application/json');
 
+// FILE UNTUK RESPONSE PENGAMBILAN DATA KETUA DARI DB
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-
-
-    $sql = "SELECT email, nama, hp, FLOOR(DATEDIFF(NOW(),lahir)/365.25) as umur , ketua, group_member
+    // Ambil email, nama, no hp, umur, status ketua, dan apakah group member
+    $sql = "SELECT email, 
+                    nama, 
+                    hp, 
+                    FLOOR(DATEDIFF(NOW(),lahir)/365.25) as umur , 
+                    ketua, 
+                    group_member
             FROM user
             WHERE ketua = 1 AND email != 'admin@gmail.com' ";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
+    // isi DataTable
     $output =
     '<thead>
         <tr>		
