@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>uiCookies:Sublime &mdash; Free Bootstrap Theme, Free Responsive Bootstrap Website Template</title>
+    <title>Materi</title>
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
@@ -68,7 +68,7 @@
     <?php 
     $emailnya = $_SESSION["email"];
     $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at FROM alkitab ,detail_group JOIN user where detail_group.id_user = user.id and detail_group.id_alkitab = alkitab.id and user.email=?";
-    echo $sql;
+    //echo $sql;
 
     // $result = $link -> query($sql);
     

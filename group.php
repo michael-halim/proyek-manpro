@@ -73,7 +73,7 @@
         <?php 
     $emailnya = $_SESSION["email"];
     $sql = "SELECT DISTINCT nama,email,hp from user join detail_group where user.id=detail_group.id_user and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
-    echo $sql;
+    //echo $sql;
 
     // $result = $link -> query($sql);
     

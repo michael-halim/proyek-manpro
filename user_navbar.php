@@ -13,8 +13,12 @@ if (!isset($_SESSION['email'])) {
 }
 ?>
 
+<script src="assets/user/js/scripts.min.js"></script>
+  <script src="assets/user/js/main.min.js"></script>
+  <script src="assets/user/js/custom.js"></script>
 
-<a href="index.html" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
+
+<a href="user_home.php" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
@@ -24,6 +28,7 @@ if (!isset($_SESSION['email'])) {
             <li><a href="user_home.php">Home</a></li>
             <li><a href="material.php">Materi</a></li>
             <li><a href="group.php">Grup</a></li>
+            <li><a href="logout.php">Logout</a></li>
             <li class="probootstrap-cta"><a href="signup.html">Hi, <?= $_SESSION['nama']; ?></a> </li>
             
           </ul>
