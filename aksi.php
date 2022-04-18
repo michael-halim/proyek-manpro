@@ -12,6 +12,7 @@ include "connect.php";
   <link rel="stylesheet" type="text/css" href="style.css">	
 </head>
 <body>
+<div style="overflow-x:auto;">
 <table id="viewuploads">
                 <thead>
                     <tr>
@@ -19,25 +20,34 @@ include "connect.php";
                         <th>File Name</th>
                         <th>View</th>
                         <th>Download</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-				$stmt = $pdo->prepare('select * from images');
+				$stmt = $pdo->prepare('select * from content');
 				$stmt->execute();
 				$imagelist = $stmt->fetchAll();
                 $i = 1;
-                foreach($imagelist as $image) {
+                foreach($imagelist as $image) 
+                {
+                    $id=$image['id'];
+                        if($image['active'] == 1)
+                        {
 					?>
                 <tr>
                     <td><?php echo $i++; ?></td>
-                    <td><?php echo $image['name']; ?></td>
-                    <td><a href="final<?php echo $image['name']; ?>" target="_blank">View</a></td>
-                    <td><a href="final<?php echo $image['name']; ?>" download>Download</td>
-                </tr>
-                <?php } ?>
+                    <td><?php echo $image['hash']; ?></td>
+                    <td><a href="<?php echo $image['file']; ?>" target="_blank">View</a></td>
+                    <td><a href="<?php echo $image['file']; ?>" download>Download</td>
+                    <td><a href="delete_process.php<?php echo '?id='.$id; ?>" class="btn btn-danger">Delete</a></td>
+                    <td><a href="edit_process.php<?php echo '?id='.$id; ?>" class="btn btn-danger">Edit</a></td>
+                <?php 
+                }
+            } ?>
                 </tbody>
             </table>
+        </div>
 </body>
-
 </html>
