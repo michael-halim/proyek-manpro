@@ -62,7 +62,30 @@
                         $('#detail-group-tables').DataTable().destroy();
                         $('#detail-group-tables').html(result.output);
                         $('#detail-group-tables').DataTable({
-                            responsive: true
+                            responsive: true,
+                            bAutoWidth: false,
+                            aoColumns: [{
+                                    sWidth: '4%'
+                                },
+                                {
+                                    sWidth: '10%'
+                                },
+                                {
+                                    sWidth: '15%'
+                                },
+                                {
+                                    sWidth: '18%'
+                                },
+                                {
+                                    sWidth: '30%'
+                                },
+                                {
+                                    sWidth: '15%'
+                                },
+                                {
+                                    sWidth: '5%'
+                                },
+                            ]
                         });
 
                         // Tampilin Modal untuk Detail Group
@@ -80,8 +103,7 @@
                 var id = $(this).data('sp');
                 var group_name = $(this).data('group');
 
-                // Reset State id Event yang dipilih dari radio
-                checkedIdEvent = null;
+
                 $.ajax({
                     url: 'admin_see_list_event.php',
                     method: 'POST',
@@ -96,10 +118,35 @@
                         // Restart dan Isi DataTable
                         $('#list-event-tables').DataTable().destroy();
                         $('#list-event-tables').html(result.output);
-                        $('#list-event-tables').DataTable();
+                        $('#list-event-tables').DataTable({
+                            responsive: true,
+                            bAutoWidth: false,
+                            aoColumns: [{
+                                    sWidth: '3%'
+                                },
+                                {
+                                    sWidth: '3%'
+                                },
+                                {
+                                    sWidth: '25%'
+                                },
+                                {
+                                    sWidth: '12%'
+                                },
+                                {
+                                    sWidth: '3%'
+                                },
+                                {
+                                    sWidth: '15%'
+                                },
+                            ]
+                        });
 
                         //Tampilin Modalnya
                         $('#dtablesModalListEvent').modal('show');
+
+                        // Reset State id Event yang dipilih dari radio
+                        checkedIdEvent = null;
                     },
                     error: function(result) {
 
@@ -129,7 +176,26 @@
                         // Restart dan Isi DataTable
                         $('#detail-event-tables').DataTable().destroy();
                         $('#detail-event-tables').html(result.output);
-                        $('#detail-event-tables').DataTable();
+                        $('#detail-event-tables').DataTable({
+                            responsive: true,
+                            bAutoWidth: false,
+                            aoColumns: [{
+                                    sWidth: '3%'
+                                },
+                                {
+                                    sWidth: '3%'
+                                },
+                                {
+                                    sWidth: '10%'
+                                },
+                                {
+                                    sWidth: '6%'
+                                },
+                                {
+                                    sWidth: '30%'
+                                },
+                            ]
+                        });
 
                         // Tampilin Modalnya
                         $('#dtablesModalDetailEvent').modal('show');
@@ -351,6 +417,7 @@
                 if (checkedIdGroup.length !== 0) {
                     for (const id of checkedIdGroup) {
                         $('tr[data-id=' + id + ']').find('input').prop('disabled', false);
+                        $('tr[data-id=' + id + ']').find('textarea').prop('disabled', false);
                     }
 
                     // ubah cursor not-allowed di "Save Renungan" jadi cursor pointer (bentuk tangan)
@@ -376,7 +443,7 @@
                     if (id_alkitab.indexOf(tmp_id_alkitab) <= -1) {
                         id_alkitab.push(tmp_id_alkitab);
                         updatedAyat.push($('tr[data-id=' + id + ']').find('td:eq(3)').find('input').val());
-                        updatedRenungan.push($('tr[data-id=' + id + ']').find('td:eq(4)').find('input').val());
+                        updatedRenungan.push($('tr[data-id=' + id + ']').find('td:eq(4)').find('textarea').val());
                     }
 
                 }
@@ -1058,4 +1125,5 @@
                 </div>
             </div>
 </body>
+
 </html>

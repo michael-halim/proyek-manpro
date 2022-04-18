@@ -104,29 +104,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <th>Ayat</th>
                                         <th>Renungan</th>
                                         <th>Tanggal Dikasih</th>
-                                        <th>Status Aktif</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
 
     while ($row = $stmt->fetch()) {
-
-        $isActiveStatus = '<i class="fa fa-check" style="color:green;"></i>';
+        
+        $isActiveStatus = '<div class="text-center"><i class="fa fa-check" style="color:green;"></i></div>';
         if (!$row['isActive']) {
-            $isActiveStatus = '<i class="fa fa-remove" style="color:red;"></i>';
+            $isActiveStatus = '<div class="text-center"><i class="fa fa-remove" style="color:red;"></i></div>';
         }
 
         $renungan = $row['renungan'];
-        if (strlen($renungan) > 50) {
-            $renungan = substr($renungan, 0, 50) . '....';
-        }
+        // if (strlen($renungan) > 50) {
+        //     $renungan = substr($renungan, 0, 50) . '....';
+        // }
 
-        $output .= '<tr data-id="'. uniqid() .'" data-alkitab="'. $row['id_alkitab'] .'">
+        $output .= '<tr data-id="'. uniqid() .'" data-alkitab="'. $row['id_alkitab'] .'">s
                         <td><input class="form-check-input checkbox-renungan" type="checkbox"></td>
                         <td>' . $row['nama'] . '</td>
                         <td>' . $row['email'] . '</td>
                         <td><input style="width:80%;" class="form-control" type="text" value="'. ucwords($row['ayat']) . '" disabled></td>
-                        <td><input class="form-control" type="text" value="' . $renungan . '" disabled></td>
+                        <td><textarea style="overflow-y:scroll; overflow-x:hidden;"  class="form-control" type="text" value="' . $renungan . '" disabled>'. $renungan .'</textarea></td>
                         <td data-order="'. $row['created'].'">' . date("d F Y G:i", strtotime($row['created'])) . '</td>
                         <td>' . $isActiveStatus . '</td>
                     </tr>';
