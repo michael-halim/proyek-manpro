@@ -22,11 +22,9 @@
                 
                 if($_SESSION['email'] === 'admin@gmail.com'){
                     echo json_encode(['location' => 'admin_home.php']);
-                    echo json_encode(['berhasil']);
                 }
                 else{
                     echo json_encode(['location'=>'user_home.php']);
-                    echo json_encode(['notif'=>'Halo user !']);
                 }
 			}
 			else{
