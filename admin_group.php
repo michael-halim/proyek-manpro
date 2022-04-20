@@ -7,13 +7,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/admin_sidebar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/admin_home.css">
 
-    <script src="assets/js/admin_home.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <script src="assets/js/admin_sidebar.js"></script> -->
 
     <script>
         $(document).ready(function() {
-
+            
             // alert();
             $('#group').addClass('active');
             $('#detail-group-tables').DataTable();
