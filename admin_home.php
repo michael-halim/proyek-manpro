@@ -18,9 +18,6 @@ if (isset($_GET['stat'])) {
   <link rel="stylesheet" type="text/css" href="assets/css/admin_home.css">
   <link rel="stylesheet" type="text/css" href="assets/css/admin_home_style.css">
 
-  <script src="assets/js/admin_home.js"></script>
-  <script src="assets/js/admin_sidebar.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     $(document).ready(function() {});
   </script>
@@ -75,7 +72,6 @@ if (isset($_GET['stat'])) {
           </div>
         </div>
       </section>
-
 
       <p>
       <p>

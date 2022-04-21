@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Proyek Tekweb</title>
     <?php include('assets/header.php'); ?>
     <link rel="stylesheet" type="text/css" href="assets/css/admin_sidebar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/admin_home.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script src="assets/js/admin_sidebar.js"></script> -->
 
     <script>
         $(document).ready(function() {
