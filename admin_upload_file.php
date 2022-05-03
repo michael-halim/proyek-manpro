@@ -2,7 +2,8 @@
 include 'connect.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Untuk Bersihin Input
-    function test_input($data){
+    function test_input($data)
+    {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 VALUES(?, ?, 1, NOW(), ?)";
 
     $statement = $pdo->prepare($query);
-    
+
     $createdBy = $_SESSION['email'];
 
     // Loop all files
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // File name
         $filename = test_input($_FILES['files']['name'][$i]);
-        
+
         // file extension and lower extension name
         $file_extension = strtolower(pathinfo(
             $filename,
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Upload file
             if (copy($_FILES['files']['tmp_name'][$i], $target_file)) {
                 // Execute query
-                $statement->execute(array($filename, $target_file, $aktif, $createdBy));
+                $statement->execute(array($filename, $target_file, $createdBy));
             }
         }
     }

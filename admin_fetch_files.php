@@ -27,23 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach ($imagelist as $image) {
 
-    $isActiveStatus = '<div class="text-center"><i class="fa fa-check" style="color:green;"></i></div>';
-    if (!$image['isActive']) {
-        $isActiveStatus = '<div class="text-center"><i class="fa fa-remove" style="color:red;"></i></div>';
-    }
-    
-    $output .= '<tr>
+        $isActiveStatus = '<div class="text-center"><i class="fa fa-check" style="color:green;"></i></div>';
+        if (!$image['isActive']) {
+            $isActiveStatus = '<div class="text-center"><i class="fa fa-remove" style="color:red;"></i></div>';
+        }
+
+        $output .= '<tr>
                 <td>' . $image['id'] . '</td>
                 <td>' . $image['original_name'] . '</td>
                 <td>' . $image['path'] . '</td>
                 <td><a href="' . $image['path'] . '" target="_blank">View</a></td>
-                <td><a href="'.  $image['path'] . '" download>Download</td>
-                <td><a href=edit_process.php?id='. $image['id'] .'>Edit</a></td>"
-                <td><a href=delete_process.php?id='. $image['id'] .'>Delete</a></td>
-                <td>'. $isActiveStatus .'</td>
+                <td><a href="' .  $image['path'] . '" download>Download</td>
+                <td><a href=admin_edit_files.php?id=' . $image['id'] . '>Edit</a></td>"
+                <td><a href=admin_delete_files.php?id=' . $image['id'] . '>Delete</a></td>
+                <td>' . $isActiveStatus . '</td>
             </tr>';
-        
-    } 
+    }
     $output .= '</tbody>';
     $notif = '';
 

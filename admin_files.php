@@ -22,19 +22,20 @@ include "connect.php";
 
     <script>
         $(document).ready(function() {
+
             $.ajax({
-                url : 'admin_fetch_files.php', 
-                method : 'POST', 
-                data : {
-                    
-                }, 
-                success:function(result){
+                url: 'admin_fetch_files.php',
+                method: 'POST',
+                data: {
+
+                },
+                success: function(result) {
                     $('#upload-table').DataTable().destroy();
                     $('#upload-table').html(result.output);
                     $('#upload-table').DataTable();
                 },
-                error:function(result){
-                    
+                error: function(result) {
+
                 }
             });
         });
@@ -48,34 +49,35 @@ include "connect.php";
         <div class="col-md-8">
             <div class="container">
                 <h1>Content For Uploaded Files</h1>
-                    <table id="upload-table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table id="upload-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </body>
+
 </html>
