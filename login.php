@@ -1,14 +1,14 @@
 <?php
 include 'connect.php';
-if(isset($_SESSION['email']))
-{
-	if ($_SESSION['email'] == "admin@gmail.com") {
-		header('location: admin_home.php');
-	}
-	else {
-		header('location: home.php');
-	}
-}
+// if(isset($_SESSION['email']))
+// {
+// 	if ($_SESSION['email'] == "admin@gmail.com") {
+// 		header('location: admin_home.php');
+// 	}
+// 	else {
+// 		header('location: user_home.php');
+// 	}
+// }
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +31,17 @@ if(isset($_SESSION['email']))
             <p>Kelompok 11 Manpro v1.0</p>
 
             <div class="d-flex justify-content-center mb-1">
-                <button type="button" class="btn btn-primary btn-block w-75" href="http://petra.id/manpro11">Get Started</button>
+                <button type="button" class="btn btn-primary btn-block w-50" href="http://petra.id/manpro11">Get Started</button>
             </div>
 
             <div class="d-flex justify-content-center mb-1">
 
-                <button type="button" class="btn btn-secondary btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
+                <button type="button" class="btn btn-secondary btn-block w-50 text-white" data-bs-toggle="modal" data-bs-target="#myModal">Sign In</button>
 
             </div>
 
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn bg-dark btn-block w-75 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
+                <button type="button" class="btn bg-dark btn-block w-50 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">Sign Up</button>
             </div>
 
         </div>

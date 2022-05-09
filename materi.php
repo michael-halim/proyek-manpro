@@ -191,11 +191,7 @@ if (isset($_SESSION['email'])) {
                     </div>
                 </div>
                 <!-- more container -->
-
-
             </div>
-
-
 
             <!-- <div class="card-footer">
                 <div class="d-flex justify-content-around text-dark">
@@ -207,33 +203,10 @@ if (isset($_SESSION['email'])) {
                 
             </div> -->
 
-
-
             <!-- batas copas -->
-
-
 			<?php require_once 'assets/mobilebottomnav.php'; ?>
-
-
-
-
-
-
-
-
             <!-- baats copas -->
         </div>
     </div>
-
-
-
-
-
-
-
-
 </body>
-
-
-
 </html>
