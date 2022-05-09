@@ -1,15 +1,15 @@
 <?php
 include 'connect.php';
 if (isset($_SESSION['email'])) {
-	// if ($_SESSION['email'] == "admintokopetra@gmail.com") {
-	// 	header('location: seller_home.php');
-	// } else {
-	// 	header('location: home.php');
-	// }
+    // if ($_SESSION['email'] == "admintokopetra@gmail.com") {
+    // 	header('location: seller_home.php');
+    // } else {
+    // 	header('location: home.php');
+    // }
 
-	// echo $_SESSION['email'];
-	// echo date("Y-m-d H:i:s");
-	
+    // echo $_SESSION['email'];
+    // echo date("Y-m-d H:i:s");
+
 }
 ?>
 
@@ -23,77 +23,70 @@ if (isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Proyek Manpro</title> -->
 
-	<?php //include('assets/header.php'); ?>
-	<!-- <script src="js/all_home_func.js"></script> -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/home_style.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="assets/css/uhome.css"> -->
+<?php //include('assets/header.php'); 
+?>
+<!-- <script src="js/all_home_func.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/home_style.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/uhome.css"> -->
 <!-- </head> -->
 
 <body>
-	<?php
-	// admin sha512
-	// c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec
-	// $getDataSQL = "SELECT * FROM user";
-	//     $stmtData = $pdo->prepare($getDataSQL);
-	//     $stmtData->execute();
+    <?php
+    // admin sha512
+    // c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec
+    // $getDataSQL = "SELECT * FROM user";
+    //     $stmtData = $pdo->prepare($getDataSQL);
+    //     $stmtData->execute();
 
-	//     while($rowData = $stmtData->fetch()){
-	// 		echo hash('sha512', $rowData['email']);
+    //     while($rowData = $stmtData->fetch()){
+    // 		echo hash('sha512', $rowData['email']);
 
-	//     }
-	// echo '<br>';
-	// $salt = hash("sha512", uniqid());
-	// echo $salt;
-	// var_dump($salt);
-
-
-	// echo '<br><br><br>';
-	// $hashed = hash('sha512',$salt . 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
-	// echo $hashed;
+    //     }
+    // echo '<br>';
+    // $salt = hash("sha512", uniqid());
+    // echo $salt;
+    // var_dump($salt);
 
 
-	// Sistem Login
-	$username = 'admin@gmail.com';
-	$password = 'admin';
-
-	$sql = "SELECT * FROM user WHERE email = '$username'";
-	// var_dump($sql);
-
-	$stmtData = $pdo->prepare($sql);
-	$stmtData->execute();
-
-	while ($rowData = $stmtData->fetch()) {
-		$hashed_pw = hash('sha512', $password);
-
-		if (hash('sha512', $rowData['salt'] . $hashed_pw) === $rowData['password']) {
-			//echo 'Logged in';
-		} else {
-			//echo 'Password Salah';
-		}
-	}
-	?>
+    // echo '<br><br><br>';
+    // $hashed = hash('sha512',$salt . 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+    // echo $hashed;
 
 
- <!-- Sidebar -->
+    // Sistem Login
+    $username = 'admin@gmail.com';
+    $password = 'admin';
+
+    $sql = "SELECT * FROM user WHERE email = '$username'";
+    // var_dump($sql);
+
+    $stmtData = $pdo->prepare($sql);
+    $stmtData->execute();
+
+    while ($rowData = $stmtData->fetch()) {
+        $hashed_pw = hash('sha512', $password);
+
+        if (hash('sha512', $rowData['salt'] . $hashed_pw) === $rowData['password']) {
+            //echo 'Logged in';
+        } else {
+            //echo 'Password Salah';
+        }
+    }
+    ?>
+
 
     <!-- Sidebar -->
 
-
-
-
+    <!-- Sidebar -->
     <!-- navbar -->
-<?php require_once 'assets/mobileadmintopnav.php'; ?>
-
-
-
-
+    <?php require_once 'assets/mobileadmintopnav.php'; ?>
     <!-- end navbar -->
     <div class="profile shwnav">
         <div class="card rounded-0">
-		<h2>HOME</h2>
-		<div class="container mb-5">
-		<img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
-		</div>
+            <h2>HOME</h2>
+            <div class="container mb-5">
+                <img src="assets/img/cover.png" class="card-img-top rounded-0 shadow-lg mb-5" alt="bootcatch light admin theme">
+            </div>
             <!-- <div class="card-header">  -->
 
 
@@ -162,26 +155,21 @@ if (isset($_SESSION['email'])) {
                 </div>
 
                 <!-- more contaienr -->
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
-                                libero
-                                mollitia esse,
-                                illum odio ex perspiciatis omnis voluptate ducimus, corporis cupiditate nobis corrupti
-                                voluptatum
-                                fugit at
-                                dolor eaque.
-                            </p>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum exercitationem alias
+                            libero
+                            mollitia esse,
+                            illum odio ex perspiciatis omnis voluptate ducimus, corporis cupiditate nobis corrupti
+                            voluptatum
+                            fugit at
+                            dolor eaque.
+                        </p>
                     </div>
+                </div>
 
                 <!-- more container -->
-
-
             </div>
-
-
-
             <!-- <div class="card-footer">
                 <div class="d-flex justify-content-around text-dark">
                     <i class="fa fa-home" aria-hidden="true"></i>
@@ -191,34 +179,13 @@ if (isset($_SESSION['email'])) {
                 </div>
                 
             </div> -->
-
-
-
             <!-- batas copas -->
 
-
-			<?php require_once 'assets/mobilebottomnavadmin.php'; ?>
-
-
-
-
-
-
-
+            <?php require_once 'assets/mobilebottomnavadmin.php'; ?>
 
             <!-- baats copas -->
         </div>
     </div>
-
-
-
-
-
-
-
-
 </body>
-
-
 
 </html>

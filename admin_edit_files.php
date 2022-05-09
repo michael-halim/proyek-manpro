@@ -6,9 +6,17 @@ if (isset($_POST['submit'])) {
   $countfiles = count($_FILES['files']['name']);
 
   // Prepared statement
-  $query = "update content set name = ?, file = ?, hash = ?, active = ?, updatedAt = now() where id = $id";
+  $sql = "UPDATE content 
+            SET original_name = ?, 
+                path = ?, 
+                isActive = ?, 
+                updatedAt = NOW(),
+                updatedBy = ?
+            WHERE id = ?";
 
-  $statement = $pdo->prepare($query);
+  $stmt = $pdo->prepare($sql);
+
+  $updatedBy = $_SESSION['email'];
 
   // Loop all files
   for ($i = 0; $i < $countfiles; $i++) {
@@ -16,34 +24,26 @@ if (isset($_POST['submit'])) {
     // File name
     $filename = $_FILES['files']['name'][$i];
 
-    // Location
-    $target_file = 'final' . $filename;
-
-    $hasil_hash = hash("sha256", $target_file);
-    $aktif = 1;
     // file extension
-    $file_extension = pathinfo(
-      $target_file,
+    $file_extension = strtolower(pathinfo(
+      $filename,
       PATHINFO_EXTENSION
-    );
-
-    $file_extension = strtolower($file_extension);
+    ));
 
     // Valid image extension
     $valid_extension = array("png", "jpeg", "jpg", "mp4");
 
     if (in_array($file_extension, $valid_extension)) {
 
+      $target_file = 'uploaded_files/' . hash("sha256", $filename) . '.' . $file_extension;
       // Upload file
       if (copy($_FILES['files']['tmp_name'][$i], $target_file)) {
         // Execute query
-        $statement->execute(array($filename, $target_file, $hasil_hash, $aktif));
+        $stmt->execute(array($filename, $target_file, 1, $updatedBy, $id));
       }
     }
   }
-
-  echo "File upload successfully";
-  header('location:aksi.php');
+  header('Location: admin_files.php');
 }
 ?>
 <!DOCTYPE html>
@@ -101,8 +101,6 @@ if (isset($_POST['submit'])) {
 <body>
 
   <h2>Edit Content</h2>
-
-
   <button id="myBtn">Edit here</button>
 
 

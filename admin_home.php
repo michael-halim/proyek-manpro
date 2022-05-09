@@ -86,7 +86,7 @@ if (isset($_GET['stat'])) {
           <input type='submit' class="button-1" value='Submit' name='submit' />
       </form>
 
-      <button class="button-1"><a href="aksi.php">View Uploads</a></button>
+      <button class="button-1"><a href="admin_files.php">View Uploads</a></button>
     </div>
     </section>
   </div>
