@@ -57,7 +57,7 @@ if(isset($_POST['submit'])) {
   <link rel="stylesheet" type="text/css" href="style.css">
 
 	<script src="assets/js/admin_home.js"></script>
-	<script src="assets/js/admin_sidebar.js"></script>
+	<!-- <script src="assets/js/admin_sidebar.js"></script> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 
