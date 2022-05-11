@@ -1,4 +1,11 @@
+<?php 
+include "connect.php";
+var_dump($_SESSION['statusJabatan']);
+  
 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

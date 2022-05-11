@@ -1,5 +1,4 @@
 <?php
-include 'connect.php';
 if (!isset($_SESSION['email'])) {
 	// if ($_SESSION['email'] == "admin@gmail.com") {
 	// 	header('location: mobile_admin_home.php');

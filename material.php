@@ -1,3 +1,6 @@
+<?php 
+include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -67,7 +70,14 @@
     <!-- query  -->
     <?php 
     $emailnya = $_SESSION["email"];
-    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at FROM alkitab ,detail_group JOIN user where detail_group.id_user = user.id and detail_group.id_alkitab = alkitab.id and user.email=?";
+    $sql = "SELECT ayat, 
+                  renungan,
+                  sudah_baca,sudah_baca_at 
+            FROM alkitab ,detail_group 
+            JOIN user 
+            where detail_group.id_user = user.id and 
+              detail_group.id_alkitab = alkitab.id and 
+              user.email=?";
     //echo $sql;
 
     // $result = $link -> query($sql);
