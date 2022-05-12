@@ -1,24 +1,58 @@
+<?php
+include 'connect.php';
+if (!isset($_SESSION['email'])) {
+	// if ($_SESSION['email'] == "admin@gmail.com") {
+	// 	header('location: mobile_admin_home.php');
+	// } else {
+		header("Location: login.php");
+	// }
+
+	// echo $_SESSION['email'];
+	// echo date("Y-m-d H:i:s");
+	
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Materi</title>
+    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
+    <link rel="stylesheet" href="assets/user/css/styles-merged.css">
+    <link rel="stylesheet" href="assets/user/css/style.min.css">
+    <link rel="stylesheet" href="assets/user/css/custom.css">
 
-table, td, th {
-  border: 1px solid black;
-  padding: 5px;
-}
 
-th {text-align: left;}
-</style>
-</head>
+
+
+<script src="assets/user/js/scripts.min.js"></script>
+  <script src="assets/user/js/main.min.js"></script>
+  <script src="assets/user/js/custom.js"></script>
+    <style>
+      .probootstrap-header{
+       background-color:cadetblue; 
+       background-image: url("assets/user/img/classroom.png");
+       background-position: center center;
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: cover;
+       background-color: #464646;
+       width:100%;
+       height:auto;
+      }
+      .responsive{
+        width:100%;
+        height:auto;
+      }
+    </style>
+  </head>
 <body>
-<?php require_once('user_navbar.php') ?>
 <?php
-$q = intval($_GET['q']);
+$q = @intval($_GET['q']);
     $emailnya = $_SESSION["email"];
     $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
               FROM alkitab ,detail_group 

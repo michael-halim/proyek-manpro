@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="assets/user/css/style.min.css">
     <link rel="stylesheet" href="assets/user/css/custom.css">
 
-
-  
     <style>
       .probootstrap-header{
        background-color:cadetblue; 
@@ -34,23 +32,6 @@
   </head>
   <body>
     
-  <script>
-function showUser(str) {
-  if (str == "") {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
-  } else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET","fetch_materi.php?q="+str,true);
-    xmlhttp.send();
-  }
-}
-</script>
 
 
   <!-- START: header -->
@@ -77,16 +58,10 @@ function showUser(str) {
     
   </header>
   <!-- END: header -->
-  
-  
-
-  
 
   <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
-    <div class="container">
-
-    <div id="txtHint"><b>Person info will be listed here...</b></div>
+<div class="container">
 
     <!-- query  -->
     <?php 
@@ -97,15 +72,10 @@ function showUser(str) {
                   where detail_group.id_user = user.id 
                   and detail_group.id_alkitab = alkitab.id 
                   and user.email=?";
-    //echo $sql;
-
-    // $result = $link -> query($sql);
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$emailnya]);
-
-
-      
+    
      while ($row = $stmt->fetch())
      {
       $iduser = $row["id_user"];
@@ -170,7 +140,8 @@ function showUser(str) {
           } 
           else{
             echo "<script type='text/javascript'>".
-            "alert('Berhasil update sudah dibaca.');".
+            "alert('Berhasil update sudah dibaca.');
+            window.location.assign(window.location.href);".
            "</script>";
            exit;
           }
@@ -185,7 +156,6 @@ function showUser(str) {
   </div>
   </section>
   <!-- END: section -->
-  
 
   
   <!-- START: footer -->
