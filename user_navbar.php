@@ -29,7 +29,7 @@ if (!isset($_SESSION['email'])) {
             <li><a href="material.php">Materi</a></li>
             <li><a href="group.php">Grup</a></li>
             <li><a href="logout.php">Logout</a></li>
-            <li class="probootstrap-cta"><a href="signup.html">Hi, <?= $_SESSION['nama']; ?></a> </li>
+            <li class="probootstrap-cta"><a href="user_profile.php">Hi, <?= $_SESSION['nama']; ?></a> </li>
             
           </ul>
           <div class="extra-text visible-xs">
