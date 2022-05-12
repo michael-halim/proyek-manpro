@@ -14,10 +14,9 @@
     <link rel="stylesheet" href="assets/user/css/responsivevideo.css">
 
     
-    
   </head>
   <body>
-    
+
   <!-- START: header -->
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
