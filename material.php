@@ -34,24 +34,45 @@
   </head>
   <body>
     
+  <script>
+function showUser(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET","fetch_materi.php?q="+str,true);
+    xmlhttp.send();
+  }
+}
+</script>
 
 
   <!-- START: header -->
   <header role="banner" class="probootstrap-header img-responsive">
-    <div class="container-fluid">
+
       <!-- <div class="row"> -->
        <?php require_once('user_navbar.php') ?>
 
-        <section class="probootstrap-intro" style="height: 600px;">
+       <section class="probootstrap-intro" style="height: 600px;">
          
-            <!--<div class="row">
-              <img src="img/classroom.png" style="max-width:100%;max-height:100%">
-            </div>-->
-          
-        </section>
+       <center>
+         <div class="container ">
+           <br>
+         <h1>Materi</h1>
 
-      <!-- </div> -->
-    </div>
+         <h2>Bacaan Renungan Harian</h2>
+         </div>
+      </center>
+       
+     </section>
+
+
     
     
   </header>
@@ -63,11 +84,14 @@
 
   <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
-    <center><h1>Materi</h1></center>
+    <div class="container">
+
+    <div id="txtHint"><b>Person info will be listed here...</b></div>
+
     <!-- query  -->
     <?php 
     $emailnya = $_SESSION["email"];
-    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at 
+    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
               FROM alkitab ,detail_group 
                 JOIN user 
                   where detail_group.id_user = user.id 
@@ -81,54 +105,84 @@
     $stmt->execute([$emailnya]);
 
 
- 
+      
      while ($row = $stmt->fetch())
      {
+      $iduser = $row["id_user"];
+      $idgroup = $row["id_group"];
+      $idalkitab = $row["id_alkitab"];
       $ayat = $row["ayat"];
       $renungan = $row["renungan"];
       $sb = $row["sudah_baca"];
       $sbt = $row["sudah_baca_at"];
 
-    echo '    <div class="col-md-12">';
-     echo"      <div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
-     <a href='user_materi.php'>
-     <h1 style='padding:10px'>$renungan</h1>
-     <h2 style='padding-left:10px'> $ayat</h2></a></div>
-     </div>";
+      if($sb == true)
+      {
+        $sb = "Sudah dibaca";
+      }
+      else{
+        $sb = "Belum dibaca";
+      }
+
+     echo'<div class="card bg-info">
+     <div class="card-header bg-primary text-white">
+     <h1 class="text-white">'.$renungan.'</h1>
+     </div>
+     <div class="card-body">
+     <i>'.$iduser.'</i>
+     <i>'.$idgroup.'</i>
+     <i>'.$idalkitab.'</i>
+     <i>'.$sb.'</i>
+       <p class="card-text">'.$ayat.'</p>
+       <form method="post" action="">
+       <input name="user" type="hidden" value='.$iduser.'></input>
+       <input name="group" type="hidden" value='.$idgroup.'></input>
+       <input name="alkitab" type="hidden" value='.$idalkitab.'></input>
+       <a href="#" class="btn btn-primary">Baca Ayat</a>
+       <button type="submit" class ="btn btn-success">Sudah dibaca</button>
+       </form>
+     </div>
+   </div> <br>';
   
-      
-        
+     }
+
+     if ($_SERVER['REQUEST_METHOD'] === 'POST')
+     {
+       $puser = $_POST["user"];
+       $pgroup = $_POST["group"];
+       $palkitab = $_POST["alkitab"];
+
+       $sqlupdate = "UPDATE detail_group
+       SET sudah_baca = 1 , sudah_baca_at = now()
+       WHERE id_user = ?
+       and id_group = ?
+       and id_alkitab = ?";
+
+
+    
+            $stmt = $pdo->prepare($sqlupdate);
+            // $stmt->bind_param('sss', );
+            $stmt->execute([$puser, $pgroup, $palkitab]);
+
+          if($stmt == false)
+          { 
+              $error = "Update failed. Please try again.";
+          } 
+          else{
+            echo "<script type='text/javascript'>".
+            "alert('Berhasil update sudah dibaca.');".
+           "</script>";
+           exit;
+          }
+
 
      }
-     echo "</div>";
-    //  echo"<br><br>";
 
 
     ?>
-    <div class="col-md-12">
-      <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-        <a href="user_materi.php">
-        <h1 style="padding:10px">Renungan ayat matius</h1>
-        <h2 style="padding-left:10px"> Matius 3:3-9</h2></a></div>
-      <div class="anggota2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-        <a href="user_materi.php">
-          <h1 style="padding:10px">Laporan Baca</h1>
-          <h2 style="padding-left:10px">Baca Renungan harian senin 1 maret - jumat 7 maret</h2></div>
-      <div class="anggota3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-            <h1 style="padding:10px">Pengabdian Masyarakat</h1>
-            <h2 style="margin-left:10px">Sumbangan ke orang terdekat</h2></div>
-      <div class="anggota4" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-        <a href="user_materi.php">
-        <h1 style="padding:10px">Tugas membaca alkitab</h1>
-        <h2 style="padding-left:10px"> Markus 1 : 1-2</h2></a></div>
-      <div class="anggota5" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="padding:10px">Tugas membuat Renungan</h1>
-          <h2 style="padding-left:10px">Matius 1:1-2</h2></div>
-      <div class="anggota6" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-            <h1 style="padding:10px">Tugas membaca alkitab</h1>
-            <h2 style="margin-left:10px">Matius 1 : 1-2</h2></div>
 
-    </div>
+
+  </div>
   </section>
   <!-- END: section -->
   
