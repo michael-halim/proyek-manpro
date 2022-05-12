@@ -67,7 +67,12 @@
     <!-- query  -->
     <?php 
     $emailnya = $_SESSION["email"];
-    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at FROM alkitab ,detail_group JOIN user where detail_group.id_user = user.id and detail_group.id_alkitab = alkitab.id and user.email=?";
+    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at 
+              FROM alkitab ,detail_group 
+                JOIN user 
+                  where detail_group.id_user = user.id 
+                  and detail_group.id_alkitab = alkitab.id 
+                  and user.email=?";
     //echo $sql;
 
     // $result = $link -> query($sql);
@@ -83,16 +88,7 @@
       $renungan = $row["renungan"];
       $sb = $row["sudah_baca"];
       $sbt = $row["sudah_baca_at"];
-  
-    // echo "<div class=\"card\">
-    // <div class=\"card-body\">";
-    //  echo "<br><div class=\" text-white\"><tr><td><br><img src=" .$txt1.$row["gambar"].'"width="300" height="400" class =" img-fluid img-thumbnail" '."<br><br><br>
-    //  <h5 class=\"card-title\">".$row["nama_hunian"]."</h5><br>
-    //  <p class=\"card-text\">".$row["jenis_hunian"]."<br><br>
-    //  Status : ".$row["status_hunian"]."<br><br>Deskripsi<br>
-    //  ".$row["deskripsi_hunian"]."<br></p>";
-    //  echo "<br><div class=\"card-footer\">  &nbsp 
-    //  <a href='users_bayar.php?RoomId=$id' class='btn btn-info'>Konfirmasi</a> &nbsp <a href='users_komplain.php?id=$id' class='btn btn-danger'>Services</a>";
+
     echo '    <div class="col-md-12">';
      echo"      <div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
      <a href='user_materi.php'>
