@@ -122,34 +122,35 @@
        $pgroup = $_POST["group"];
        $palkitab = $_POST["alkitab"];
 
-       $sqlupdate = "UPDATE detail_group
-       SET sudah_baca = 1 , sudah_baca_at = now()
-       WHERE id_user = ?
-       and id_group = ?
-       and id_alkitab = ?";
+      if (isset($puser) && isset($pgroup) && isset ($palkitab))
+      {
 
+        $sqlupdate = "UPDATE detail_group
+        SET sudah_baca = 1 , sudah_baca_at = now()
+        WHERE id_user = ?
+        and id_group = ?
+        and id_alkitab = ?";
 
-    
-            $stmt = $pdo->prepare($sqlupdate);
-            // $stmt->bind_param('sss', );
-            $stmt->execute([$puser, $pgroup, $palkitab]);
+        $stmt = $pdo->prepare($sqlupdate);
+        // $stmt->bind_param('sss', );
+        $stmt->execute([$puser, $pgroup, $palkitab]);
 
-          if($stmt == false)
-          { 
+            if($stmt == false)
+            { 
               $error = "Update failed. Please try again.";
-          } 
-          else{
+            } 
+            else{
             echo "<script type='text/javascript'>".
             "alert('Berhasil update sudah dibaca.');
             window.location.assign(window.location.href);".
-           "</script>";
-           exit;
-          }
+            "</script>";
+            exit;
+            }
 
+      }
 
      }
-
-
+     
     ?>
 
 
@@ -197,8 +198,77 @@
         </div>
       </div>
     </div>
+
+    <form class="form-signin">
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-envelope prefix"> </i> <label for="inputkitab"> Kitab </label>
+                                <input type="text" id="inputkitab" class="form-control" placeholder="Email address">
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> Pasal </label>
+                                <input type="text" id="inputpasal" class="form-control" placeholder="Password">
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn"> awal </label>
+                                <input type="text" id="inputawal" class="form-control" placeholder="Email address">
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> akhir </label>
+                                <input type="text" id="inputakhir" class="form-control" placeholder="Password">
+                            </div>
+
+                            
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> renungan </label>
+                                <input type="text" id="inputrenungan" class="form-control" placeholder="Password">
+                            </div>
+
+
+
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Get Preview</button>
+                            </div>
+
+                        </form>
   </footer>
   <!-- END: footer -->
+
+  <script>
+        // Handle klik yang punya id signin
+        $("[id='signin']").click(function() {
+            // Ambil data dari form
+            var varkitab = $("[id='inputkitab']").val();
+            var varpasal= $("[id='inputpasal']").val();
+            var varawal = $("[id='inputawal']").val();
+            var varakhir= $("[id='inputakhir']").val();
+            var varrenungan = $("[id='inputrenungan']").val();
+            
+            $.ajax({
+                url: "get_preview_renungan.php",
+                method: "POST",
+                data: {
+                    kitab: varkitab,
+                    pasal: varpasal,
+                    awal: varawal,
+                    akhir: varakhir,
+                    renungan: varrenungan
+                },
+                success: function(result) {
+                    if (result.notif) {
+                        alert(result.notif);
+                    }
+                },
+                error: function(result) {
+
+                }
+            });
+        });
+
+    </script>
 
 
 
