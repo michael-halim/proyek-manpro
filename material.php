@@ -74,8 +74,9 @@
       $sb = $row["sudah_baca"];
       $sbt = $row["sudah_baca_at"];
 
-      if($sb == true)
-      {
+      $btnset = "";
+
+      if($sb == true){
         $txtt = "Sudah dibaca pada ";
       }
       else{
@@ -90,17 +91,15 @@
      <i>'.$txtt.'</i>
      <br>';
 
-     if($sb)
-     {
-        echo '<i>'.$sbt.'</i>';
-     };
+    if($sb){echo '<i>'.$sbt  .'</i>'; $btnset = "disabled"; }
+
        echo '<p class="card-text">'.$ayat.'</p>
        <form method="post" action="">
        <input name="user" type="hidden" value='.$iduser.'></input>
        <input name="group" type="hidden" value='.$idgroup.'></input>
        <input name="alkitab" type="hidden" value='.$idalkitab.'></input>
        <a href="#" class="btn btn-primary">Baca Ayat</a>
-       <button type="submit" class ="btn btn-success">Sudah dibaca</button>
+       <button type="submit" class ="btn btn-success" '.$btnset.'>Sudah dibaca</button >
        </form>
        </div>
        </div> <br>';
@@ -213,42 +212,66 @@
                             </div>
 
                         </form>
+
+                        <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6" id="preview-firman">
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3" id="preview-ayat"></div>
+                                        <div class="row" id="preview-renungan"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
+                            <button type="button" data-group="" id="submit-renungan" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
   </footer>
   <!-- END: footer -->
   <script>
-        // Handle klik yang punya id signin
-        $("[id='signin']").click(function() {
-            // Ambil data dari form
-            var varkitab = $("[id='inputkitab']").val();
-            var varpasal= $("[id='inputpasal']").val();
-            var varawal = $("[id='inputawal']").val();
-            var varakhir= $("[id='inputakhir']").val();
-            var varrenungan = $("[id='inputrenungan']").val();
-            
-            $.ajax({
-                url: "get_preview_renungan.php",
-                method: "POST",
-                data: {
-                    kitab: varkitab,
-                    pasal: varpasal,
-                    awal: varawal,
-                    akhir: varakhir,
-                    renungan: varrenungan
-                },
-                success: function(result) {
-                    if (result.notif) {
-                        alert(result.notif);
-                    }
-                },
-                error: function(result) {
+$.ajax({
+                        url: 'get_preview_renungan.php',
+                        method: 'POST',
+                        data: {
+                            kitab: "Habakuk",
+                            pasal: 1,
+                            awal: 2,
+                            akhir: 10,
+                            renungan: "renungan",
+                        },
+                        success: function(result) {
+                            // Menampilkan Preview Firman, Ayat, dan Renungan
 
-                }
-            });
-        });
+                            $('#preview-firman').html(result.outputFirman);
+                            $('#preview-ayat').html(result.outputAyat);
+                            $('#preview-renungan').html(result.outputRenungan);
+
+                            // Hide Modal Add Renungan dan tampilkan Preview Renungan
+                            
+                            $('#preview-renungan-modal').modal('show');
+
+                        },
+                        error: function(result) {
+
+                        }
+                    });
 
     </script>
-  <script src="js/scripts.min.js"></script>
-  <script src="js/main.min.js"></script>
-  <script src="js/custom.js"></script>
   </body>
 </html>

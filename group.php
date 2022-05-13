@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
     <link rel="stylesheet" href="assets/user/css/styles-merged.css">
     <link rel="stylesheet" href="assets/user/css/style.min.css">
@@ -19,8 +18,6 @@
        width:100%;
     }
     </style>
-
-
   <!-- START: header -->
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
@@ -72,49 +69,32 @@
 
         <?php 
     $emailnya = $_SESSION["email"];
-    $sql = "SELECT DISTINCT nama,email,hp from user join detail_group where user.id=detail_group.id_user and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
-    //echo $sql;
+    $sql = "SELECT DISTINCT nama,email,hp 
+                from user 
+                join detail_group 
+                where user.id=detail_group.id_user 
+                and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
 
-    // $result = $link -> query($sql);
-    
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$emailnya]);
 
-
- 
      while ($row = $stmt->fetch())
      {
       $nama = $row["nama"];
       $email = $row["email"];
       $hp = $row["hp"];
-  
-    // echo "<div class=\"card\">
-    // <div class=\"card-body\">";
-    //  echo "<br><div class=\" text-white\"><tr><td><br><img src=" .$txt1.$row["gambar"].'"width="300" height="400" class =" img-fluid img-thumbnail" '."<br><br><br>
-    //  <h5 class=\"card-title\">".$row["nama_hunian"]."</h5><br>
-    //  <p class=\"card-text\">".$row["jenis_hunian"]."<br><br>
-    //  Status : ".$row["status_hunian"]."<br><br>Deskripsi<br>
-    //  ".$row["deskripsi_hunian"]."<br></p>";
-    //  echo "<br><div class=\"card-footer\">  &nbsp 
-    //  <a href='users_bayar.php?RoomId=$id' class='btn btn-info'>Konfirmasi</a> &nbsp <a href='users_komplain.php?id=$id' class='btn btn-danger'>Services</a>";
-    echo '    <div class="col-md-12">';
-     echo"      <div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
+
+     echo '<div class="col-md-12">';
+     echo"<div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
      <a href='user_materi.php'>
      <h1 style='padding:10px'>$nama</h1>
      <h2 style='padding-left:10px'> $email</h2></a></div>
      <h3 style='padding-left:10px'> $hp</h3></a></div>
      </div>";
   
-      
-        
-
      }
      echo "</div>";
-    //  echo"<br><br>";
-
-
     ?>
-
           <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
             <h1>ASDASD</h1>
             <h2>deskripsi</h2></div>
@@ -163,11 +143,6 @@
       </div>
     </div>
   </section>
-  <!-- END: section -->
-
-  
-  
-  <!-- START: footer -->
   <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
       <div class="row">
@@ -177,8 +152,7 @@
             <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
             <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
-        </div>
-        
+        </div> 
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <h3>Contact</h3>
@@ -186,8 +160,7 @@
               <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
               <li><i class="icon-mail"></i><span>namagereja@domain.com</span></li>
               <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-            </ul>
-            
+            </ul> 
           </div>
         </div>
       </div>
@@ -206,13 +179,5 @@
       </div>
     </div>
   </footer>
-  <!-- END: footer -->
-
-
-
-  <script src="js/scripts.min.js"></script>
-  <script src="js/main.min.js"></script>
-  <script src="js/custom.js"></script>
-
   </body>
 </html>
