@@ -31,31 +31,19 @@
     </style>
   </head>
   <body>
-    
-
-
   <!-- START: header -->
   <header role="banner" class="probootstrap-header img-responsive">
-
       <!-- <div class="row"> -->
        <?php require_once('user_navbar.php') ?>
-
        <section class="probootstrap-intro" style="height: 600px;">
-         
        <center>
          <div class="container ">
            <br>
          <h1>Materi</h1>
-
          <h2>Bacaan Renungan Harian</h2>
          </div>
       </center>
-       
      </section>
-
-
-    
-    
   </header>
   <!-- END: header -->
 
@@ -88,10 +76,10 @@
 
       if($sb == true)
       {
-        $sb = "Sudah dibaca";
+        $txtt = "Sudah dibaca pada ";
       }
       else{
-        $sb = "Belum dibaca";
+        $txtt = "Belum dibaca";
       }
 
      echo'<div class="card bg-info">
@@ -99,11 +87,14 @@
      <h1 class="text-white">'.$renungan.'</h1>
      </div>
      <div class="card-body">
-     <i>'.$iduser.'</i>
-     <i>'.$idgroup.'</i>
-     <i>'.$idalkitab.'</i>
-     <i>'.$sb.'</i>
-       <p class="card-text">'.$ayat.'</p>
+     <i>'.$txtt.'</i>
+     <br>';
+
+     if($sb)
+     {
+        echo '<i>'.$sbt.'</i>';
+     };
+       echo '<p class="card-text">'.$ayat.'</p>
        <form method="post" action="">
        <input name="user" type="hidden" value='.$iduser.'></input>
        <input name="group" type="hidden" value='.$idgroup.'></input>
@@ -111,9 +102,8 @@
        <a href="#" class="btn btn-primary">Baca Ayat</a>
        <button type="submit" class ="btn btn-success">Sudah dibaca</button>
        </form>
-     </div>
-   </div> <br>';
-  
+       </div>
+       </div> <br>';
      }
 
      if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -146,19 +136,14 @@
             "</script>";
             exit;
             }
-
       }
 
      }
      
     ?>
-
-
   </div>
   </section>
   <!-- END: section -->
-
-  
   <!-- START: footer -->
   <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
@@ -193,14 +178,11 @@
           <p>
             <small>&copy; 2021 <a href="https://uicookies.com/" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
           </p>
-          
-          
         </div>
       </div>
     </div>
 
     <form class="form-signin">
-
                             <div class="md-form mb-4">
                                 <i class="fas fa-envelope prefix"> </i> <label for="inputkitab"> Kitab </label>
                                 <input type="text" id="inputkitab" class="form-control" placeholder="Email address">
@@ -221,13 +203,10 @@
                                 <input type="text" id="inputakhir" class="form-control" placeholder="Password">
                             </div>
 
-                            
                             <div class="md-form mb-4">
                                 <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> renungan </label>
                                 <input type="text" id="inputrenungan" class="form-control" placeholder="Password">
                             </div>
-
-
 
                             <div class="modal-footer d-flex justify-content-center">
                                 <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Get Preview</button>
@@ -236,7 +215,6 @@
                         </form>
   </footer>
   <!-- END: footer -->
-
   <script>
         // Handle klik yang punya id signin
         $("[id='signin']").click(function() {
@@ -269,9 +247,6 @@
         });
 
     </script>
-
-
-
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
