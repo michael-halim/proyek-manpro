@@ -29,7 +29,7 @@
 <div class="container-fluid pb-video-container">
 
     <div class="col-md  mx-auto " >
-        <h3 class="text-center">Video Content</h3>
+        <h3 class="text-center">Content</h3>
         <div class="row pb-row justify-content-center">
           <?php 
 
