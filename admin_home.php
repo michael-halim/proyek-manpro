@@ -95,7 +95,6 @@ if (isset($_GET['stat'])) {
     <h1>Upload Videos</h1>
       <form method="POST" action="admin_upload_videos.php">
         <input type="text" name="link" value="" autofocus placeholder="Paste your video link here" onfocus="if(this.value && this.select){this.select()}">
-        <input type="text" name="judul" value="" autofocus placeholder="Paste your video title here" >
         <p>
         <p>
         <input type='submit' class="button-1" value='Submit' name='submit' />

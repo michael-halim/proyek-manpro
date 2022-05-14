@@ -12,11 +12,10 @@
     <link rel="stylesheet" href="assets/user/css/custom.css">
 
     <link rel="stylesheet" href="assets/user/css/responsivevideo.css">
-
     
   </head>
   <body>
-
+    
   <!-- START: header -->
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
@@ -25,45 +24,9 @@
 
         <section class="probootstrap-intro">
           <div class="container">
-          <center>
-<div class="container-fluid pb-video-container">
-
-    <div class="col-md  mx-auto " >
-        <h3 class="text-center">Content</h3>
-        <div class="row pb-row justify-content-center">
-          <?php 
-
-              $sql = "SELECT original_name , path , isActive
-                        FROM content
-                          WHERE isActive = True";
-              
-              $stmt = $pdo->prepare($sql);
-              $stmt->execute();
-          
-               while ($row = $stmt->fetch())
-               {
-                $judul = $row["original_name"];
-                $path = $row["path"];
-            
-              echo '<div class="col-md-3 pb-video justify-content-center ">';
-              echo '<iframe class="pb-video-frame" width="100%" height="230" src="'.$path.'" frameborder="0" allowfullscreen></iframe>' ;
-              echo '<label class="form-control label-warning text-center">'.$judul.'</label> </div>';
-            
-               }        
-          ?>
-
-
-        </div>
-
-    </div>
-
-</div>
-</center>
             <div class="row">
               <div class="col">
-                
                 <iframe class="responsive-iframe" style="margin-right:2px;border-radius:4px;"width="880" height="440" src="https://www.youtube.com/embed/mkh6AWm_LO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  
               </div>
               <div class="col2">
                 <div class="card" style="width: 100%;background-color:#f3f3f3;border-radius:8px;">
@@ -86,6 +49,10 @@
     
   </header>
   <!-- END: header -->
+  
+  
+
+  
   
   <!-- START: footer -->
   <footer role="contentinfo" class="probootstrap-footer">
