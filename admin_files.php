@@ -1,83 +1,82 @@
 <?php
-// include 'connect.php';
-// if (!isset($_SESSION['email'])) {
-// 	header('location: login.php');
-// }
-// else if ($_SESSION['email'] != "admintokopetra@gmail.com") {
-// 	header('location: home.php');
-// }
 include "connect.php";
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "manpro";
 
+$conn = mysqli_connect($host, $user, $password, $database);
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Proyek Tekweb</title>
+    <title>Proyek Manpro</title>
     <?php include('assets/header.php'); ?>
     <link rel="stylesheet" type="text/css" href="assets/css/admin_sidebar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/admin_home.css">
     <link rel="stylesheet" href="assets/css/admin_files.css">
-
-    <script>
-        $(document).ready(function() {
-
-            $.ajax({
-                url: 'admin_fetch_files.php',
-                method: 'POST',
-                data: {
-
-                },
-                success: function(result) {
-                    $('#upload-table').DataTable().destroy();
-                    $('#upload-table').html(result.output);
-                    $('#upload-table').DataTable();
-                },
-                error: function(result) {
-
-                }
-            });
-        });
-    </script>
 </head>
-
 <body>
-    <div class="row">
-        <?php include('assets/admin_sidebar.php'); ?>
-
+	<style>
+		body{
+			margin-top: 15px;
+		}
+	</style>
+	<div class="row">
+    		<?php include('assets/admin_sidebar.php'); ?>
+        
         <div class="col-md-8">
-            <div class="container">
-                <h1>Content For Uploaded Files</h1>
-                <table id="upload-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
+                <h1><i class="fa-solid fa-floppy-disk"></i> Uploaded Files History</h1>
+                <br>
+                <form method="post">
+	                <table class="table">
+		                <thead class="table-secondary">
+						    <tr>
+						      	<th class="col" scope="col">Original Files</th>
+						      	<th class="col" scope="col">Path</th>
+						      	<th class="col" scope="col"><i class="fa-solid fa-arrow-down"></i> Submit Date</th>
+						      	<th class="col" scope="col"><i class="fa-solid fa-arrow-down"></i> Update Date</th>
+						      	<th class="col" scope="col">Action</th>
+						    </tr>
+						</thead>
+						<tbody>
+						    	<?php
+	                  			$email = $_SESSION['email'];
+					            $query = "SELECT * FROM content";
+					            $result = mysqli_query($conn, $query);
 
+					            while($row = mysqli_fetch_array($result)){  ?>
+					            	<tr>
+					            		<td><?php echo htmlspecialchars($row['original_name']); ?></td>
+					            		<td><?php echo htmlspecialchars($row['path']); ?></td>
+					            		<td><?php echo htmlspecialchars($row['createdAt']); ?></td>
+					            		<td><?php echo htmlspecialchars($row['updatedAt']); ?></td>
+					            		<td>
+							            	<a href="<?php echo 'admin_edit_vimages.php?id='.$row['id'];  ?>">
+							            		<button type="button" class="btn btn-success">
+							            			<i class="fa-solid fa-pen-to-square"></i>
+							            		</button>
+							            	</a>
+							            	<a href="<?php echo 'admin_delete_vimages.php?id='.$row['id'];  ?>">
+												<button type="button" class="btn btn-danger">
+													<i class="fa-solid fa-trash-can"></i>
+												</button>
+											</a>
+											<!-- biar pas pecet icon isa open ndek new tab  -->
+											<a target="_blank" href="<?php echo $row['path'];  ?>">
+												<button type="button" class="btn btn-secondary">
+													<i class="fa-solid fa-eye"></i>
+												</button>
+											</a>
+							            </td>
+							        </tr>
+						            <?php }?>
+						</tbody>
+					</table>
+				</form>
+        	</div>
+    	</div>
+	</body>
 </html>

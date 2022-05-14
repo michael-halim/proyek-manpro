@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
   header('Location: admin_files.php');
 }
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html>
 
@@ -124,4 +124,4 @@ if (isset($_POST['submit'])) {
     </form>
   </div>
 </body>
-</html>
+</html> -->

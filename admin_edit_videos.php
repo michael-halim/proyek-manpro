@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 
 }
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html>
 
@@ -108,4 +108,4 @@ if (isset($_POST['submit'])) {
 
 </body>
 
-</html>
+</html> -->
