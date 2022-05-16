@@ -21,7 +21,7 @@
                 $_SESSION['nama'] = $nama;
                 
                 if($_SESSION['email'] === 'admin@gmail.com'){
-                    echo json_encode(['location' => 'admin_home.php']);
+                    echo json_encode(['Location' => 'admin_home.php']);
                 }
                 else{
                     echo json_encode(['location'=>'user_home.php']);

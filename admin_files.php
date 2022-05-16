@@ -54,9 +54,14 @@ $conn = mysqli_connect($host, $user, $password, $database);
 					            		<td><?php echo htmlspecialchars($row['createdAt']); ?></td>
 					            		<td><?php echo htmlspecialchars($row['updatedAt']); ?></td>
 					            		<td>
-							            	<a href="<?php echo 'admin_edit_vimages.php?id='.$row['id'];  ?>">
-							            		<button type="button" class="btn btn-success">
+					            			<a href="<?php echo 'admin_edit_file.php?id='.$row['id'];  ?>">
+							            		<button type="button" class="btn btn-primary">
 							            			<i class="fa-solid fa-pen-to-square"></i>
+							            		</button>
+							            	</a>
+							            	<a href="<?php echo 'admin_edit_video.php?id='.$row['id'];  ?>">
+							            		<button type="button" class="btn btn-success">
+							            			<i class="fa-solid fa-video"></i>
 							            		</button>
 							            	</a>
 							            	<a href="<?php echo 'admin_delete_vimages.php?id='.$row['id'];  ?>">
@@ -64,7 +69,6 @@ $conn = mysqli_connect($host, $user, $password, $database);
 													<i class="fa-solid fa-trash-can"></i>
 												</button>
 											</a>
-											<!-- biar pas pecet icon isa open ndek new tab  -->
 											<a target="_blank" href="<?php echo $row['path'];  ?>">
 												<button type="button" class="btn btn-secondary">
 													<i class="fa-solid fa-eye"></i>
