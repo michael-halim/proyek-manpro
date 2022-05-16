@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item">
             <a href="admin_files.php" id="files" class="nav-link text-white">
-                <i class="fa fa-home"></i>
+                <i class="fa-solid fa-upload"></i>
                 <span class="ms-2">Uploaded Files</span>
             </a>
         </li>
