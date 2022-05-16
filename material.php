@@ -46,11 +46,9 @@
      </section>
   </header>
   <!-- END: header -->
-
   <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
 <div class="container">
-
     <!-- query  -->
     <?php 
     $emailnya = $_SESSION["email"];
@@ -93,52 +91,106 @@
 
     if($sb){echo '<i>'.$sbt  .'</i>'; $btnset = "disabled"; }
 
+      $skitab = strtok($ayat, ' ');
+      $spasal = substr($ayat, strpos($ayat, " ") + 1);
+      $spasal = strtok($spasal, ':');
+              $sawal = substr($ayat, strpos($ayat, ":") + 1);
+              $sawal = strtok($sawal, '-');   
+              $sakhir = substr($ayat, strpos($ayat, "-") + 1);
+
        echo '<p class="card-text">'.$ayat.'</p>
        <form method="post" action="">
        <input name="user" type="hidden" value='.$iduser.'></input>
        <input name="group" type="hidden" value='.$idgroup.'></input>
        <input name="alkitab" type="hidden" value='.$idalkitab.'></input>
-       <a href="#" class="btn btn-primary">Baca Ayat</a>
-       <button type="submit" class ="btn btn-success" '.$btnset.'>Sudah dibaca</button >
-       </form>
+       <input name="kitab" type="hidden" value='.$skitab.'></input>
+       <input name="pasal" type="hidden" value='.$spasal.'></input>
+       <input name="awal" type="hidden" value='.$sawal.'></input>
+       <input name="akhir" type="hidden" value='.$sakhir.'></input>
+       <input name="renungan" type="hidden" value='.$renungan.'></input>
+       <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
+       <button type="submit" name = "aksi" value = "tandai" class ="btn btn-success" '.$btnset.'>Sudah dibaca</button >
+       </form> 
        </div>
        </div> <br>';
      }
 
      if ($_SERVER['REQUEST_METHOD'] === 'POST')
      {
-       $puser = $_POST["user"];
-       $pgroup = $_POST["group"];
-       $palkitab = $_POST["alkitab"];
 
-      if (isset($puser) && isset($pgroup) && isset ($palkitab))
+      $aksi = $_POST["aksi"];
+
+      $puser = $_POST["user"];
+      $pgroup = $_POST["group"];
+      $palkitab = $_POST["alkitab"];
+      $pkitab = $_POST["kitab"];
+      $ppasal = $_POST["pasal"];
+      $pawal = $_POST["awal"];
+      $pakhir = $_POST["akhir"];
+      $prenungan = '';
+      $prenungan = $_POST["renungan"];
+
+      if ($aksi == "tandai")
       {
-
-        $sqlupdate = "UPDATE detail_group
-        SET sudah_baca = 1 , sudah_baca_at = now()
-        WHERE id_user = ?
-        and id_group = ?
-        and id_alkitab = ?";
-
-        $stmt = $pdo->prepare($sqlupdate);
-        // $stmt->bind_param('sss', );
-        $stmt->execute([$puser, $pgroup, $palkitab]);
-
-            if($stmt == false)
-            { 
-              $error = "Update failed. Please try again.";
-            } 
-            else{
-            echo "<script type='text/javascript'>".
-            "alert('Berhasil update sudah dibaca.');
-            window.location.assign(window.location.href);".
-            "</script>";
-            exit;
-            }
+        if (isset($puser) && isset($pgroup) && isset ($palkitab))
+        {
+          $sqlupdate = "UPDATE detail_group
+          SET sudah_baca = 1 , sudah_baca_at = now()
+          WHERE id_user = ?
+          and id_group = ?
+          and id_alkitab = ?";
+          $stmt = $pdo->prepare($sqlupdate);
+          // $stmt->bind_param('sss', );
+          $stmt->execute([$puser, $pgroup, $palkitab]);
+              if($stmt == false)
+              { 
+                $error = "Update failed. Please try again.";
+              } 
+              else{
+              echo "<script type='text/javascript'>".
+              "alert('Berhasil update sudah dibaca.');
+              window.location.assign(window.location.href);".
+              "</script>";
+              exit;
+              }
+        }
       }
 
-     }
-     
+      elseif($aksi == "baca")
+      {
+        if (isset($pkitab) && isset($ppasal) && isset ($pawal) && isset ($pakhir)&& isset ($prenungan))
+        {
+        echo "  <script>
+        $.ajax({
+                                url: 'get_preview_renungan.php',
+                                method: 'POST',
+                                data: {
+                                    kitab: '".$pkitab."',
+                                    pasal: ".$ppasal.",
+                                    awal: ".$pawal.",
+                                    akhir: ".$pakhir.",
+                                    renungan: '".$prenungan."',
+                                },
+                                success: function(result) {
+                                    // Menampilkan Preview Firman, Ayat, dan Renungan
+        
+                                    $('#preview-firman').html(result.outputFirman);
+                                    $('#preview-ayat').html(result.outputAyat);
+                                    $('#preview-renungan').html(result.outputRenungan);
+        
+                                    // Hide Modal Add Renungan dan tampilkan Preview Renungan
+                                    
+                                    $('#preview-renungan-modal').modal('show');
+        
+                                },
+                                error: function(result) {
+        
+                                }
+                            });
+            </script>";
+        }
+      }
+     }  
     ?>
   </div>
   </section>
@@ -218,7 +270,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
@@ -235,8 +286,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
-                            <button type="button" data-group="" id="submit-renungan" class="btn btn-primary">Submit</button>
+                            <button class="btn btn-dark"  data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -244,34 +294,6 @@
 
   </footer>
   <!-- END: footer -->
-  <script>
-$.ajax({
-                        url: 'get_preview_renungan.php',
-                        method: 'POST',
-                        data: {
-                            kitab: "Habakuk",
-                            pasal: 1,
-                            awal: 2,
-                            akhir: 10,
-                            renungan: "renungan",
-                        },
-                        success: function(result) {
-                            // Menampilkan Preview Firman, Ayat, dan Renungan
 
-                            $('#preview-firman').html(result.outputFirman);
-                            $('#preview-ayat').html(result.outputAyat);
-                            $('#preview-renungan').html(result.outputRenungan);
-
-                            // Hide Modal Add Renungan dan tampilkan Preview Renungan
-                            
-                            $('#preview-renungan-modal').modal('show');
-
-                        },
-                        error: function(result) {
-
-                        }
-                    });
-
-    </script>
   </body>
 </html>

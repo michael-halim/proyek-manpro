@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $outputFirman = '<i class="fas fa-user prefix grey-text"> </i> <label class="form-label">Preview Firman</label>
-                    <textarea class="form-control" style="width:100%; height:500px;" type="text" value="' . $firman . '" disabled >' . $firman . '</textarea>';
+                    <textarea class="form-control" style=" max-width: 565px; height:500px;" type="text" value="' . $firman . '" disabled >' . $firman . '</textarea>';
 
 
     // Ambil Ayat dan Di Format
@@ -39,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Tampilkan Ayat dan Renungan Dalam Input Disabled
-    $outputAyat = '<span><i class="fas fa-user prefix grey-text"></i><label class="form-label">Ayat</label>
-                    <input id="content-ayat" type="text" class="form-control" disabled value="' . $formatAyat  . '"></span>';
+    $outputAyat = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label"> Ayat</label>
+                    <input id="content-ayat" type="text" class="form-control"  style=" max-width: 565px;" disabled value="' . $formatAyat  . '"></span>';
 
-    $outputRenungan = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label">Renungan</label>
-                    <textarea id="content-renungan" class="form-control" style="width:100%; height:300px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
+    $outputRenungan = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label"> Renungan</label>
+                    <textarea id="content-renungan" class="form-control" height:300px;" style=" max-width: 565px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
 
     $notif = '';
 
