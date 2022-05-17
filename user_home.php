@@ -12,23 +12,18 @@ var_dump($_SESSION['statusJabatan']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Baca Alkitab &mdash;</title>
-    
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
     <link rel="stylesheet" href="assets/user/css/styles-merged.css">
     <link rel="stylesheet" href="assets/user/css/style.min.css">
     <link rel="stylesheet" href="assets/user/css/custom.css">
-
-    <link rel="stylesheet" href="assets/user/css/responsivevideo.css">
-    
+    <link rel="stylesheet" href="assets/user/css/responsivevideo.css">   
   </head>
   <body>
-    
   <!-- START: header -->
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
       <!-- <div class="row"> -->
         <?php require_once('user_navbar.php'); ?>
-
         <section class="probootstrap-intro">
           <div class="container">
             <div class="row">
@@ -49,18 +44,10 @@ var_dump($_SESSION['statusJabatan']);
             </div>
           </div>
         </section>
-
       <!-- </div> -->
     </div>
-    
-    
   </header>
   <!-- END: header -->
-  
-  
-
-  
-  
   <!-- START: footer -->
   <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
@@ -100,13 +87,5 @@ var_dump($_SESSION['statusJabatan']);
       </div>
     </div>
   </footer>
-  <!-- END: footer -->
-
-
-
-  <script src="js/scripts.min.js"></script>
-  <script src="js/main.min.js"></script>
-  <script src="js/custom.js"></script>
-
   </body>
 </html>

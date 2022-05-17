@@ -11,12 +11,9 @@ if (!isset($_SESSION['email'])) {
 	
 }
 ?>
-
 <script src="assets/user/js/scripts.min.js"></script>
   <script src="assets/user/js/main.min.js"></script>
   <script src="assets/user/js/custom.js"></script>
-
-
 <a href="user_home.php" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
@@ -42,5 +39,3 @@ if (!isset($_SESSION['email'])) {
             <p><small>&copy; Kelompok 11.2021.</small></p>
           </div>
         </nav>
-
- 
