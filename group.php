@@ -3,6 +3,7 @@ include 'connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +34,7 @@ include 'connect.php';
       </section>
     </div>
   </header>
-  
+
   <div class="container">
 
 
@@ -54,11 +55,10 @@ include 'connect.php';
       echo '<div class="col-md-12">';
       while ($row = $stmt->fetch()) {
         echo "<div style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
-              <a href='ketua_detail_group.php?idg=".$row['idg']."'><h1 style='padding:10px'>" . $row['nama_group'] . "</h1></a>
+              <a href='ketua_detail_group.php?idg=" . $row['idg'] . "'><h1 style='padding:10px'>" . $row['nama_group'] . "</h1></a>
               </div>";
       }
       echo "</div>";
-      
     }
     ?>
     <!-- END row -->
@@ -74,7 +74,19 @@ include 'connect.php';
 
         <?php
         $emailnya = $_SESSION["email"];
-        $sql = "SELECT DISTINCT nama,email,hp from user join detail_group where user.id=detail_group.id_user and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
+        $sql = "SELECT DISTINCT nama,email,hp 
+                FROM user 
+                JOIN detail_group 
+                WHERE user.id=detail_group.id_user 
+                  and id_group = (
+                      SELECT id_group 
+                      FROM detail_group 
+                      WHERE id_user = 
+                        (SELECT id 
+                          FROM user 
+                          WHERE email = ? 
+                          LIMIT 1) 
+                        LIMIT 1);";
         //echo $sql;
 
         // $result = $link -> query($sql);
@@ -82,7 +94,28 @@ include 'connect.php';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$emailnya]);
 
+        while ($row = $stmt->fetch()) {
+          $nama = $row["nama"];
+          $email = $row["email"];
+          $hp = $row["hp"];
 
+          echo '<div class="col-md-12">';
+          echo "<div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>";
+
+          echo '<div class="row">';
+          echo '<div class="col-md-3">';
+        }
+        ?>
+        <?php
+        $emailnya = $_SESSION["email"];
+        $sql = "SELECT DISTINCT nama,email,hp 
+                from user 
+                join detail_group 
+                where user.id=detail_group.id_user 
+                and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$emailnya]);
 
         while ($row = $stmt->fetch()) {
           $nama = $row["nama"];
@@ -92,40 +125,14 @@ include 'connect.php';
           echo '<div class="col-md-12">';
           echo "<div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
 
-      <div class="row">
-        <div class="col-md-3">
-
-        <?php 
-    $emailnya = $_SESSION["email"];
-    $sql = "SELECT DISTINCT nama,email,hp 
-                from user 
-                join detail_group 
-                where user.id=detail_group.id_user 
-                and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$emailnya]);
-
-     while ($row = $stmt->fetch())
-     {
-      $nama = $row["nama"];
-      $email = $row["email"];
-      $hp = $row["hp"];
-
-     echo '<div class="col-md-12">';
-     echo"<div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
-
-     <a href='user_materi.php'>
-     <h1 style='padding:10px'>$nama</h1>
-     <h2 style='padding-left:10px'> $email</h2></a></div>
-     <h3 style='padding-left:10px'> $hp</h3></a></div>
-     </div>";
+          <a href='user_materi.php'>
+          <h1 style='padding:10px'>$nama</h1>
+          <h2 style='padding-left:10px'> $email</h2></a></div>
+          <h3 style='padding-left:10px'> $hp</h3></a></div>
+          </div>";
         }
         echo "</div>";
         ?>
-
-
-
         <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
           <h1>ASDASD</h1>
           <h2>deskripsi</h2>
@@ -195,7 +202,7 @@ include 'connect.php';
             <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
             <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
-        </div> 
+        </div>
 
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
@@ -205,7 +212,7 @@ include 'connect.php';
               <li><i class="icon-mail"></i><span>namagereja@domain.com</span></li>
               <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
 
-            </ul> 
+            </ul>
           </div>
         </div>
       </div>
@@ -224,6 +231,5 @@ include 'connect.php';
       </div>
     </div>
   </footer>
-  </body>
-
+</body>
 </html>
