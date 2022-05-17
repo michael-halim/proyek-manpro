@@ -1,3 +1,6 @@
+<?php 
+include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,12 +57,16 @@
     <!-- query  -->
     <?php 
     $emailnya = $_SESSION["email"];
-    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
-              FROM alkitab ,detail_group 
-                JOIN user 
-                  where detail_group.id_user = user.id 
-                  and detail_group.id_alkitab = alkitab.id 
-                  and user.email=?";
+
+    $sql = "SELECT ayat, 
+                  renungan,
+                  sudah_baca,sudah_baca_at 
+            FROM alkitab ,detail_group 
+            JOIN user 
+            where detail_group.id_user = user.id and 
+              detail_group.id_alkitab = alkitab.id and 
+              user.email=?";
+
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$emailnya]);

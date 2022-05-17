@@ -19,7 +19,12 @@
 			if (hash('sha512', $rowData['salt']. $hashed_pw) === $rowData['password']){
                 $_SESSION['email'] = $email;
                 $_SESSION['nama'] = $nama;
-                
+                $_SESSION['statusJabatan'] = 'member';
+
+                if($rowData['ketua'] == 1){
+                    $_SESSION['statusJabatan'] = 'ketua';
+                }
+
                 if($_SESSION['email'] === 'admin@gmail.com'){
                     echo json_encode(['location' => 'admin_home.php']);
                 }
