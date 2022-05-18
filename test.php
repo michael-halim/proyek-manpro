@@ -17,7 +17,7 @@ function tokenize($string)
     return [$kitab, $pasal, $ayatAwal, $ayatAkhir];
 }
 
-$string = 'Lukas 10:21';
+$string = 'Lukas 10:21-31';
 $bibleInfo = tokenize($string);
 
 var_dump($bibleInfo);
