@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
       <p>Edit your link here!</p>
       <input type="text" name="link" value="" class="center" autofocus placeholder="Paste your video link here" onfocus="if(this.value && this.select){this.select()}" style="height:40px">
       <p><p><p>
-      <input type='submit' value='Submit' name='submit' style="margin-left:1%" class="button-1"/>
+      <input type='submit' value='Submit' name='submit' style="margin-left:45%" class="button-1"/>
     </form>
   </div>
 
