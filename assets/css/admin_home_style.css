@@ -34,3 +34,8 @@
     color: inherit;
     text-decoration: none;
 }
+
+.tarea-wrap {
+  margin-right: 5px;
+  max-width: 524px;
+}
