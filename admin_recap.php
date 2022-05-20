@@ -35,8 +35,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css/admin_sidebar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/admin_home.css">
 
-    <script src="assets/js/admin_home.js"></script>
-    <script src="assets/js/admin_sidebar.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
         $(document).ready(function() {
@@ -115,6 +113,7 @@
                     }
                 });
             });
+
         });
     </script>
 </head>
@@ -178,7 +177,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

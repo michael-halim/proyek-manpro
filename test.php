@@ -1,23 +1,39 @@
 <?php
-$url = 'https://api-alkitab.herokuapp.com/v2/passage/list';
-$json = file_get_contents($url);
-$passage_list = json_decode($json);
-$max_length = count($passage_list->passage_list);
-// echo $max_length;
-for($i = 0; $i < $max_length ; $i++){
-    echo $passage_list->passage_list[$i]->book_name . '<br>';
 
+// tokenize bibleInfo from string
+function tokenize($string)
+{
+    $kitab = strtok($string, ' ');
+    $pasal = strtok($string, ':');
+    $pasal = str_replace($kitab . ' ', '', $pasal);
+
+    $ayatAwal = strtok($string, '-');
+    $ayatAwal = str_replace($kitab . ' ' . $pasal . ':', '', $ayatAwal);
+
+    $ayatAkhir = str_replace($kitab . ' ' . $pasal . ':' . $ayatAwal . '-', '', $string);
+    if ($ayatAkhir == $string){
+        $ayatAkhir = '';
+    }
+    return [$kitab, $pasal, $ayatAwal, $ayatAkhir];
 }
+
+$string = 'Lukas 10:21-31';
+$bibleInfo = tokenize($string);
+
+var_dump($bibleInfo);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

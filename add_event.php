@@ -3,6 +3,7 @@ include 'connect.php';
 header('Content-type: application/json');
 date_default_timezone_set("Asia/Bangkok");
 
+// FILE UNTUK HANDLE ADD EVENT REQUEST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // dapetin semua data dari POST
@@ -42,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 FROM detail_group AS dg
                 JOIN user AS u 
                 ON u.id = dg.id_user
-                WHERE id_group = ?";
+                WHERE id_group = ?
+                GROUP BY id_user";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([ $id_group ]);
@@ -50,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Masukkan data ke detail event
         while($row = $stmt->fetch()){
-                $sql = "INSERT INTO detail_event (id, id_group, id_user, id_event, absen, alasan)
-                        VALUES (DEFAULT,?,?,?,?,?)";
+                $sql = "INSERT INTO detail_event (id, id_group, id_user, id_event, absen, alasan, updatedAt, updatedBy)
+                        VALUES (DEFAULT,?,?,?,?,?,?,?)";
 
                 $stmtInsert = $pdo->prepare($sql);
-                $stmtInsert->execute([$id_group, $row['id_user'], $id_event, 0, '']);
+                $stmtInsert->execute([$id_group, $row['id_user'], $id_event, 0, '', NULL, '']);
         }
         
         $notif = 'Query Successful';
