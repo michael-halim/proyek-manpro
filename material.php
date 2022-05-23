@@ -19,7 +19,7 @@ include 'connect.php';
   <style>
     .probootstrap-header {
       background-color: cadetblue;
-      background-image: url("assets/user/img/classroom.png");
+      background-image: url("assets/user/img/jesus_disciple.jpg");
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -28,7 +28,17 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
-
+    body {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/jesus_disciple.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
     .responsive {
       width: 100%;
       height: auto;
@@ -44,9 +54,7 @@ include 'connect.php';
     <section class="probootstrap-intro" style="height: 600px;">
       <center>
         <div class="container ">
-          <br>
-          <h1>Materi</h1>
-          <h2>Bacaan Renungan Harian</h2>
+          
         </div>
       </center>
     </section>

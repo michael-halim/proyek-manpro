@@ -11,6 +11,34 @@ include 'connect.php';
   <link rel="stylesheet" href="assets/user/css/styles-merged.css">
   <link rel="stylesheet" href="assets/user/css/style.min.css">
   <link rel="stylesheet" href="assets/user/css/custom.css">
+  <style>
+    .probootstrap-header {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/group.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
+    body {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/group.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,13 +50,7 @@ include 'connect.php';
       <section class="probootstrap-intro">
         <div class="container">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <h1 class="probootstrap-animate">Grup XXXX</h1>
-              <div class="probootstrap-subtitle probootstrap-animate">
-                <h2>deskripsi grup asdadas blablablab <a href="https://uicookies.com/" target="_blank">uicookies.com</a></h2>
-              </div>
-              <p class="watch-intro probootstrap-animate"><a href="https://vimeo.com/45830194" class="popup-vimeo">aturan grup klik disini<i class="icon-play2"></i></a></p>
-            </div>
+            
           </div>
         </div>
       </section>

@@ -13,6 +13,25 @@ var_dump($_SESSION['statusJabatan']);
     <link rel="stylesheet" href="assets/user/css/style.min.css">
     <link rel="stylesheet" href="assets/user/css/custom.css">
     <link rel="stylesheet" href="assets/user/css/responsivevideo.css">   
+
+    <style>
+    .probootstrap-header {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/Jesus.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
+
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+    </style>
   </head>
   <body>
   <!-- START: header -->
