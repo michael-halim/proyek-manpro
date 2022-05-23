@@ -76,9 +76,15 @@
 
       if($sb == true){
         $txtt = "Sudah dibaca pada ";
+        $aksinya = "bacakembali";
+        $btnset = "Tandai belum dibaca";
+        $btcolor = "btn-warning";
       }
       else{
         $txtt = "Belum dibaca";
+        $aksinya ="tandai";
+        $btnset = "Sudah dibaca";
+        $btcolor = "btn-success";
       }
 
      echo'<div class="card bg-info">
@@ -89,7 +95,7 @@
      <i>'.$txtt.'</i>
      <br>';
 
-    if($sb){echo '<i>'.$sbt  .'</i>'; $btnset = "disabled"; }
+    if($sb){echo '<i>'.$sbt  .'</i>';}
 
       $skitab = strtok($ayat, ' ');
       $spasal = substr($ayat, strpos($ayat, " ") + 1);
@@ -109,7 +115,7 @@
        <input name="akhir" type="hidden" value='.$sakhir.'></input>
        <input name="renungan" type="hidden" value='.$renungan.'></input>
        <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
-       <button type="submit" name = "aksi" value = "tandai" class ="btn btn-success" '.$btnset.'>Sudah dibaca</button >
+       <button type="submit" name = "aksi" value = "'.$aksinya.'" class ="btn '.$btcolor.'" >'.$btnset.'</button >
        </form> 
        </div>
        </div> <br>';
@@ -149,6 +155,32 @@
               else{
               echo "<script type='text/javascript'>".
               "alert('Berhasil update sudah dibaca.');
+              window.location.assign(window.location.href);".
+              "</script>";
+              exit;
+              }
+        }
+      }
+
+      elseif ($aksi == "bacakembali")
+      {
+        if (isset($puser) && isset($pgroup) && isset ($palkitab))
+        {
+          $sqlupdate = "UPDATE detail_group
+          SET sudah_baca = 0 , sudah_baca_at = NULL
+          WHERE id_user = ?
+          and id_group = ?
+          and id_alkitab = ?";
+          $stmt = $pdo->prepare($sqlupdate);
+          // $stmt->bind_param('sss', );
+          $stmt->execute([$puser, $pgroup, $palkitab]);
+              if($stmt == false)
+              { 
+                $error = "Update failed. Please try again.";
+              } 
+              else{
+              echo "<script type='text/javascript'>".
+              "alert('Berhasil update mengulang bacaan.');
               window.location.assign(window.location.href);".
               "</script>";
               exit;
@@ -232,40 +264,8 @@
         </div>
       </div>
     </div>
-
-    <form class="form-signin">
-                            <div class="md-form mb-4">
-                                <i class="fas fa-envelope prefix"> </i> <label for="inputkitab"> Kitab </label>
-                                <input type="text" id="inputkitab" class="form-control" placeholder="Email address">
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> Pasal </label>
-                                <input type="text" id="inputpasal" class="form-control" placeholder="Password">
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-envelope prefix"> </i> <label for="inputEmailIn"> awal </label>
-                                <input type="text" id="inputawal" class="form-control" placeholder="Email address">
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> akhir </label>
-                                <input type="text" id="inputakhir" class="form-control" placeholder="Password">
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"> </i> <label for="inputPasswordIn"> renungan </label>
-                                <input type="text" id="inputrenungan" class="form-control" placeholder="Password">
-                            </div>
-
-                            <div class="modal-footer d-flex justify-content-center">
-                                <button id="signin" class="btn-dark btn-lg btn-block text-uppercase">Get Preview</button>
-                            </div>
-
-                        </form>
-
-                        <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
+        
+    <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
