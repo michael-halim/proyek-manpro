@@ -56,7 +56,7 @@ $conn = mysqli_connect($host, $user, $password, $database);
       				<div class="accordion-body">
       					<?php
       					$email = $_SESSION['email'];
-                            $query = "SELECT * FROM event";
+                            $query = "SELECT nama, jenis, tempat, link FROM event WHERE id IN (SELECT id_event FROM detail_event);";
                             $user = mysqli_query($conn, $query);
 
                             while($data = mysqli_fetch_array($user)){
