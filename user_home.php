@@ -24,7 +24,7 @@ var_dump($_SESSION['statusJabatan']);
 <div class="container">
  <div class="row">
 <div id="carouselvideo" class="carousel slide" data-ride="carousel">
-<div class="carousel-inner" role="listbox">
+<div class="carousel-inner " role="listbox">
 <?php 
 
 $sql = "SELECT original_name , path , isActive
@@ -47,6 +47,8 @@ echo '<div class="item active">';
  echo' <iframe width="780" height="450" src="'.$path.'" frameborder="0" allowfullscreen></iframe>';
  echo '<p>'.$judul.'</p>   </div>';
 ?>
+<br>
+<br>
 </div>
   <ol class="carousel-indicators ">
     <li  href="#carouselvideo" data-slide="prev" class="btn btn-info "></li>
