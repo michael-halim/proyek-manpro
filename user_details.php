@@ -95,7 +95,7 @@ $conn = mysqli_connect($host, $user, $password, $database);
 				<thead class="table-secondary">
 					<tr>
 						<th class="col" scope="col">Nama</th>
-				      	<th class="col" scope="col">Absen</th>
+				      	<th class="col" scope="col">Status Kehadiran</th>
 				      	<th class="col" scope="col">Keterangan</th>
 				    </tr>
 				</thead>
