@@ -40,12 +40,55 @@ var_dump($_SESSION['statusJabatan']);
       <!-- <div class="row"> -->
         <?php require_once('user_navbar.php'); ?>
         <section class="probootstrap-intro">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <iframe class="responsive-iframe" style="margin-right:2px;border-radius:4px;"width="880" height="440" src="https://www.youtube.com/embed/mkh6AWm_LO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              
+<div class="container">
+ <div class="row">
+<div id="carouselvideo" class="carousel slide" data-ride="carousel">
+<div class="carousel-inner " role="listbox">
+<?php 
+
+$sql = "SELECT original_name , path , isActive
+          FROM content
+            WHERE isActive = True";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+echo '<div class="item active">';
+ while ($row = $stmt->fetch())
+ {
+  $judul = $row["original_name"];
+  $path = $row["path"];
+
+   echo' <iframe width="780" height="450" src="'.$path.'" frameborder="0" allowfullscreen></iframe>';
+      echo '<p>'.$judul.'</p>   </div>';
+      echo '<div class="item ">';
+
+ }        
+ echo' <iframe width="780" height="450" src="'.$path.'" frameborder="0" allowfullscreen></iframe>';
+ echo '<p>'.$judul.'</p>   </div>';
+?>
+<br>
+<br>
+</div>
+  <ol class="carousel-indicators ">
+    <li  href="#carouselvideo" data-slide="prev" class="btn btn-info "></li>
+    <li  href="#carouselvideo" data-slide="next" class="btn btn-info "></li>
+  </ol>
+
+</div>
+    </div>
+
+</div>
+              <div class="col2">
+                <div class="card" style="width: 100%;background-color:#f3f3f3;border-radius:8px;">
+                  <div class="card-body">
+                      <h5 class="card-title">Aturan Misa Gereja</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">1. tidak boleh afk</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">2. tidak diperbolehkan main hp saat misa</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">3.tidak diperbolehkan makan dan tidur selama misa</h6>
+                      <a href="#" class="card-link">Info lebih lanjut, klik disini</a>
+                  </div>
+                </div>
+              </div>  
             </div>
           </div>
         </section>
