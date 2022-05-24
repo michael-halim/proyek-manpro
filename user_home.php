@@ -13,25 +13,6 @@ var_dump($_SESSION['statusJabatan']);
     <link rel="stylesheet" href="assets/user/css/style.min.css">
     <link rel="stylesheet" href="assets/user/css/custom.css">
     <link rel="stylesheet" href="assets/user/css/responsivevideo.css">   
-
-    <style>
-    .probootstrap-header {
-      background-color: cadetblue;
-      background-image: url("assets/user/img/gunung.jpg");
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-      background-color: #464646;
-      width: 100%;
-      height: auto;
-    }
-
-    .responsive {
-      width: 100%;
-      height: auto;
-    }
-    </style>
   </head>
   <body>
   <!-- START: header -->
@@ -104,7 +85,7 @@ echo '<div class="item active">';
           <div class="probootstrap-footer-widget">
             <h3>Tentang Kita</h3>
             <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-           
+            <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
         </div>
         
@@ -113,10 +94,24 @@ echo '<div class="item active">';
             <h3>Contact</h3>
             <ul class="probootstrap-contact-info">
               <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
+              <li><i class="icon-mail"></i><span>namagereja@domain.com</span></li>
               <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
             </ul>
             
           </div>
+        </div>
+      </div>
+      <div class="row mt40">
+        <div class="col-md-12 text-center">
+          <ul class="probootstrap-footer-social">
+            <li><a href=""><i class="icon-twitter"></i></a></li>
+            <li><a href=""><i class="icon-facebook"></i></a></li>
+            <li><a href=""><i class="icon-instagram2"></i></a></li>
+          </ul>
+          <p>
+            <small>&copy; 2021 <a href="https://uicookies.com/" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
+          </p>
+          
         </div>
       </div>
     </div>
