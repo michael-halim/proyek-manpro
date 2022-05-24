@@ -93,8 +93,8 @@
         <?php include('assets/admin_sidebar.php'); ?>
         <div class="col-md-9">
             <div class="container">
-
-                <h1>Content For Managing Users</h1>
+                <br>
+                <h1><i class="fa-solid fa-address-card"></i>Manage Users</h1>
 
                 <div id="div-manage-users" class="my-5" hidden>
                     <table id="manage-users" class="table table-bordered">
