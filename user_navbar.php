@@ -14,7 +14,7 @@ if (!isset($_SESSION['email'])) {
 <script src="assets/user/js/scripts.min.js"></script>
   <script src="assets/user/js/main.min.js"></script>
   <script src="assets/user/js/custom.js"></script>
-<a href="user_home.php" class="probootstrap-logo">Baca Alkitab<span>.</span></a>
+<a href="user_home.php" class="probootstrap-logo"><img src="assets/user/img/pray_icon.png" style="width:15%;margin-bottom:5px;"><span></span></a>
         
         <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
         <div class="mobile-menu-overlay"></div>
