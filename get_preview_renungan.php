@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Tampilkan Ayat dan Renungan Dalam Input Disabled
     $outputAyat = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label"> Ayat</label>
-                    <input id="content-ayat" type="text" class="form-control"  style=" max-width: 565px;" disabled value="' . $formatAyat  . '"></span>';
+                    <input id="content-ayat" type="text" class="form-control"  style=" max-width: 465px;" disabled value="' . $formatAyat  . '"></span>';
 
     $outputRenungan = '<span><i class="fas fa-user prefix grey-text"> </i> <label class="form-label"> Renungan</label>
-                    <textarea id="content-renungan" class="form-control" height:300px;" style=" max-width: 565px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
+                    <textarea id="content-renungan" class="form-control" height:300px;" style=" max-width: 465px;" type="text" value="' . $renungan . '" disabled >' . $renungan . '</textarea></span>';
 
     $notif = '';
 

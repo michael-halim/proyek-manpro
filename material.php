@@ -259,28 +259,26 @@
             <li><a href=""><i class="icon-instagram2"></i></a></li>
           </ul>
           <p>
-            <small>&copy; 2021 <a href="https://uicookies.com/" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
+            <small>&copy; 2021 <a href="#" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
           </p>
         </div>
       </div>
     </div>
         
-    <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
-                <div class="modal-dialog modal-xl">
+            <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
                         </div>
                         <div class="modal-body">
-                            <div class="container">
+                            <div class="container" >
                                 <div class="row">
-                                    <div class="col-6" id="preview-firman">
-
+                                    <div class="col-md-6" id="preview-firman" >
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row mb-3" id="preview-ayat"></div>
-                                        <div class="row" id="preview-renungan"></div>
-
+                                    <div class="col-md-4 " >
+                                        <div class="row mb-5" id="preview-ayat"  style=" max-width: 250px;"></div>
+                                        <div class="row" id="preview-renungan"  style=" max-width: 250px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -294,6 +292,5 @@
 
   </footer>
   <!-- END: footer -->
-
   </body>
 </html>
