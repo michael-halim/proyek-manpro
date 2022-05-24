@@ -52,28 +52,44 @@
     $sql = "SELECT * FROM detail_group d JOIN user u ON d.id_user = u.id WHERE id_group = ? GROUP BY id_user";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idGroup]);
-    
+
     while ($row = $stmt->fetch()) {
-        $pdf->SetFont('Arial','',12);
-        $pdf->MultiCell(270,10,'Nama Anggota: '.$row['nama'],0,'j');
-        $sql2 = "SELECT * FROM detail_group d JOIN alkitab a ON d.id_alkitab = a.id WHERE id_user = ? AND id_alkitab != 0";
-        $stmt2 = $pdo->prepare($sql2);
-        $stmt2->execute([$row['id_user']]);
-        $count = 1;
-        $pdf->SetFont('Arial','',11);
-        $pdf->Cell(8,8,'#',1,0);
-        $pdf->Cell(75,8,"ayat",1,0);
-        $pdf->MultiCell(190,8,'Renungan',1,'j');
-        if ($stmt2->rowCount() > 0) {
-            while ($row2 = $stmt2->fetch()) {
-                $pdf->SetFont('Arial','',11);
-                $pdf->Cell(8,8,$count++,1,0);
-                $pdf->Cell(75,8,$row2['ayat'],1,0);
-                $pdf->MultiCell(190,8,$row2['renungan'],1,'j');
+        if($row['ketua'] == 1){
+            $pdf->SetFont('Arial','B',12);
+            $pdf->MultiCell(270,10,'Nama Ketua: '.$row['nama'],0,'j');
+        }
+    }
+    
+    $sql = "SELECT * FROM detail_group d JOIN user u ON d.id_user = u.id WHERE id_group = ? GROUP BY id_user";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idGroup]);
+
+    while ($row = $stmt->fetch()) {
+        if($row['ketua'] != 1){
+            $pdf->SetFont('Arial','',12);
+            $pdf->MultiCell(270,10,'Nama Anggota: '.$row['nama'],0,'j');
+            $sql2 = "SELECT * FROM detail_group d JOIN alkitab a ON d.id_alkitab = a.id WHERE id_user = ? AND id_alkitab != 0";
+            $stmt2 = $pdo->prepare($sql2);
+            $stmt2->execute([$row['id_user']]);
+            $count = 1;
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(8,8,'#',1,0);
+            $pdf->Cell(75,8,"ayat",1,0);
+            $pdf->MultiCell(190,8,'Renungan',1,'j');
+            if ($stmt2->rowCount() > 0) {
+                while ($row2 = $stmt2->fetch()) {
+                    $pdf->SetFont('Arial','',11);
+                    $pdf->Cell(8,8,$count++,1,0);
+                    $pdf->Cell(75,8,$row2['ayat'],1,0);
+                    $pdf->MultiCell(190,8,$row2['renungan'],1,'j');
+                }
+            }
+            else {
+                $pdf->MultiCell(273,8,"BELUM BACA",1,'C');
             }
         }
-        else {
-            $pdf->MultiCell(273,8,"BELUM BACA",1,'C');
+        else{
+
         }
     }
     $pdf->Output();
