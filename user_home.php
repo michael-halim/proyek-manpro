@@ -17,7 +17,7 @@ var_dump($_SESSION['statusJabatan']);
     <style>
     .probootstrap-header {
       background-color: cadetblue;
-      background-image: url("assets/user/img/Jesus.jpg");
+      background-image: url("assets/user/img/gunung.jpg");
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;

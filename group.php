@@ -14,7 +14,7 @@ include 'connect.php';
   <style>
     .probootstrap-header {
       background-color: cadetblue;
-      background-image: url("assets/user/img/group.png");
+      background-image: url("assets/user/img/cross.jpg");
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -25,7 +25,7 @@ include 'connect.php';
     }
     body {
       background-color: cadetblue;
-      background-image: url("assets/user/img/group.png");
+      background-image: url("assets/user/img/cross.jpg");
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
