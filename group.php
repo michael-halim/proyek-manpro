@@ -23,6 +23,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     body {
       background-color: cadetblue;
       background-image: url("assets/user/img/cross2.png");
@@ -34,6 +35,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     .responsive {
       width: 100%;
       height: auto;
@@ -46,19 +48,10 @@ include 'connect.php';
     <div class="container-fluid">
       <!-- <div class="row"> -->
       <?php require_once('user_navbar.php') ?>
-
-      <section class="probootstrap-intro">
-        <div class="container">
-          <div class="row">
-            
-          </div>
-        </div>
-      </section>
     </div>
   </header>
 
   <div class="container">
-
 
     <?php
     if ($_SESSION['statusJabatan'] == 'ketua') {
@@ -83,7 +76,6 @@ include 'connect.php';
       echo "</div>";
     }
     ?>
-    <!-- END row -->
 
     <div class="row mb50">
       <div class="col-md-12 section-heading text-center">
@@ -93,48 +85,21 @@ include 'connect.php';
     </div>
     <div class="row">
       <div class="col-md-3">
-
         <?php
         $emailnya = $_SESSION["email"];
         $sql = "SELECT DISTINCT nama,email,hp 
                 FROM user 
                 JOIN detail_group 
-                WHERE user.id=detail_group.id_user 
-                  and id_group = (
-                      SELECT id_group 
-                      FROM detail_group 
-                      WHERE id_user = 
-                        (SELECT id 
-                          FROM user 
-                          WHERE email = ? 
-                          LIMIT 1) 
-                        LIMIT 1);";
-        //echo $sql;
-
-        // $result = $link -> query($sql);
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$emailnya]);
-
-        while ($row = $stmt->fetch()) {
-          $nama = $row["nama"];
-          $email = $row["email"];
-          $hp = $row["hp"];
-
-          echo '<div class="col-md-12">';
-          echo "<div class='anggota' style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>";
-
-          echo '<div class="row">';
-          echo '<div class="col-md-3">';
-        }
-        ?>
-        <?php
-        $emailnya = $_SESSION["email"];
-        $sql = "SELECT DISTINCT nama,email,hp 
-                from user 
-                join detail_group 
-                where user.id=detail_group.id_user 
-                and id_group = (select id_group from detail_group where id_user = (select id from user where email = ? LIMIT 1) LIMIT 1);";
+                WHERE user.id = detail_group.id_user 
+                AND id_group = 
+                    (SELECT id_group 
+                    FROM detail_group 
+                    WHERE id_user = (
+                            SELECT id 
+                            FROM user 
+                            WHERE email = ? 
+                            LIMIT 1) 
+                    LIMIT 1);";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$emailnya]);
@@ -155,88 +120,33 @@ include 'connect.php';
         }
         echo "</div>";
         ?>
-        <div class="anggota1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1>ASDASD</h1>
-          <h2>deskripsi</h2>
-        </div>
+      </div>
 
-        <div class="anggota2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1>ASDASD</h1>
-          <h2>deskripsi</h2>
-        </div>
-        <div class="anggota3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1>ASDASD</h1>
-          <h2>deskripsi</h2>
-        </div>
-
-      </div>
-      <div class="col-md-3">
-        <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="anggotakiri1" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri2" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-        <div class="anggotakiri3" style="background-color:whitesmoke;border-radius:8px;margin-top:10px;">
-          <h1 style="margin-left:10px">ASDASD</h1>
-          <h2 style="margin-left:10px">deskripsi</h2>
-        </div>
-      </div>
     </div>
+
+    <footer role="contentinfo" class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="probootstrap-footer-widget">
+              <h3>Tentang Kita</h3>
+              <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="probootstrap-footer-widget">
+              <h3>Contact</h3>
+              <ul class="probootstrap-contact-info">
+                <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
+                <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-
-  <footer role="contentinfo" class="probootstrap-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Tentang Kita</h3>
-            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Contact</h3>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
 </body>
+
 </html>
