@@ -23,6 +23,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     body {
       background-color: cadetblue;
       background-image: url("assets/user/img/cross2.png");
@@ -34,6 +35,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     .responsive {
       width: 100%;
       height: auto;
@@ -49,19 +51,10 @@ include 'connect.php';
     <div class="container-fluid">
       <!-- <div class="row"> -->
       <?php require_once('user_navbar.php') ?>
-
-      <section class="probootstrap-intro">
-        <div class="container">
-          <div class="row">
-            
-          </div>
-        </div>
-      </section>
     </div>
   </header>
 
   <div class="asd" style="padding-bottom40px;">
-
 
     <?php
     // if ($_SESSION['statusJabatan'] == 'ketua') {
@@ -86,7 +79,6 @@ include 'connect.php';
     //   echo "</div>";
     // }
     ?>
-    <!-- END row -->
 
     <div class="row mb50">
       <div class="col-md-12 section-heading text-center">
@@ -94,7 +86,6 @@ include 'connect.php';
       </div>
 
     </div>
-
     <div class="asd">
       <div >
         <table style="background-color:whitesmoke;width:100%" class="table">
@@ -104,7 +95,7 @@ include 'connect.php';
             <th>Hp</th>
             <th>Status</th>
           </tr>
-        
+
         <?php
         $emailnya = $_SESSION["email"];
         $sql = "SELECT DISTINCT nama,email,hp,ketua 
@@ -120,9 +111,6 @@ include 'connect.php';
                           WHERE email = ? 
                           LIMIT 1) 
                         LIMIT 1);";
-        //echo $sql;
-
-        // $result = $link -> query($sql);
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$emailnya]);
@@ -148,28 +136,30 @@ include 'connect.php';
         </table>
       </div>
 
-  <footer role="contentinfo" class="probootstrap-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Tentang Kita</h3>
-            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
+
+    <footer role="contentinfo" class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="probootstrap-footer-widget">
+              <h3>Tentang Kita</h3>
+              <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Contact</h3>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-
-            </ul>
+          <div class="col-md-6">
+            <div class="probootstrap-footer-widget">
+              <h3>Contact</h3>
+              <ul class="probootstrap-contact-info">
+                <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
+                <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 </body>
+
 </html>
