@@ -59,6 +59,12 @@
                 <span class="ms-2">Recap</span>
             </a>
         </li>
+        <li>
+            <a href="admin_wa.php" id="recap" class="nav-link text-white">
+                <i class="fa-solid fa-clipboard"></i>
+                <span class="ms-2">Whatsapp</span>
+            </a>
+        </li>
         </li>
     </ul>
 </aside>
