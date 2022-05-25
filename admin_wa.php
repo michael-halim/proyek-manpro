@@ -70,20 +70,20 @@ include 'connect.php';
     ?>
 
     <form method="get" action="admin_wa.php">
-        <div class="form-group">
+        <div class="form-group" >
             <label for="exampleInputEmail1">Pesan</label>
             <textarea name="getpesan" class="form-control" id="exampleFormControlTextarea1" rows="6" style="width:auto;" placeholder="masukan pesan"></textarea>
         </div>
-        
+        <br>
         <button type="submit" name="add" class="btn btn-primary">Send</button>
-
+        <br>
+        <br>
         <table style="background-color:whitesmoke;width:100%" class="table">
           <tr>
             <th>Check</th>
             <th>Nama</th>
             <th>Email</th>
             <th>Hp</th>
-           
           </tr>
         
         <?php
