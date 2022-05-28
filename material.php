@@ -1,49 +1,63 @@
+<?php
+include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Materi</title>
-    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-    
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet"> 
-    <link rel="stylesheet" href="assets/user/css/styles-merged.css">
-    <link rel="stylesheet" href="assets/user/css/style.min.css">
-    <link rel="stylesheet" href="assets/user/css/custom.css">
 
-    <style>
-      .probootstrap-header{
-       background-color:cadetblue; 
-       background-image: url("assets/user/img/classroom.png");
-       background-position: center center;
-       background-repeat: no-repeat;
-       background-attachment: fixed;
-       background-size: cover;
-       background-color: #464646;
-       width:100%;
-       height:auto;
-      }
-      .responsive{
-        width:100%;
-        height:auto;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Materi</title>
+  <meta name="description" content="Free Bootstrap Theme by uicookies.com">
+  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="assets/user/css/styles-merged.css">
+  <link rel="stylesheet" href="assets/user/css/style.min.css">
+  <link rel="stylesheet" href="assets/user/css/custom.css">
+
+  <style>
+    .probootstrap-header {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/3cross.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
+    body {
+      background-color: cadetblue;
+      background-image: url("assets/user/img/3cross.jpg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      width: 100%;
+      height: auto;
+    }
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
   <!-- START: header -->
   <header role="banner" class="probootstrap-header img-responsive">
-      <!-- <div class="row"> -->
-       <?php require_once('user_navbar.php') ?>
-       <section class="probootstrap-intro" style="height: 600px;">
-       <center>
-         <div class="container ">
-           <br>
-         <h1>Materi</h1>
-         <h2>Bacaan Renungan Harian</h2>
-         </div>
+    <!-- <div class="row"> -->
+    <?php require_once('user_navbar.php') ?>
+    <section class="probootstrap-intro" style="height: 600px;">
+      <center>
+        <div class="container ">
+          
+        </div>
       </center>
-     </section>
+    </section>
   </header>
   <!-- END: header -->
   <!-- START: section -->
@@ -87,12 +101,30 @@
         $btcolor = "btn-success";
       }
 
-     echo'<div class="card bg-info">
+
+      while ($row = $stmt->fetch()) {
+        $iduser = $row["id_user"];
+        $idgroup = $row["id_group"];
+        $idalkitab = $row["id_alkitab"];
+        $ayat = $row["ayat"];
+        $renungan = $row["renungan"];
+        $sb = $row["sudah_baca"];
+        $sbt = $row["sudah_baca_at"];
+
+        $btnset = "";
+
+        if ($sb == true) {
+          $txtt = "Sudah dibaca pada ";
+        } else {
+          $txtt = "Belum dibaca";
+        }
+
+        echo '<div class="card bg-info">
      <div class="card-header bg-primary text-white">
-     <h1 class="text-white">'.$renungan.'</h1>
+     <h1 class="text-white">' . $renungan . '</h1>
      </div>
      <div class="card-body">
-     <i>'.$txtt.'</i>
+     <i>' . $txtt . '</i>
      <br>';
 
     if($sb){echo '<i>'.$sbt  .'</i>';}
@@ -104,7 +136,8 @@
               $sawal = strtok($sawal, '-');   
               $sakhir = substr($ayat, strpos($ayat, "-") + 1);
 
-       echo '<p class="card-text">'.$ayat.'</p>
+
+        echo '<p class="card-text">' . $ayat . '</p>
        <form method="post" action="">
        <input name="user" type="hidden" value='.$iduser.'></input>
        <input name="group" type="hidden" value='.$idgroup.'></input>
@@ -117,10 +150,10 @@
        <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
        <button type="submit" name = "aksi" value = "'.$aksinya.'" class ="btn '.$btcolor.'" >'.$btnset.'</button >
        </form> 
+
        </div>
        </div> <br>';
-     }
-
+      }
      if ($_SERVER['REQUEST_METHOD'] === 'POST')
      {
 
@@ -225,6 +258,7 @@
      }  
     ?>
   </div>
+
   </section>
   <!-- END: section -->
   <!-- START: footer -->
@@ -235,22 +269,21 @@
           <div class="probootstrap-footer-widget">
             <h3>Tentang Kita</h3>
             <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-            <p><a href="#" class="link-with-icon">Learn More <i class=" icon-chevron-right"></i></a></p>
           </div>
         </div>
-       
+
         <div class="col-md-6">
           <div class="probootstrap-footer-widget">
             <h3>Contact</h3>
             <ul class="probootstrap-contact-info">
               <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-mail"></i><span>namagereja@domain.com</span></li>
               <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
             </ul>
-            
+
           </div>
         </div>
       </div>
+
       <div class="row mt40">
         <div class="col-md-12 text-center">
           <ul class="probootstrap-footer-social">
@@ -288,9 +321,18 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
+            <button type="button" data-group="" id="submit-renungan" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </footer>
-  <!-- END: footer -->
+
   </body>
 </html>

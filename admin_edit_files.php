@@ -46,6 +46,7 @@ if (isset($_POST['submit'])) {
   header('Location: admin_files.php');
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,95 +59,69 @@ if (isset($_POST['submit'])) {
     }
 
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgb(0, 0, 0);
-      background-color: rgba(0, 0, 0, 0.4);
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display|Roboto');
+
+
+    #drop-area {
+      background:#f6f9ff;
+      border: 4px dashed lightblue;
+      border-radius: 30px;
+      width: 50%;
+      font-family: sans-serif;
+      margin: 5% auto;
+      padding: 0%;
     }
 
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
+    #drop-area.highlight {
+      border-color: purple;
     }
 
+    p {
+      margin-top: 0;
+      text-align: center;
+      font-size: 2em;
+      font-family: 'Playfair Display', serif;
+    }
 
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
+    .button {
+      display: inline-block;
+      padding: 10px;
+      margin: 0 22%;
+      background: pink;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid pink;
+      font-family: 'Roboto', serif;
+    }
+
+    .button:hover {
+      background: aquamarine;
+      color: #aaa;
       font-weight: bold;
     }
 
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
+    #fileElem {
+      display: none;
     }
+
+    .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+
   </style>
 </head>
-
 <body>
-
-  <h2>Edit Content</h2>
-  <button id="myBtn">Edit here</button>
-
-
-  <div id="myModal" class="modal">
-
-
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form method='post' action='' enctype='multipart/form-data'>
-        <input type='file' name='files[]' multiple />
-        <p>
-        <p>
-          <input type='submit' class="button-1" value='Submit' name='submit' />
-      </form>
-    </div>
-
+  <div id="drop-area">
+    <form method='post' action='' enctype='multipart/form-data'>
+      <img src="Capture.png" alt="Upload" width="460" height="345" class="center">
+      <p>Edit your image here!</p>
+      <input type='file' name='files[]' multiple style="margin-left:39%"/>
+      <p><p><p>
+      <input type='submit' value='Submit' name='submit' class="button-1"/>
+    </form>
   </div>
-
-  <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-
 </body>
-
 </html>
