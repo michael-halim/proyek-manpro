@@ -31,13 +31,13 @@
         </li>
         <li class="nav-item">
             <a href="admin_files.php" id="files" class="nav-link text-white">
-                <i class="fa fa-home"></i>
+                <i class="fas fa-file-upload"></i>
                 <span class="ms-2">Uploaded Files</span>
             </a>
         </li>
         <li>
             <a href="admin_group.php" id="group" class="nav-link text-white">
-                <i class="fa-solid fa-user-group"></i>
+            <i class="fa-solid fa-users"></i>
                 <span class="ms-2">Manage Group</span>
             </a>
         </li>
@@ -49,7 +49,7 @@
         </li>
         <li>
             <a href="admin_group_leader.php" id="leader" class="nav-link text-white">
-                <i class="fa-solid fa-users"></i>
+                <i class="fa-solid fa-user-group"></i>
                 <span class="ms-2">Manage Group Leader</span>
             </a>
         </li>
