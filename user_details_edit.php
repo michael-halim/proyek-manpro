@@ -73,7 +73,7 @@ $result = mysqli_query($conn, $query);
 							<td><?php echo htmlspecialchars($row['nama']); ?></td>
 							<td>
 							<input type="radio" name="absen" value=
-							"<?php echo $row['absen'];?>"
+							"1"
 							<?php
 							if($row['absen']=='1')
 							{?>
@@ -81,7 +81,7 @@ $result = mysqli_query($conn, $query);
 							<?php } ?>
 							>Hadir
                             <input type="radio" name="absen" value=
-							"<?php echo $row['absen'];?>"
+							"0"
 							<?php
 							if($row['absen']=='0')
 							{?>
