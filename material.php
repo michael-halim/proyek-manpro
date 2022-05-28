@@ -28,6 +28,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     body {
       background-color: cadetblue;
       background-image: url("assets/user/img/3cross.jpg");
@@ -39,6 +40,7 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
+
     .responsive {
       width: 100%;
       height: auto;
@@ -54,7 +56,7 @@ include 'connect.php';
     <section class="probootstrap-intro" style="height: 600px;">
       <center>
         <div class="container ">
-          
+
         </div>
       </center>
     </section>
@@ -62,45 +64,19 @@ include 'connect.php';
   <!-- END: header -->
   <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
-<div class="container">
-    <!-- query  -->
-    <?php 
-    $emailnya = $_SESSION["email"];
-    $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
+    <div class="container">
+      <!-- query  -->
+      <?php
+      $emailnya = $_SESSION["email"];
+      $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
               FROM alkitab ,detail_group 
                 JOIN user 
                   where detail_group.id_user = user.id 
                   and detail_group.id_alkitab = alkitab.id 
                   and user.email=?";
-    
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$emailnya]);
-    
-     while ($row = $stmt->fetch())
-     {
-      $iduser = $row["id_user"];
-      $idgroup = $row["id_group"];
-      $idalkitab = $row["id_alkitab"];
-      $ayat = $row["ayat"];
-      $renungan = $row["renungan"];
-      $sb = $row["sudah_baca"];
-      $sbt = $row["sudah_baca_at"];
 
-      $btnset = "";
-
-      if($sb == true){
-        $txtt = "Sudah dibaca pada ";
-        $aksinya = "bacakembali";
-        $btnset = "Tandai belum dibaca";
-        $btcolor = "btn-warning";
-      }
-      else{
-        $txtt = "Belum dibaca";
-        $aksinya ="tandai";
-        $btnset = "Sudah dibaca";
-        $btcolor = "btn-success";
-      }
-
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$emailnya]);
 
       while ($row = $stmt->fetch()) {
         $iduser = $row["id_user"];
@@ -115,11 +91,18 @@ include 'connect.php';
 
         if ($sb == true) {
           $txtt = "Sudah dibaca pada ";
+          $aksinya = "bacakembali";
+          $btnset = "Tandai belum dibaca";
+          $btcolor = "btn-warning";
         } else {
           $txtt = "Belum dibaca";
+          $aksinya = "tandai";
+          $btnset = "Sudah dibaca";
+          $btcolor = "btn-success";
         }
+      }
 
-        echo '<div class="card bg-info">
+      echo '<div class="card bg-info">
      <div class="card-header bg-primary text-white">
      <h1 class="text-white">' . $renungan . '</h1>
      </div>
@@ -127,114 +110,101 @@ include 'connect.php';
      <i>' . $txtt . '</i>
      <br>';
 
-    if($sb){echo '<i>'.$sbt  .'</i>';}
+      if ($sb) {
+        echo '<i>' . $sbt  . '</i>';
+      }
 
       $skitab = strtok($ayat, ' ');
       $spasal = substr($ayat, strpos($ayat, " ") + 1);
       $spasal = strtok($spasal, ':');
-              $sawal = substr($ayat, strpos($ayat, ":") + 1);
-              $sawal = strtok($sawal, '-');   
-              $sakhir = substr($ayat, strpos($ayat, "-") + 1);
+      $sawal = substr($ayat, strpos($ayat, ":") + 1);
+      $sawal = strtok($sawal, '-');
+      $sakhir = substr($ayat, strpos($ayat, "-") + 1);
 
 
-        echo '<p class="card-text">' . $ayat . '</p>
+      echo '<p class="card-text">' . $ayat . '</p>
        <form method="post" action="">
-       <input name="user" type="hidden" value='.$iduser.'></input>
-       <input name="group" type="hidden" value='.$idgroup.'></input>
-       <input name="alkitab" type="hidden" value='.$idalkitab.'></input>
-       <input name="kitab" type="hidden" value='.$skitab.'></input>
-       <input name="pasal" type="hidden" value='.$spasal.'></input>
-       <input name="awal" type="hidden" value='.$sawal.'></input>
-       <input name="akhir" type="hidden" value='.$sakhir.'></input>
-       <input name="renungan" type="hidden" value='.$renungan.'></input>
+       <input name="user" type="hidden" value=' . $iduser . '></input>
+       <input name="group" type="hidden" value=' . $idgroup . '></input>
+       <input name="alkitab" type="hidden" value=' . $idalkitab . '></input>
+       <input name="kitab" type="hidden" value=' . $skitab . '></input>
+       <input name="pasal" type="hidden" value=' . $spasal . '></input>
+       <input name="awal" type="hidden" value=' . $sawal . '></input>
+       <input name="akhir" type="hidden" value=' . $sakhir . '></input>
+       <input name="renungan" type="hidden" value=' . $renungan . '></input>
        <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
-       <button type="submit" name = "aksi" value = "'.$aksinya.'" class ="btn '.$btcolor.'" >'.$btnset.'</button >
+       <button type="submit" name = "aksi" value = "' . $aksinya . '" class ="btn ' . $btcolor . '" >' . $btnset . '</button >
        </form> 
 
        </div>
        </div> <br>';
-      }
-     if ($_SERVER['REQUEST_METHOD'] === 'POST')
-     {
 
-      $aksi = $_POST["aksi"];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      $puser = $_POST["user"];
-      $pgroup = $_POST["group"];
-      $palkitab = $_POST["alkitab"];
-      $pkitab = $_POST["kitab"];
-      $ppasal = $_POST["pasal"];
-      $pawal = $_POST["awal"];
-      $pakhir = $_POST["akhir"];
-      $prenungan = '';
-      $prenungan = $_POST["renungan"];
+        $aksi = $_POST["aksi"];
 
-      if ($aksi == "tandai")
-      {
-        if (isset($puser) && isset($pgroup) && isset ($palkitab))
-        {
-          $sqlupdate = "UPDATE detail_group
+        $puser = $_POST["user"];
+        $pgroup = $_POST["group"];
+        $palkitab = $_POST["alkitab"];
+        $pkitab = $_POST["kitab"];
+        $ppasal = $_POST["pasal"];
+        $pawal = $_POST["awal"];
+        $pakhir = $_POST["akhir"];
+        $prenungan = '';
+        $prenungan = $_POST["renungan"];
+
+        if ($aksi == "tandai") {
+          if (isset($puser) && isset($pgroup) && isset($palkitab)) {
+            $sqlupdate = "UPDATE detail_group
           SET sudah_baca = 1 , sudah_baca_at = now()
           WHERE id_user = ?
           and id_group = ?
           and id_alkitab = ?";
-          $stmt = $pdo->prepare($sqlupdate);
-          // $stmt->bind_param('sss', );
-          $stmt->execute([$puser, $pgroup, $palkitab]);
-              if($stmt == false)
-              { 
-                $error = "Update failed. Please try again.";
-              } 
-              else{
-              echo "<script type='text/javascript'>".
-              "alert('Berhasil update sudah dibaca.');
-              window.location.assign(window.location.href);".
-              "</script>";
+            $stmt = $pdo->prepare($sqlupdate);
+            // $stmt->bind_param('sss', );
+            $stmt->execute([$puser, $pgroup, $palkitab]);
+            if ($stmt == false) {
+              $error = "Update failed. Please try again.";
+            } else {
+              echo "<script type='text/javascript'>" .
+                "alert('Berhasil update sudah dibaca.');
+              window.location.assign(window.location.href);" .
+                "</script>";
               exit;
-              }
-        }
-      }
-
-      elseif ($aksi == "bacakembali")
-      {
-        if (isset($puser) && isset($pgroup) && isset ($palkitab))
-        {
-          $sqlupdate = "UPDATE detail_group
+            }
+          }
+        } elseif ($aksi == "bacakembali") {
+          if (isset($puser) && isset($pgroup) && isset($palkitab)) {
+            $sqlupdate = "UPDATE detail_group
           SET sudah_baca = 0 , sudah_baca_at = NULL
           WHERE id_user = ?
           and id_group = ?
           and id_alkitab = ?";
-          $stmt = $pdo->prepare($sqlupdate);
-          // $stmt->bind_param('sss', );
-          $stmt->execute([$puser, $pgroup, $palkitab]);
-              if($stmt == false)
-              { 
-                $error = "Update failed. Please try again.";
-              } 
-              else{
-              echo "<script type='text/javascript'>".
-              "alert('Berhasil update mengulang bacaan.');
-              window.location.assign(window.location.href);".
-              "</script>";
+            $stmt = $pdo->prepare($sqlupdate);
+            // $stmt->bind_param('sss', );
+            $stmt->execute([$puser, $pgroup, $palkitab]);
+            if ($stmt == false) {
+              $error = "Update failed. Please try again.";
+            } else {
+              echo "<script type='text/javascript'>" .
+                "alert('Berhasil update mengulang bacaan.');
+              window.location.assign(window.location.href);" .
+                "</script>";
               exit;
-              }
-        }
-      }
-
-      elseif($aksi == "baca")
-      {
-        if (isset($pkitab) && isset($ppasal) && isset ($pawal) && isset ($pakhir)&& isset ($prenungan))
-        {
-        echo "  <script>
+            }
+          }
+        } elseif ($aksi == "baca") {
+          if (isset($pkitab) && isset($ppasal) && isset($pawal) && isset($pakhir) && isset($prenungan)) {
+            echo "  <script>
         $.ajax({
                                 url: 'get_preview_renungan.php',
                                 method: 'POST',
                                 data: {
-                                    kitab: '".$pkitab."',
-                                    pasal: ".$ppasal.",
-                                    awal: ".$pawal.",
-                                    akhir: ".$pakhir.",
-                                    renungan: '".$prenungan."',
+                                    kitab: '" . $pkitab . "',
+                                    pasal: " . $ppasal . ",
+                                    awal: " . $pawal . ",
+                                    akhir: " . $pakhir . ",
+                                    renungan: '" . $prenungan . "',
                                 },
                                 success: function(result) {
                                     // Menampilkan Preview Firman, Ayat, dan Renungan
@@ -253,15 +223,39 @@ include 'connect.php';
                                 }
                             });
             </script>";
+          }
         }
       }
-     }  
-    ?>
-  </div>
+      ?>
+    </div>
 
   </section>
-  <!-- END: section -->
-  <!-- START: footer -->
+
+  <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6" id="preview-firman">
+              </div>
+              <div class="col-md-4 ">
+                <div class="row mb-5" id="preview-ayat" style=" max-width: 250px;"></div>
+                <div class="row" id="preview-renungan" style=" max-width: 250px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <footer role="contentinfo" class="probootstrap-footer">
     <div class="container">
       <div class="row">
@@ -278,61 +272,13 @@ include 'connect.php';
             <ul class="probootstrap-contact-info">
               <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
               <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
+
             </ul>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt40">
-        <div class="col-md-12 text-center">
-          <ul class="probootstrap-footer-social">
-            <li><a href=""><i class="icon-twitter"></i></a></li>
-            <li><a href=""><i class="icon-facebook"></i></a></li>
-            <li><a href=""><i class="icon-instagram2"></i></a></li>
-          </ul>
-          <p>
-            <small>&copy; 2021 <a href="#" target="_blank">Kelompok11 Manpro</a>. All Rights Reserved. <br> Design Template by uicookies.com with some modification from our team &amp; Developed by <a href="https://uicookies.com/" target="_blank">Kelompok 11 Manpro</a></small>
-          </p>
-        </div>
-      </div>
-    </div>
-        
-            <div class="modal fade" id="preview-renungan-modal" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="previewRenunganLabel">Preview Renungan</h5>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container" >
-                                <div class="row">
-                                    <div class="col-md-6" id="preview-firman" >
-                                    </div>
-                                    <div class="col-md-4 " >
-                                        <div class="row mb-5" id="preview-ayat"  style=" max-width: 250px;"></div>
-                                        <div class="row" id="preview-renungan"  style=" max-width: 250px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-dark"  data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-dark" data-bs-target="#add-renungan-modal" data-bs-toggle="modal">Back</button>
-            <button type="button" data-group="" id="submit-renungan" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
     </div>
-
   </footer>
+</body>
 
-  </body>
 </html>
