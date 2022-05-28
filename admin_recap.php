@@ -124,7 +124,8 @@
 
         <div class="col-md-8">
             <div class="container">
-                <h1>Content For Recap</h1>
+                <br>
+                <h1><i class="fa-solid fa-clipboard"></i> Recap</h1>
                 <div id="div-manage-users" class="my-5">
                     <table id="manage-users" class="table table-bordered">
                         <thead>

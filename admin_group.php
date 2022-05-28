@@ -814,11 +814,16 @@
 </head>
 
 <body style="overflow-x:scroll;">
+<style>
+		#container{
+			padding: 10px;
+		}
+	</style>
     <div class="row">
         <?php include('assets/admin_sidebar.php'); ?>
-
+        <div id="container">
         <div class="col-md-9">
-            <h1>Content For Managing Group</h1>
+            <h1><i class="fa-solid fa-users"></i> Manage Group</h1>
             <div class="container my-5">
 
                 <div class="row" id="div-groups">
@@ -1123,6 +1128,7 @@
                     </div>
                 </div>
             </div>
+    </div>
 </body>
 
 </html>
