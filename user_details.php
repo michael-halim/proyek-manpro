@@ -97,15 +97,21 @@ $conn = mysqli_connect($host, $user, $password, $database);
 						<th class="col" scope="col">Nama</th>
 				      	<th class="col" scope="col">Status Kehadiran</th>
 				      	<th class="col" scope="col">Keterangan</th>
+						<th class="col" scope="col">Action</th>
 				    </tr>
 				</thead>
 				<tbody>
 					<?php
 					$email = $_SESSION['email'];
-					$query = "SELECT user.nama, detail_event.absen, detail_event.alasan\n" . "FROM user\n" . "RIGHT JOIN detail_event ON user.id = detail_event.id_user;";
+					$query = "SELECT user.nama, detail_event.absen, detail_event.alasan, detail_event.id_group, detail_event.id_event, detail_event.id_user\n" . "FROM user\n" . "RIGHT JOIN detail_event ON user.id = detail_event.id_user;";
 					$result = mysqli_query($conn, $query);
-
-					while($row = mysqli_fetch_array($result)){  ?>
+					$a = mysqli_fetch_array($result);
+					
+					while($row = mysqli_fetch_array($result)){  
+						$b = $row['id_group'];
+						$c = $row['id_event'];
+						$d = $row['id_user'];
+					?>
 						<tr>
 							<td><?php echo htmlspecialchars($row['nama']); ?></td>
 							<td>
@@ -123,6 +129,12 @@ $conn = mysqli_connect($host, $user, $password, $database);
 					            <?php if($row['alasan']) { ?>
 					            	<?php echo htmlspecialchars($row['alasan']); ?>
 					            <?php } ?>
+							</td>
+							<td>
+								<a href="<?php echo 'user_details_edit.php?idg='.$b . '&ide=' .$c . '&idu=' .$d;  ?>">
+						        	<button type="button" class="btn btn-primary">
+						            	<i class="fa-solid fa-pen-to-square"></i>
+						            </button>
 							</td>
 						</tr>
 					<?php } ?>
