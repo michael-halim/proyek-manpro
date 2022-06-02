@@ -1,6 +1,6 @@
 <?php
 include "connect.php";
-var_dump($_SESSION['statusJabatan']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,15 +56,17 @@ var_dump($_SESSION['statusJabatan']);
                 $stmt->execute();
                 echo '<div class="item active">';
                 while ($row = $stmt->fetch()) {
-                  $judul = $row["original_name"];
-                  $path = $row["path"];
+                  if($row){
+                      $judul = $row["original_name"];
+                      $path = $row["path"];
 
-                  echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
-                  echo '<p>' . $judul . '</p>   </div>';
-                  echo '<div class="item ">';
-                }
-                echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
-                echo '<p>' . $judul . '</p>   </div>';
+                      echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
+                      echo '<p>' . $judul . '</p>   </div>';
+                      echo '<div class="item ">';
+                    }
+                    echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
+                    echo '<p>' . $judul . '</p>   </div>';
+                  }
                 ?>
                 <br>
                 <br>
