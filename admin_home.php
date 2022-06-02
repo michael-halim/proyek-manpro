@@ -1,4 +1,7 @@
 <?php
+include "connect.php";
+var_dump($_SESSION['email']);
+require_once 'secure_admin.php';
 if (isset($_GET['stat'])) {
   $stat = $_GET['stat'];
   if ($stat == 1) {

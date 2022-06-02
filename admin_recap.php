@@ -1,6 +1,7 @@
 <?php
     include 'connect.php';
-
+    var_dump($_SESSION['email']);
+    require_once 'secure_admin.php';
     $sql = "SELECT * FROM `group_alkitab` ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
