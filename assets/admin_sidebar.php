@@ -4,19 +4,12 @@
         <img class="rounded-pill img-fluid" width="65" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="ms-2">
             <h5 class="fs-6 mb-0">
-                <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <strong> John W </strong> </a>
+                <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <strong><?= $_SESSION['nama']; ?> </strong> </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
                         <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
                     </ul>
                 </div>
             </h5>
-            <p class="mt-1 mb-0">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
 
     </div>
@@ -37,7 +30,7 @@
         </li>
         <li>
             <a href="admin_group.php" id="group" class="nav-link text-white">
-            <i class="fa-solid fa-users"></i>
+                <i class="fa-solid fa-users"></i>
                 <span class="ms-2">Manage Group</span>
             </a>
         </li>

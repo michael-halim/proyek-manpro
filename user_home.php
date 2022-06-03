@@ -1,6 +1,5 @@
 <?php
 include "connect.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,17 +48,15 @@ include "connect.php";
                 $stmt->execute();
                 echo '<div class="item active">';
                 while ($row = $stmt->fetch()) {
-                  if($row){
-                      $judul = $row["original_name"];
-                      $path = $row["path"];
+                  $judul = $row["original_name"];
+                  $path = $row["path"];
 
-                      echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
-                      echo '<p>' . $judul . '</p>   </div>';
-                      echo '<div class="item ">';
-                    }
-                    echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
-                    echo '<p>' . $judul . '</p>   </div>';
-                  }
+                  echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
+                  echo '<p>' . $judul . '</p>   </div>';
+                  echo '<div class="item ">';
+                }
+                echo ' <iframe width="780" height="450" src="' . $path . '" frameborder="0" allowfullscreen></iframe>';
+                echo '<p>' . $judul . '</p>   </div>';
                 ?>
                 <br>
                 <br>

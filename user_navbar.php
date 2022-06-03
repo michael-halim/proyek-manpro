@@ -22,13 +22,7 @@ if (!isset($_SESSION['email'])) {
 <nav role="navigation" class="probootstrap-nav hidden-xs">
   <ul class="probootstrap-main-nav">
     <li><a href="user_home.php">Home</a></li>
-    <?php 
-
-    $sql = "SELECT id from user WHERE email='".$_SESSION['email']."' and ketua='1'";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $cekKetua = $stmt->fetch();
-    if ($cekKetua) {
+    <?php if ($_SESSION['statusJabatan'] != 'ketua') {
       echo '<li><a href="material.php">Materi</a></li>';
     }
     ?>

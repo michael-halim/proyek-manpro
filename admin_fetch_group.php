@@ -6,7 +6,7 @@ header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // SQL untuk ambil data group dengan pagination
-    $MAX_PER_PAGES = 9;
+    $MAX_PER_PAGES = 20;
     $PAGES = $_GET['page'];
     $OFFSET = ($PAGES - 1) * $MAX_PER_PAGES;
     

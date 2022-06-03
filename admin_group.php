@@ -835,22 +835,6 @@ require_once 'secure_admin.php';
                     <!-- group card -->
                 </div>
             </div>
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-
             <!-- Modal Untuk Detail Group  -->
             <div class="modal fade" id="dtablesModalDetailGroup" tabindex="-1">
                 <div class="modal-dialog modal-xl">
@@ -1053,7 +1037,7 @@ require_once 'secure_admin.php';
                     </div>
                 </div>
             </div>
-            <input type="submit" class="btn btn-primary" id="outside-add-event" data-bs-toggle="modal" data-bs-target="#add-event-modal" value="Add Event">
+            
             <!-- Modal Add Event -->
             <div class="modal fade py-4" id="add-event-modal" data-isingroup="false" data-idgroup="" role="dialog">
                 <div class="vertical-alignment-helper">
