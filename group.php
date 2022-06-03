@@ -35,12 +35,6 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
-
-    .responsive {
-      width: 100%;
-      height: auto;
-    }
-
     table,
     th,
     td {
@@ -52,51 +46,52 @@ include 'connect.php';
 <body>
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
-      <!-- <div class="row"> -->
       <?php require_once('user_navbar.php') ?>
-
       <section class="probootstrap-intro">
-        <div style="padding-bottom:40px;">
-
-
           <?php
           if ($_SESSION['statusJabatan'] == 'ketua') {
+              echo'
+              <div class="row mb50">
+                    <div class="col-md-12 section-heading text-center" >
+                      <h2 style="font-family: Georgia, serif;">Daftar Grup</h2>
+                    </div>
+                </div>';
             $sql = "SELECT u.nama AS nama_user, 
                 ga.nama AS nama_group,
                 ga.id AS idg
-          FROM user AS u 
-          JOIN detail_group AS dg
-          ON dg.id_user = u.id
-          JOIN group_alkitab AS ga
-          ON ga.id = dg.id_group
-          WHERE u.email = ?";
+                FROM user AS u 
+                JOIN detail_group AS dg
+                ON dg.id_user = u.id
+                JOIN group_alkitab AS ga
+                ON ga.id = dg.id_group
+                WHERE u.email = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$_SESSION['email']]);
 
-            echo '<div class="col-md-12">';
-            while ($row = $stmt->fetch()) {
-              echo "<div style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
-          <a href='ketua_detail_group.php?idg=" . $row['idg'] . "'><h1 style='padding:10px'>" . $row['nama_group'] . "</h1></a>
-          </div>";
-            }
-            echo "</div>";
+              echo '<div class="col-md-12">';
+              while ($row = $stmt->fetch()) {
+                echo "<div style='background-color:whitesmoke;border-radius:8px;margin-top:10px;'>
+                      <a href='ketua_detail_group.php?idg=" . $row['idg'] . "'><h1 style='padding:4px;color:black; font-family: Helvetica, sans-serif;'>" . $row['nama_group'] . "</h1></a>
+                      </div>";
+              }
+              
+              echo "</div>";
           } else {
             echo '
-  <div class="row mb50">
-      <div class="col-md-12 section-heading text-center">
-        <h2>Anggota</h2>
-      </div>
-  </div>';
-            echo '<div class="asd">';
-            echo ' <div >
-  <table style="background-color:whitesmoke;width:100%" class="table">
-    <tr>
-      <th>Nama</th>
-      <th>Email</th>
-      <th>Hp</th>
-      <th>Status</th>
-    </tr>';
-            //<?php
+                <div class="row mb50">
+                    <div class="col-md-12 section-heading text-center">
+                      <h2>Anggota</h2>
+                    </div>
+                </div>';
+                          echo '<div class="asd">';
+                          echo ' <div >
+                <table style="background-color:whitesmoke;width:100%" class="table">
+                  <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Hp</th>
+                    <th>Status</th>
+                  </tr>';
             $emailnya = $_SESSION["email"];
             $sql = "SELECT DISTINCT nama,email,hp,ketua 
             FROM user 
@@ -111,10 +106,6 @@ include 'connect.php';
                       WHERE email = ? 
                       LIMIT 1) 
                     LIMIT 1);";
-            //echo $sql;
-
-            // $result = $link -> query($sql);
-
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$emailnya]);
 
@@ -140,33 +131,8 @@ include 'connect.php';
           }
           ?>
         </div>
-      </section>
-    </div>
-  </header>
-
-  <footer role="contentinfo" class="probootstrap-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Tentang Kita</h3>
-            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Contact</h3>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+      </section></div></header>
+  <?php require_once('user_footer.php'); ?>
 </body>
 
 </html>
