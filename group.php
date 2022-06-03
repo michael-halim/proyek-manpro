@@ -131,22 +131,11 @@ td{
         <h2>Anggota</h2>
       </div>
   </div>';
-            // echo '<div class="asd">';
-  //           echo ' <div >
-  // <table style="background-color:whitesmoke;width:100%" class="table">
-  //   <tr>
-  //     <th>Nama</th>
-  //     <th>Email</th>
-  //     <th>Hp</th>
-  //     <th>Status</th>
-  //   </tr>';
   echo '<div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
           <th>Nama</th>
-          <th>Email</th>
-          <th>Hp</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -180,8 +169,6 @@ td{
       <tbody>
         <tr>';
           echo "<td>$nama</td>";
-          echo "<td>$email</td>";
-          echo "<td>$hp</td>";
           if ($ketua == 1) {
             echo '<td>Ketua</td>';
           }
