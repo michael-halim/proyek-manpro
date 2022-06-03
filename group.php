@@ -34,6 +34,7 @@ include 'connect.php';
       background-color: #464646;
       width: 100%;
       height: auto;
+      font-family: 'Roboto', sans-serif;
     }
 
     .responsive {
@@ -41,11 +42,52 @@ include 'connect.php';
       height: auto;
     }
 
-    table,
+    /* table,
     th,
     td {
       border: 2px solid black;
-    }
+    } */
+    table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.9);
+ }
+.tbl-content{
+  /* height:0px; */
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 15px;
+  color: #000;
+  border-bottom: solid 1px rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.5);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
   </style>
 </head>
 
@@ -57,6 +99,7 @@ include 'connect.php';
 
       <section class="probootstrap-intro">
         <div style="padding-bottom:40px;">
+
 
           <?php
           if ($_SESSION['statusJabatan'] == 'ketua') {
@@ -74,11 +117,8 @@ include 'connect.php';
 
             echo '<div class="col-md-12">';
             while ($row = $stmt->fetch()) {
-              echo
-              "<div style='background-color:#D3C4A5;border-radius:500px;margin-top:10px;opacity:0.8;width:50%;text-align:center;margin-left:25%;'>
-                  <a href='ketua_detail_group.php?idg=" . $row['idg'] . "'>
-                      <h1 style='padding:5px'>" . $row['nama_group'] . "</h1>
-                  </a>
+              echo "<div style='background-color:#D3C4A5;border-radius:500px;margin-top:10px;opacity:0.8;width:50%;text-align:center;margin-left:25%;'>
+          <a href='ketua_detail_group.php?idg=" . $row['idg'] . "'><h1 style='padding:10px'>" . $row['nama_group'] . "</h1></a>
           </div>";
             }
             echo "</div>";
@@ -89,15 +129,27 @@ include 'connect.php';
         <h2>Anggota</h2>
       </div>
   </div>';
-            echo '<div class="asd">';
-            echo ' <div >
-  <table style="background-color:whitesmoke;width:100%" class="table">
-    <tr>
-      <th>Nama</th>
-      <th>Email</th>
-      <th>Hp</th>
-      <th>Status</th>
-    </tr>';
+            // echo '<div class="asd">';
+  //           echo ' <div >
+  // <table style="background-color:whitesmoke;width:100%" class="table">
+  //   <tr>
+  //     <th>Nama</th>
+  //     <th>Email</th>
+  //     <th>Hp</th>
+  //     <th>Status</th>
+  //   </tr>';
+  echo '<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Hp</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>';
             //<?php
             $emailnya = $_SESSION["email"];
             $sql = "SELECT DISTINCT nama,email,hp,ketua 
@@ -125,18 +177,33 @@ include 'connect.php';
               $email = $row["email"];
               $hp = $row["hp"];
               $ketua = $row["ketua"];
-              echo "<tr>";
-              echo "<th>$nama</th>";
-              echo "<th>$email</th>";
-              echo "<th>$hp</th>";
-              if ($ketua == 1) {
-                echo "<th>Ketua</th>";
-              }
-              if ($ketua == 0) {
-                echo "<th>Anggota</th>";
-              }
-              echo "</tr>";
+              echo '<div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>';
+          echo "<td>$nama</td>";
+          echo "<td>$email</td>";
+          echo "<td>$hp</td>";
+          if ($ketua == 1) {
+            echo '<td>Ketua</td>';
+          }
+          if ($ketua == 0) {
+            echo '<td>Anggota</td>';
+          }
+          echo '</tr>';
+              // echo "<tr>";
+              // echo "<th>$nama</th>";
+              // echo "<th>$email</th>";
+              // echo "<th>$hp</th>";
+              // if ($ketua == 1) {
+              //   echo "<th>Ketua</th>";
+              // }
+              // if ($ketua == 0) {
+              //   echo "<th>Anggota</th>";
+              // }
+              // echo "</tr>";
             }
+            echo '</tbody>';
             echo '</table>';
             echo '</div>';
           }
