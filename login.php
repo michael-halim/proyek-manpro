@@ -1,14 +1,15 @@
 <?php
 include 'connect.php';
-// if(isset($_SESSION['email']))
-// {
-// 	if ($_SESSION['email'] == "admin@gmail.com") {
-// 		header('location: admin_home.php');
-// 	}
-// 	else {
-// 		header('location: user_home.php');
-// 	}
-// }
+//require_once 'secure_admin.php';
+if(isset($_SESSION['email']))
+{
+	if ($_SESSION['email'] == "admin@gmail.com") {
+		header('location: admin_home.php');
+	}
+	else {
+		header('location: user_home.php');
+	}
+}
 ?>
 
 <!DOCTYPE html>
