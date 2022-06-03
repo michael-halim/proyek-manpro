@@ -1,11 +1,5 @@
 <?php
 include "connect.php";
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "manpro";
-
-$conn = mysqli_connect($host, $user, $password, $database);
 ?>
 
 <!DOCTYPE html>
