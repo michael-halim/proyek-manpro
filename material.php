@@ -40,18 +40,11 @@ include 'connect.php';
       width: 100%;
       height: auto;
     }
-
-    .responsive {
-      width: 100%;
-      height: auto;
-    }
   </style>
 </head>
 
 <body>
-  <!-- START: header -->
   <header role="banner" class="probootstrap-header img-responsive">
-    <!-- <div class="row"> -->
     <?php require_once('user_navbar.php') ?>
     <section class="probootstrap-intro" style="height: 600px;">
       <center>
@@ -61,11 +54,8 @@ include 'connect.php';
       </center>
     </section>
   </header>
-  <!-- END: header -->
-  <!-- START: section -->
   <section class="probootstrap-section probootstrap-section-extra">
     <div class="container">
-      <!-- query  -->
       <?php
       $emailnya = $_SESSION["email"];
       $sql = "SELECT ayat,renungan,sudah_baca,sudah_baca_at,id_user,id_alkitab,id_group 
@@ -181,7 +171,6 @@ include 'connect.php';
           and id_group = ?
           and id_alkitab = ?";
             $stmt = $pdo->prepare($sqlupdate);
-            // $stmt->bind_param('sss', );
             $stmt->execute([$puser, $pgroup, $palkitab]);
             if ($stmt == false) {
               $error = "Update failed. Please try again.";
@@ -255,30 +244,6 @@ include 'connect.php';
       </div>
     </div>
   </div>
-  
-  <footer role="contentinfo" class="probootstrap-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Tentang Kita</h3>
-            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Contact</h3>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php require_once('user_footer.php'); ?>
 </body>
-
 </html>

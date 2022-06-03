@@ -37,6 +37,7 @@ include 'connect.php';
       font-family: 'Roboto', sans-serif;
     }
 
+
     .responsive {
       width: 100%;
       height: auto;
@@ -94,24 +95,25 @@ td{
 <body>
   <header role="banner" class="probootstrap-header">
     <div class="container-fluid">
-      <!-- <div class="row"> -->
       <?php require_once('user_navbar.php') ?>
-
       <section class="probootstrap-intro">
-        <div style="padding-bottom:40px;">
-
-
           <?php
           if ($_SESSION['statusJabatan'] == 'ketua') {
+              echo'
+              <div class="row mb50">
+                    <div class="col-md-12 section-heading text-center" >
+                      <h2 style="font-family: Georgia, serif;">Daftar Grup</h2>
+                    </div>
+                </div>';
             $sql = "SELECT u.nama AS nama_user, 
                 ga.nama AS nama_group,
                 ga.id AS idg
-          FROM user AS u 
-          JOIN detail_group AS dg
-          ON dg.id_user = u.id
-          JOIN group_alkitab AS ga
-          ON ga.id = dg.id_group
-          WHERE u.email = ?";
+                FROM user AS u 
+                JOIN detail_group AS dg
+                ON dg.id_user = u.id
+                JOIN group_alkitab AS ga
+                ON ga.id = dg.id_group
+                WHERE u.email = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$_SESSION['email']]);
 
@@ -150,7 +152,7 @@ td{
       </thead>
     </table>
   </div>';
-            //<?php
+
             $emailnya = $_SESSION["email"];
             $sql = "SELECT DISTINCT nama,email,hp,ketua 
             FROM user 
@@ -165,10 +167,6 @@ td{
                       WHERE email = ? 
                       LIMIT 1) 
                     LIMIT 1);";
-            //echo $sql;
-
-            // $result = $link -> query($sql);
-
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$emailnya]);
 
@@ -209,33 +207,8 @@ td{
           }
           ?>
         </div>
-      </section>
-    </div>
-  </header>
-
-  <footer role="contentinfo" class="probootstrap-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Tentang Kita</h3>
-            <p>Aplikasi Baca Alkitab ini adalah aplikasi yang dibentuk oleh para mahasiswa Universitas Kristen Petra Surabaya yang berjumlahkan 6 orang</p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="probootstrap-footer-widget">
-            <h3>Contact</h3>
-            <ul class="probootstrap-contact-info">
-              <li><i class="icon-location2"></i> <span>Jl . alamat gereja </span></li>
-              <li><i class="icon-phone2"></i><span>+081 123 123 123</span></li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+      </section></div></header>
+  <?php require_once('user_footer.php'); ?>
 </body>
 
 </html>
