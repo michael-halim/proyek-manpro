@@ -61,7 +61,8 @@ include 'connect.php';
                 JOIN user 
                   where detail_group.id_user = user.id 
                   and detail_group.id_alkitab = alkitab.id 
-                  and user.email=?";
+                  and user.email=?
+                  and alkitab.id != 0";
 
       $stmt = $pdo->prepare($sql);
       $stmt->execute([$emailnya]);
