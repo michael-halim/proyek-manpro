@@ -48,9 +48,7 @@ include 'connect.php';
     <?php require_once('user_navbar.php') ?>
     <section class="probootstrap-intro" style="height: 600px;">
       <center>
-        <div class="container ">
-
-        </div>
+<h1>Materi Bacaan</h1>
       </center>
     </section>
   </header>
@@ -90,44 +88,45 @@ include 'connect.php';
           $btnset = "Sudah dibaca";
           $btcolor = "btn-success";
         }
+        echo '<div class="card bg-info">
+        <div class="card-header bg-primary text-white">
+        <h1 class="text-white">' . $renungan . '</h1>
+        </div>
+        <div class="card-body">
+        <i>' . $txtt . '</i>
+        <br>';
+   
+         if ($sb) {
+           echo '<i>' . $sbt  . '</i>';
+         }
+   
+         $skitab = strtok($ayat, ' ');
+         $spasal = substr($ayat, strpos($ayat, " ") + 1);
+         $spasal = strtok($spasal, ':');
+         $sawal = substr($ayat, strpos($ayat, ":") + 1);
+         $sawal = strtok($sawal, '-');
+         $sakhir = substr($ayat, strpos($ayat, "-") + 1);
+   
+   
+         echo '<p class="card-text">' . $ayat . '</p>
+          <form method="post" action="">
+          <input name="user" type="hidden" value=' . $iduser . '></input>
+          <input name="group" type="hidden" value=' . $idgroup . '></input>
+          <input name="alkitab" type="hidden" value=' . $idalkitab . '></input>
+          <input name="kitab" type="hidden" value=' . $skitab . '></input>
+          <input name="pasal" type="hidden" value=' . $spasal . '></input>
+          <input name="awal" type="hidden" value=' . $sawal . '></input>
+          <input name="akhir" type="hidden" value=' . $sakhir . '></input>
+          <input name="renungan" type="hidden" value=' . $renungan . '></input>
+          <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
+          <button type="submit" name = "aksi" value = "' . $aksinya . '" class ="btn ' . $btcolor . '" >' . $btnset . '</button >
+          </form> 
+   
+          </div>
+          </div> <br>';
       }
 
-      echo '<div class="card bg-info">
-     <div class="card-header bg-primary text-white">
-     <h1 class="text-white">' . $renungan . '</h1>
-     </div>
-     <div class="card-body">
-     <i>' . $txtt . '</i>
-     <br>';
 
-      if ($sb) {
-        echo '<i>' . $sbt  . '</i>';
-      }
-
-      $skitab = strtok($ayat, ' ');
-      $spasal = substr($ayat, strpos($ayat, " ") + 1);
-      $spasal = strtok($spasal, ':');
-      $sawal = substr($ayat, strpos($ayat, ":") + 1);
-      $sawal = strtok($sawal, '-');
-      $sakhir = substr($ayat, strpos($ayat, "-") + 1);
-
-
-      echo '<p class="card-text">' . $ayat . '</p>
-       <form method="post" action="">
-       <input name="user" type="hidden" value=' . $iduser . '></input>
-       <input name="group" type="hidden" value=' . $idgroup . '></input>
-       <input name="alkitab" type="hidden" value=' . $idalkitab . '></input>
-       <input name="kitab" type="hidden" value=' . $skitab . '></input>
-       <input name="pasal" type="hidden" value=' . $spasal . '></input>
-       <input name="awal" type="hidden" value=' . $sawal . '></input>
-       <input name="akhir" type="hidden" value=' . $sakhir . '></input>
-       <input name="renungan" type="hidden" value=' . $renungan . '></input>
-       <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
-       <button type="submit" name = "aksi" value = "' . $aksinya . '" class ="btn ' . $btcolor . '" >' . $btnset . '</button >
-       </form> 
-
-       </div>
-       </div> <br>';
 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
