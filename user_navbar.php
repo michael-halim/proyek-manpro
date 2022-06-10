@@ -18,12 +18,15 @@ if (!isset($_SESSION['email'])) {
 
 <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 <div class="mobile-menu-overlay"></div>
+<style>
 
+</style>
 <nav role="navigation" class="probootstrap-nav hidden-xs">
   <ul class="probootstrap-main-nav">
     <li><a href="user_home.php">Home</a></li>
     <?php if ($_SESSION['statusJabatan'] != 'ketua') {
       echo '<li><a href="material.php">Materi</a></li>';
+      echo '<li><a href="user_event.php">Event</a></li>';
     }
     ?>
     <li><a href="group.php">Grup</a></li>

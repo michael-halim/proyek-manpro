@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // id | email | salt | password | nama | hp | lahir | ketua | update_ketua | createdAt | updatedProfileAt | updatedProfileBy | last_login | profile_pic_path | group_member
 
         $_SESSION['email'] = $email;
-        echo json_encode(['location' => '/manpro/user_home.php']);
+        echo json_encode(['location' => 'logout.php']);
 
     } else {
-        echo json_encode(['notif' => 'Email yang anda masukkan telah terdaftar!']);
+        echo json_encode(['notif' => 'Terjadi kesalahan silahkan cek kembali !']);
     }
 }
