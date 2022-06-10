@@ -18,7 +18,9 @@ if (!isset($_SESSION['email'])) {
 
 <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
 <div class="mobile-menu-overlay"></div>
+<style>
 
+</style>
 <nav role="navigation" class="probootstrap-nav hidden-xs">
   <ul class="probootstrap-main-nav">
     <li><a href="user_home.php">Home</a></li>

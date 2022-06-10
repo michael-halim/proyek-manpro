@@ -87,7 +87,7 @@ include 'connect.php';
           $txtt = "Belum dibaca";
           $aksinya = "tandai";
           $btnset = "Sudah dibaca";
-          $btcolor = "btn-success";
+          $btcolor = "btn-info";
         }
         echo '<div class="card bg-info">
         <div class="card-header bg-primary text-white">
@@ -119,7 +119,7 @@ include 'connect.php';
           <input name="awal" type="hidden" value=' . $sawal . '></input>
           <input name="akhir" type="hidden" value=' . $sakhir . '></input>
           <input name="renungan" type="hidden" value=' . $renungan . '></input>
-          <button type="submit" name = "aksi" value = "baca" class ="btn btn-primary">Baca Ayat</button >
+          <button type="submit" name = "aksi" value = "baca" class ="btn btn-success">Baca Ayat</button >
           <button type="submit" name = "aksi" value = "' . $aksinya . '" class ="btn ' . $btcolor . '" >' . $btnset . '</button >
           </form> 
    
