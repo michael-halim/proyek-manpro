@@ -24,6 +24,7 @@ if (!isset($_SESSION['email'])) {
     <li><a href="user_home.php">Home</a></li>
     <?php if ($_SESSION['statusJabatan'] != 'ketua') {
       echo '<li><a href="material.php">Materi</a></li>';
+      echo '<li><a href="user_event.php">Event</a></li>';
     }
     ?>
     <li><a href="group.php">Grup</a></li>
