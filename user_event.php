@@ -100,6 +100,7 @@ $eid = $row["eid"];
   <h1 class="text-white text-center">' . $namaevent . '</h1>
   </div>
   <div class="card-body">
+  <div class="container">
   <label>Status: </label> <br>
   <i>' . $txtt . '</i>
   <br>
@@ -124,7 +125,7 @@ $eid = $row["eid"];
     <input name="event" type="hidden" value=' . $eid . '></input>';
     if($uat != true)
     {
-        echo '<textarea name="alasan" type="text" rows="3" value=' . $alasan . ' style="width:100%"></textarea><br> <br>';
+        echo '<textarea name="alasan" type="text" rows="4" style="width:40%;" value=' . $alasan . ' style="width:100%"></textarea><br> <br>';
     }
     else{
         echo
@@ -135,7 +136,7 @@ $eid = $row["eid"];
     </form> 
 
     </div>
-    </div> <br>';
+    </div> <br></div><br>';
 }
 
 
@@ -192,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
+</div>
     </div>
 
   </section>
